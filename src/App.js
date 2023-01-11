@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Home from "./Home";
+import Auth from "./Auth";
+import { DynamicContextProvider} from "@dynamic-labs/sdk-react";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DynamicContextProvider
+      settings={{
+        environmentId: "82f0f545-b18f-45f4-9b54-8793b95849cb",
+        initialAuthenticationMode: "connect-and-sign",
+        multiWallet: false,
+        onAuthSuccess: ({ authToken, user }) => {
+          return (
+              <div>
+                <Home user={user} />
+              </div>
+          );
+          /// Your logic goes here....
+          // API calls, window.location.assign('/success'), etc.
+        },
+      }}
+    >
+      <Home />
+    </DynamicContextProvider>
   );
 }
 
