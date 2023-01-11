@@ -13,7 +13,7 @@ function Home() {
   } = useDynamicContext();
 
   return (
-    <div className="body">
+    <div className="Home-body">
       <div>
         <p>Home</p>
       </div>
