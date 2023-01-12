@@ -1,26 +1,27 @@
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
 import "./Home.css";
-import { Box, Select, Input } from "@chakra-ui/react";
+import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
+
 function Home() {
-  // const {
-  //   user,
-  //   handleLogOut,
-  //   setShowAuthFlow,
-  //   showAuthFlow,
-  //   walletConnector,
-  //   authToken,
-  // } = useDynamicContext();
+  const [currentwallet, setCurrentWallet] = useState(null);
 
-  // const [currentwallet, setCurrentWallet] = useState(null);
+  const {
+    user,
+    handleLogOut,
+    setShowAuthFlow,
+    showAuthFlow,
+    walletConnector,
+    authToken,
+  } = useDynamicContext();
 
-  // useEffect(() => {
-  //   if (user.walletPublicKey != null) {
-  //     setCurrentWallet(user.walletPublicKey);
-  //   }
-  // }, [user.walletPublicKey]);
+  useEffect(() => {
+    if (user.walletPublicKey != null) {
+      setCurrentWallet(user.walletPublicKey);
+    }
+  }, [user, walletConnector]);
 
   const {
     register,
@@ -34,16 +35,18 @@ function Home() {
   };
 
   return (
-    <div className="Homer">
+    <ChakraProvider>
+
+<div className="Homer">
       <Box w="100%" bg="#ED1C24" className="Home-header">
         <p className="p">WARETA</p>
-        {/* <DynamicWidget className="logout-button"/> */}
+        <DynamicWidget className="logout-button" />
       </Box>
       <Box className="Home-body">
         <Box className="form-widget">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <p className="p2">WARETA</p>
-{/* 
+            <p className="p2">GENERATE AN OG MEME OF YOUR PFP</p>
+            {/* 
             <div>
               <div className="Gallery"></div>
               <div className="Gallery-header">
@@ -63,6 +66,9 @@ function Home() {
         </Box>
       </Box>
     </div>
+
+    </ChakraProvider>
+    
   );
 }
 

@@ -21,7 +21,17 @@
 .Home-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0rem 2rem 0rem 3rem;
+}
+
+.form-widget {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 0rem;
 }
 
 .Gallery {
@@ -42,21 +52,12 @@
   font-family: "East Sea Dokdo";
 }
 
-.form-widget {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 1rem;
-}
-
 .logout-button {
   display: flex !important;
-  justify-content: start !important;
-  align-items: start !important;
-  background-color: #000000 !important;  
+  justify-content: center !important;
+  align-items: center !important;
   padding: 0.75rem 1.5rem !important;
+  background-color: #000000 !important;  
   border-color: transparent !important; 
   border: 0px !important;
   font-family: Montserrat !important;
@@ -77,5 +78,5 @@
   font-family: Montserrat;
   font-weight: 800;
   font-style: italic;
-  font-size: 24px;
+  font-size: 18px;
 }

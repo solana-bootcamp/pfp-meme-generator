@@ -1,10 +1,9 @@
+import "./Auth.css";
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
-import "./Auth.css";
-
+import Home from "./Home";
 
 function Auth() {
-  const [loading, setLoading] = useState(false);
 
   const {
     user,
@@ -15,23 +14,23 @@ function Auth() {
     authToken,
   } = useDynamicContext();
 
-  useEffect(() => {
-    if (user && walletConnector) {
-      const provider = walletConnector.getWeb3Provider();
-    }
-  }, [user, walletConnector]);
+  if (user && !showAuthFlow) {
+    return (
+      <div>
+        <Home/>
+      </div>
+    );
+  }
 
   return (
     <div className="Auth">
       <div className="Auth-header">
-        <p>WARETA</p>
+        <p className="p3">WARETA</p>
       </div>
-      <div className="main-body">
-        <DynamicWidget
-          buttonClassName="connectButton"
-          innerButtonComponent="Connect Wallet"
-        />{" "}
-      </div>
+      <DynamicWidget
+            buttonClassName="connectButton"
+            innerButtonComponent="Connect Wallet"
+          />
     </div>
   );
 }
