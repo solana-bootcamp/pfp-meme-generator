@@ -23,7 +23,7 @@ function Auth() {
 
   return (
     <div className="Auth">
-      <div>
+      <div className="Auth-header">
         <p>WARETA</p>
       </div>
       <div className="main-body">

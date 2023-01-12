@@ -15,9 +15,8 @@
   align-items: center;
   justify-content: start;
   color: white;
-  margin-bottom: 0rem;
-  font-size: "100px";
-  font-family: "East Sea Dokdo"
+  font-family: East Sea Dokdo;
+  font-size: 96px;
 }
 
 .main-body {
