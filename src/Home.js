@@ -1,5 +1,5 @@
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Row } from "react";
 import "./Home.css";
 
 function Home() {
@@ -14,8 +14,18 @@ function Home() {
 
   return (
     <div className="Home-body">
-      <div>
+      <div className="Home-header">
         <p>Home</p>
+      </div>
+      <div className="Gallery"></div>
+      <div className="Gallery-header">
+        <p>Choose your NFT</p>
+      </div>
+      <div>
+
+      </div>
+      <div className="form-widget">
+
       </div>
     </div>
   );
