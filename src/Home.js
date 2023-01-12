@@ -1,5 +1,5 @@
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
-import { useState, useEffect, Row } from "react";
+import { useState, useEffect } from "react";
 import "./Home.css";
 
 function Home() {
