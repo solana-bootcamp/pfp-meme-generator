@@ -15,7 +15,7 @@ export default function UpdatedGallery() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
       <>
-        <Button fontFamily={"Montserrat"} fontWeight="600" onClick={onOpen}>Open Modal</Button>
+        <Button fontFamily={"Montserrat"} fontWeight="600" onClick={onOpen}>Select NFTs</Button>
   
         <Modal isOpen={isOpen} onClose={onClose} bg='#FA4303'>
           <ModalOverlay />
