@@ -35,11 +35,13 @@ function Home() {
     formState: { errors },
   } = useForm();
 
-  // const onSubmit = (data) => {
-  //   //alert(JSON.stringify(data));
-  //   const navigate = useNavigate();
-  //   navigate("./edit");
-  // };
+  const onSubmit = () => {
+    navigate('./edit', {state: {
+      backgroundImageURL: "https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg", 
+      pfpImageURL: "https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg", 
+      text: "hey"
+    }})
+  }
 
   return (
     <ChakraProvider>
@@ -50,9 +52,7 @@ function Home() {
         </Box>
         <Box className="Home-body">
           <Box className="form-widget">
-            <form onSubmit={() => {
-              navigate("./edit");
-            }}>
+            <form onSubmit={onSubmit}>
               <p className="p2">OG MEME GENERATOR</p>
               <label className="form-label2">1. Choose an NFT</label>
               <div>

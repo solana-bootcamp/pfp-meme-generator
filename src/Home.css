@@ -33,6 +33,11 @@
   align-items: center;
 }
 
+.image-edit {
+  height: 75vh;
+  width: 80vw;
+}
+
 .form-label {
   justify-content: start;
   display: flex;
