@@ -11,6 +11,8 @@ function Home() {
 
   const navigate = useNavigate();
 
+  const [allNFTs, setAllNFTs] = useState([]);
+
   const {
     user,
     handleLogOut,
@@ -51,13 +53,6 @@ function Home() {
               navigate("./edit");
             }}>
               <p className="p2">OG MEME GENERATOR</p>
-              {/* 
-            <div>
-              <div className="Gallery"></div>
-              <div className="Gallery-header">
-                <p>Choose your NFT</p>
-              </div>
-            </div> */}
               <label className="form-label2">1. Choose an NFT</label>
               <div>
                 <UpdatedGallery />
