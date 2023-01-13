@@ -1,6 +1,7 @@
-import "./App.css";
-import Auth from "./Auth";
+import "./styles/App.css";
+import Nav from "./Nav";
 import { DynamicContextProvider} from "@dynamic-labs/sdk-react";
+
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
           multiWallet: false,
         }}
         >
-        <Auth />
+            <Nav />
       </DynamicContextProvider>
   );
 }

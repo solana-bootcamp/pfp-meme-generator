@@ -1,9 +1,9 @@
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
-import "./Home.css";
+import "../styles/Home.css";
 import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import UpdatedGallery from "./components/UpdatedGallery";
+import UpdatedGallery from "../components/UpdatedGallery";
 import { useNavigate } from "react-router-dom";
 
 
@@ -34,20 +34,21 @@ function Home() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     // alert(JSON.stringify(data));
-    navigate("/Edit");
+    navigate("/edit");
   };
 
   return (
-      <div className="Homer">
+    <ChakraProvider>
+     <div className="Homer">
         <Box w="100%" bg="#ED1C24" className="Home-header">
           <p className="p">WARETA</p>
-          <DynamicWidget className="logout-button" />
+          <DynamicWidget className="logout-button" h />
         </Box>
         <Box className="Home-body">
           <Box className="form-widget">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={onSubmit()}>
               <p className="p2">OG MEME GENERATOR</p>
               {/* 
             <div>
@@ -64,7 +65,7 @@ function Home() {
                   placeholder="Select option"
                   variant="filled"
                   _focus={{ bg: "white" }}
-                  _hover={{cursor: "pointer"}}
+                  _hover={{ cursor: "pointer" }}
                   fontFamily={"Montserrat"}
                   fontWeight="600"
                 >
@@ -90,12 +91,14 @@ function Home() {
                 type="submit"
                 fontFamily={"Montserrat"}
                 fontWeight="800"
-                _hover={{bg: "#2F3238", cursor: "pointer"}}
+                _hover={{ bg: "#2F3238", cursor: "pointer" }}
               />
             </form>
           </Box>
         </Box>
       </div>
+    </ChakraProvider>
+     
   );
 }
 

@@ -13,10 +13,10 @@ function get_nfts() {
         }
     };
     
-    fetch('https://api.nftport.xyz/v0/solana/nfts/okay-bears-3fb117dd?page_number=1&page_size=50&include=metadata&refresh_metadata=false', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .then (nft_meta = response["nfts"])
-    .catch(err => console.error(err));
+    // fetch('https://api.nftport.xyz/v0/solana/nfts/okay-bears-3fb117dd?page_number=1&page_size=50&include=metadata&refresh_metadata=false', options)
+    // .then(response => response.json())
+    // .then(response => console.log(response))
+    // .then (nft_meta = response["nfts"])
+    // .catch(err => console.error(err));
     
 }

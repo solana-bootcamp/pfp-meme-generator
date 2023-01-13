@@ -1,20 +1,39 @@
 import * as React from "react";
-import Home from "./Home";
-import Auth from "./Auth";
-import Edit from "./Edit";
-
+import Home from "./pages/Home";
+import Error from "./pages/Error";
+import Edit from "./pages/Edit";
+import Auth from "./pages/Auth";
+import { useDynamicContext } from "@dynamic-labs/sdk-react";
+import { useState } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function Nav() {
-  
+  const [useractive, setUserActive] = useState(false);
+
+  const {
+    user,
+    handleLogOut,
+    setShowAuthFlow,
+    showAuthFlow,
+    walletConnector,
+    authToken,
+  } = useDynamicContext();
+
+  if (user && !showAuthFlow) {
+    setUserActive(true);
+  }
+
   return (
     <Router>
-    <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/auth' element={<Auth/>} />
-        <Route path='/edit' element={<Edit/>} />
-    </Routes>
+      <Routes>
+      <Route path="/" element={<Auth />} />
+        <Route path="/home" element={useractive === true ? <Error /> : <Home />} />
+        <Route
+          path="/edit"
+          element={useractive === true ? <Error /> : <Edit />}
+        />
+      </Routes>
     </Router>
   );
 }
