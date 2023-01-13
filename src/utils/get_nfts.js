@@ -1,9 +1,11 @@
 
+import NFT from "../components/Nft";
 
-
-function get_nfts() { 
+function get_nfts() {
 
     let nft_meta;
+
+    let nfts = [];
     
     const options = {
         method: 'GET',
@@ -17,6 +19,17 @@ function get_nfts() {
     .then(response => response.json())
     .then(response => console.log(response))
     .then (nft_meta = response["nfts"])
+    .then (nfts = parse_metadata(nft_meta))
     .catch(err => console.error(err));
     
+}
+
+function parse_metadata(metadata) {
+    metadata.array.forEach(nftmeta => {
+        nfts.push({
+            nftmeta
+        })
+    });
+
+
 }

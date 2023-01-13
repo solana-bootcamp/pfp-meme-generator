@@ -8,6 +8,8 @@ import UpdatedGallery from "./components/UpdatedGallery";
 function Home() {
   const [currentwallet, setCurrentWallet] = useState(null);
 
+  const [allNFTs, setAllNFTs] = useState([]);
+
   const {
     user,
     handleLogOut,
@@ -45,13 +47,6 @@ function Home() {
           <Box className="form-widget">
             <form onSubmit={handleSubmit(onSubmit)}>
               <p className="p2">OG MEME GENERATOR</p>
-              {/* 
-            <div>
-              <div className="Gallery"></div>
-              <div className="Gallery-header">
-                <p>Choose your NFT</p>
-              </div>
-            </div> */}
               <label className="form-label2">1. Choose an NFT</label>
               <div>
                 <UpdatedGallery />
