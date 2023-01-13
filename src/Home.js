@@ -42,6 +42,7 @@ function Home() {
   // };
 
   return (
+    <ChakraProvider>
       <div className="Homer">
         <Box w="100%" bg="#ED1C24" className="Home-header">
           <p className="p">WARETA</p>
@@ -93,6 +94,7 @@ function Home() {
           </Box>
         </Box>
       </div>
+    </ChakraProvider>
   );
 }
 
