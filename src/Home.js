@@ -4,9 +4,12 @@ import "./Home.css";
 import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import UpdatedGallery from "./components/UpdatedGallery";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Home() {
   const [currentwallet, setCurrentWallet] = useState(null);
+
+  const navigate = useNavigate();
 
   const {
     user,
@@ -30,9 +33,11 @@ function Home() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
-  };
+  // const onSubmit = (data) => {
+  //   //alert(JSON.stringify(data));
+  //   const navigate = useNavigate();
+  //   navigate("./edit");
+  // };
 
   return (
     <ChakraProvider>
@@ -43,7 +48,9 @@ function Home() {
         </Box>
         <Box className="Home-body">
           <Box className="form-widget">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={() => {
+              navigate("./edit");
+            }}>
               <p className="p2">OG MEME GENERATOR</p>
               {/* 
             <div>

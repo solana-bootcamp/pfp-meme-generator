@@ -2,6 +2,7 @@ import "./Auth.css";
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
 import Home from "./Home";
+import Nav from "./Nav";
 
 function Auth() {
 
@@ -17,7 +18,7 @@ function Auth() {
   if (user && !showAuthFlow) {
     return (
       <div>
-        <Home/>
+        <Nav/>
       </div>
     );
   }
