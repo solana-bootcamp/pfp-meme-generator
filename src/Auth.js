@@ -2,6 +2,7 @@ import "./Auth.css";
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
 import Nav from "./Nav";
+import Home from "./Home";
 import crackedlogo from "./assets/crackedlogo.svg";
 
 function Auth() {
@@ -17,7 +18,7 @@ function Auth() {
   if (user && !showAuthFlow) {
     return (
       <div>
-        <Nav/>
+        <Home/>
       </div>
     );
   }

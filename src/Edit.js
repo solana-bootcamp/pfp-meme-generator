@@ -8,18 +8,11 @@ import UpdatedGallery from "./components/UpdatedGallery";
 function Edit() {
 
   return (
-    <ChakraProvider>
-      <div className="Homer">
-        <Box w="100%" bg="#ED1C24" className="Home-header">
-          <p className="p">WARETA</p>
-        </Box>
-        <Box className="Home-body">
+    <Box className="Home-body">
           <Box className="form-widget">
             <p>hello</p>
           </Box>
-        </Box>
-      </div>
-    </ChakraProvider>
+    </Box>
   );
 }
 
