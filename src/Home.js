@@ -4,9 +4,13 @@ import "./Home.css";
 import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import UpdatedGallery from "./components/UpdatedGallery";
+import { useNavigate } from "react-router-dom";
+
 
 function Home() {
   const [currentwallet, setCurrentWallet] = useState(null);
+
+  const navigate = useNavigate();
 
   const [allNFTs, setAllNFTs] = useState([]);
 
@@ -33,11 +37,11 @@ function Home() {
   } = useForm();
 
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    // alert(JSON.stringify(data));
+    navigate("/Edit");
   };
 
   return (
-    <ChakraProvider>
       <div className="Homer">
         <Box w="100%" bg="#ED1C24" className="Home-header">
           <p className="p">WARETA</p>
@@ -81,13 +85,12 @@ function Home() {
                 type="submit"
                 fontFamily={"Montserrat"}
                 fontWeight="800"
-                _hover={{bg: "transparent",  border: "3px solid white", cursor: "pointer"}}
+                _hover={{bg: "#2F3238", cursor: "pointer"}}
               />
             </form>
           </Box>
         </Box>
       </div>
-    </ChakraProvider>
   );
 }
 
