@@ -1,7 +1,7 @@
 import "../styles/Error.css";
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
-import Nav from "../Nav";
+import Nav from "./Nav";
 import crackedlogo from "../assets/crackedlogo.svg";
 
 function Error() {

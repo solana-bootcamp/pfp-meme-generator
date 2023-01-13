@@ -1,13 +1,10 @@
 import "../styles/Auth.css";
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
-import Nav from "../Nav";
+import Nav from "./Nav";
 import crackedlogo from "../assets/crackedlogo.svg";
-import { useNavigate } from "react-router-dom";
-
+import { Navigate } from "react-router-dom";
 
 function Auth() {
-  const navigate = useNavigate();
-
   const {
     user,
     handleLogOut,
@@ -18,7 +15,7 @@ function Auth() {
   } = useDynamicContext();
 
   if (user && !showAuthFlow) {
-    navigate("/home");
+    return <Nav />;
   }
 
   return (
