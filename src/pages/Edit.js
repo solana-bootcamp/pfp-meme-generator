@@ -13,6 +13,7 @@ import {
   SimpleGrid
 } from '@chakra-ui/react'
 import { useState } from 'react'
+import Editor from "../components/Editor"
 
 
 
@@ -32,7 +33,7 @@ export default function UpdatedGallery(props) {
           <ModalCloseButton />
           <ModalBody>
 
-          <p>editor goes here</p>
+          <Editor backgroundImageURL="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg" pfpImageURL="null" text="null"/>
           </ModalBody>
 
           <ModalFooter>
