@@ -1,17 +1,18 @@
 import * as React from "react";
-import Home from "./Home";
-import Auth from "./Auth";
-import Edit from "./Edit";
+import Feed from "./pages/Feed";
+import Edit from "./pages/Edit";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Generator from "./Generator";
+import Home from "./Home";
+
 
 export default function Nav() {
   
   return (
     <Router>
     <Routes>
-        <Route path='/' element={<Generator/>} />
+        <Route path='/' element={<Home/>} />
         <Route path='/edit' element={<Edit/>} />
+        <Route path='/feed' element={<Feed/>} />
     </Routes>
     </Router>
   );

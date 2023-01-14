@@ -1,14 +1,18 @@
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
 import "./Home.css";
-import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import UpdatedGallery from "./components/UpdatedGallery";
-import Nav from "./Nav";
+import Feed from "./pages/Feed";
+import Generator from "./pages/Generator";
+import { useNavigate } from "react-router-dom";
+
 
 function Home() {
   const [currentwallet, setCurrentWallet] = useState(null);
 
+  const navigate = useNavigate();
 
   const {
     register,
@@ -24,7 +28,8 @@ function Home() {
           <p className="p">WARETA</p>
           <DynamicWidget className="logout-button" />
         </Box>
-        <Nav/>
+        <Generator />
+        <Feed/>
       </div>
     </ChakraProvider>
   );

@@ -23,53 +23,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0rem 2rem 0rem 3rem;
-  margin: 0rem 0rem 8rem 0rem;
-}
-
-.form-widget {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.form-label {
-  justify-content: start;
-  display: flex;
-  color: white;
-  font-family: Montserrat;
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 1px;
-  padding: 1rem 0rem 0.5rem 0rem;
-}
-
-.form-label2 {
-  justify-content: start;
-  display: flex;
-  color: white;
-  font-family: Montserrat;
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 1px;
-  padding: 0rem 0rem 0.5rem 0rem;
-}
-
-.Gallery {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-}
-
-.Gallery-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  color: white;
-  font-size: 75px;
-  font-family: "East Sea Dokdo";
+  margin: 0rem 0rem 4rem 0rem;
 }
 
 .logout-button {
