@@ -7,14 +7,23 @@ import UpdatedGallery from "../components/UpdatedGallery";
 import { useNavigate } from "react-router-dom";
 import Feed from "./Feed";
 import ViewResult from "./ViewResult";
+import BackgroundTemplates from "../components/BackgroundTemplates";
 import get_nfts from "../utils/get_nfts";
 
 
 
 function Generator() {
-  const [currentwallet, setCurrentWallet] = useState(null);
   const navigate = useNavigate();
+
+  const [currentwallet, setCurrentWallet] = useState(null);
   const [owned_NFTs, set_owned_NFTs] = useState([]);
+  const [selectedNFTImage, setSelectedNFTImage] = useState([]);
+  const [selectedNFTStyle, setSelectedNFTStyle] = useState([]);
+  const [selectedNFTBackgroundImage, setSelectedNFTBackgroundImage] = useState([]);
+
+
+
+
 
   const {
     user,
@@ -61,7 +70,9 @@ function Generator() {
               <label className="form-label2">1. Choose an NFT</label>
               <div>
                 <UpdatedGallery nfts = {owned_NFTs} />
-                <label className="form-label">2. Select a meme style</label>
+                <label className="form-label">2. Select a meme background</label>
+                <BackgroundTemplates />
+                {/* <label className="form-label">3. Select a meme style</label>
                 <Select
                   placeholder="Select option"
                   variant="filled"
@@ -72,8 +83,8 @@ function Generator() {
                 >
                   <option value="option1">Deep Fry</option>
                   <option value="option2">Pixelate</option>
-                </Select>{" "}
-                <label className="form-label">3. Input your meme text</label>
+                </Select>{" "} */}
+                <label className="form-label">4. Input your meme text</label>
                 <Input
                   placeholder="Meme Text"
                   variant="filled"
