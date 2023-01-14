@@ -42,7 +42,7 @@ function Generator() {
       <Box className="Generator-body">
           <Box className="form-widget">
             <form onSubmit={() => {
-              navigate("./edit");
+              navigate("./viewresult");
             }}>
               <p className="p2">OG MEME GENERATOR</p>
               <label className="form-label2">1. Choose an NFT</label>

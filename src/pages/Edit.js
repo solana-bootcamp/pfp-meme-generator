@@ -1,19 +1,48 @@
-import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
-import { useState, useEffect } from "react";
-import "../Home.css";
-import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import UpdatedGallery from "../components/UpdatedGallery";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  Image,
+  GridItem,
+  SimpleGrid
+} from '@chakra-ui/react'
+import { useState } from 'react'
 
-function Edit() {
 
+
+
+export default function UpdatedGallery(props) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // use on click in each grid item
   return (
-    <Box className="Edit-body">
-          <Box>
-          <p>hello</p>
-          </Box>
-    </Box>
-  );
-}
+    <>
+      <Button fontFamily={"Montserrat"} fontWeight="600" onClick={onOpen}>EDIT</Button>
 
-export default Edit;
+      <Modal isOpen={isOpen} onClose={onClose} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Edit your meme</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+
+          <p>editor goes here</p>
+          </ModalBody>
+
+          <ModalFooter>
+            {/* <Button bg='#FFD307' color={"black"} mr={3} onClick={onClose} _hover={{bg: "black", color: "white"}} fontFamily={"Montserrat"} fontWeight="600" >
+              Select
+            </Button> */}
+            {/* <Button variant='ghost'>Secondary Action</Button> */}
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
