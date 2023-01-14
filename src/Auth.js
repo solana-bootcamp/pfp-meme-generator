@@ -2,7 +2,10 @@ import "./Auth.css";
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
 import Nav from "./Nav";
+import Home from "./Home";
 import crackedlogo from "./assets/crackedlogo.svg";
+import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
+
 
 function Auth() {
   const {
@@ -16,9 +19,7 @@ function Auth() {
 
   if (user && !showAuthFlow) {
     return (
-      <div>
         <Nav/>
-      </div>
     );
   }
 

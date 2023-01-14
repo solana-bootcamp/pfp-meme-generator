@@ -1,18 +1,21 @@
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
-import "./Home.css";
-import { Box, Button, ButtonGroup, ChakraProvider } from "@chakra-ui/react";
+import "../styles/Generator.css";
+import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import UpdatedGallery from "./components/UpdatedGallery";
+import UpdatedGallery from "../components/UpdatedGallery";
+import { useNavigate } from "react-router-dom";
+import Feed from "./Feed";
+import ViewResult from "./ViewResult";
 
-import { Navigate, useNavigate } from "react-router-dom";
-import get_nfts from "./utils/get_nfts";
 
-function Home() {
+
+function Generator() {
   const [currentwallet, setCurrentWallet] = useState(null);
+
   const navigate = useNavigate();
-  const [owned_NFTs, set_owned_NFTs] = useState([]);
-  const [is_loading, set_is_loading] = useState([true]);
+
+  const [allNFTs, setAllNFTs] = useState([]);
 
   const {
     user,
@@ -23,32 +26,11 @@ function Home() {
     authToken,
   } = useDynamicContext();
 
-
   useEffect(() => {
-
-    const fetch_NFTs = async () => {
-      try {
-        let nfts = await get_nfts("Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn");
-        set_owned_NFTs(nfts);
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
     if (user.walletPublicKey != null) {
       setCurrentWallet(user.walletPublicKey);
-      fetch_NFTs();
-      console.log(owned_NFTs);
     }
   }, [user, walletConnector]);
-  
-import Nav from "./Nav";
-import Generator from "./pages/Generator";
-
-
-function Home() {
-  const [currentwallet, setCurrentWallet] = useState(null);
-
 
   const {
     register,
@@ -57,30 +39,17 @@ function Home() {
     formState: { errors },
   } = useForm();
 
-
-  // const onSubmit = (data) => {
-  //   //alert(JSON.stringify(data));
-  //   const navigate = useNavigate();
-  //   navigate("./edit");
-  // };
-
   return (
-    <ChakraProvider>
-      <div className="Homer">
-        <Box w="100%" bg="#ED1C24" className="Home-header">
-          <p className="p">WARETA</p>
-          <DynamicWidget className="logout-button" />
-        </Box>
-
-        <Box className="Home-body">
+    <Box>
+      <Box className="Generator-body">
           <Box className="form-widget">
             <form onSubmit={() => {
-              navigate("./edit");
+              ;
             }}>
               <p className="p2">OG MEME GENERATOR</p>
               <label className="form-label2">1. Choose an NFT</label>
               <div>
-                <UpdatedGallery nfts = {owned_NFTs} />
+                <UpdatedGallery />
                 <label className="form-label">2. Select a meme style</label>
                 <Select
                   placeholder="Select option"
@@ -103,7 +72,10 @@ function Home() {
                   margin={"0rem 0rem 2rem 0rem"}
                 />
               </div>
-              <Input
+              <Box style={{display: "flex", width: '100%', justifyContent: "end", alignItems: 'center'}}>
+              <ViewResult />
+              </Box>
+              {/* <Input
                 w="100%"
                 h="2.75rem"
                 color="white"
@@ -113,14 +85,14 @@ function Home() {
                 fontFamily={"Montserrat"}
                 fontWeight="800"
                 _hover={{bg: "#2F3238", cursor: "pointer"}}
-              />
+              /> */}
             </form>
           </Box>
-        </Box>
-        <Generator />
-      </div>
-    </ChakraProvider>
+     </Box>
+     <Feed/>
+    </Box>
+
   );
 }
 
-export default Home;
+export default Generator;

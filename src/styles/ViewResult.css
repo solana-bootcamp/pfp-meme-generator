@@ -1,0 +1,22 @@
+.View-body {
+    background-color: #ed1c24;
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    padding: 1rem 2rem 2rem 2rem;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+  }
+
+  .pvr {
+    font-family: Montserrat;
+    color: white;
+    padding: 1rem 2rem 2rem 2rem;
+  }
