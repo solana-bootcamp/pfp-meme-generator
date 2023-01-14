@@ -26,7 +26,7 @@ function Home() {
           <p className="p">WARETA</p>
           <DynamicWidget className="logout-button" />
         </Box>
-        <Nav />
+        <Generator />
       </div>
     </ChakraProvider>
   );

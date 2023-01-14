@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import UpdatedGallery from "../components/UpdatedGallery";
 import { useNavigate } from "react-router-dom";
 import Feed from "./Feed";
+import ViewResult from "./ViewResult";
+
 
 
 function Generator() {
@@ -42,7 +44,7 @@ function Generator() {
       <Box className="Generator-body">
           <Box className="form-widget">
             <form onSubmit={() => {
-              navigate("./viewresult");
+              ;
             }}>
               <p className="p2">OG MEME GENERATOR</p>
               <label className="form-label2">1. Choose an NFT</label>
@@ -70,7 +72,10 @@ function Generator() {
                   margin={"0rem 0rem 2rem 0rem"}
                 />
               </div>
-              <Input
+              <Box style={{display: "flex", width: '100%', justifyContent: "end", alignItems: 'center'}}>
+              <ViewResult />
+              </Box>
+              {/* <Input
                 w="100%"
                 h="2.75rem"
                 color="white"
@@ -80,7 +85,7 @@ function Generator() {
                 fontFamily={"Montserrat"}
                 fontWeight="800"
                 _hover={{bg: "#2F3238", cursor: "pointer"}}
-              />
+              /> */}
             </form>
           </Box>
      </Box>
