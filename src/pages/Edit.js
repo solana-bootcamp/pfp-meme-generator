@@ -8,9 +8,9 @@ import UpdatedGallery from "../components/UpdatedGallery";
 function Edit() {
 
   return (
-    <Box className="Home-body">
-          <Box className="form-widget">
-            <p>hello</p>
+    <Box className="Edit-body">
+          <Box>
+          <p>hello</p>
           </Box>
     </Box>
   );

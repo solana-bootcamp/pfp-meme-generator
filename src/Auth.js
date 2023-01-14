@@ -19,7 +19,7 @@ function Auth() {
 
   if (user && !showAuthFlow) {
     return (
-        <Nav/>
+        <Home/>
     );
   }
 

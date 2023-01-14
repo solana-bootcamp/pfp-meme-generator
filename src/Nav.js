@@ -2,7 +2,7 @@ import * as React from "react";
 import Feed from "./pages/Feed";
 import Edit from "./pages/Edit";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
+import Generator from "./pages/Generator";
 
 
 export default function Nav() {
@@ -10,7 +10,7 @@ export default function Nav() {
   return (
     <Router>
     <Routes>
-        <Route path='/' element={<Home/>} />
+        <Route path='/' element={<Generator/>} />
         <Route path='/edit' element={<Edit/>} />
         <Route path='/feed' element={<Feed/>} />
     </Routes>

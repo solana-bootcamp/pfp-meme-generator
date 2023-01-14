@@ -4,15 +4,13 @@ import "./Home.css";
 import { Box, Button, ButtonGroup, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import UpdatedGallery from "./components/UpdatedGallery";
-import Feed from "./pages/Feed";
+import Nav from "./Nav";
 import Generator from "./pages/Generator";
-import { useNavigate } from "react-router-dom";
 
 
 function Home() {
   const [currentwallet, setCurrentWallet] = useState(null);
 
-  const navigate = useNavigate();
 
   const {
     register,
@@ -28,8 +26,7 @@ function Home() {
           <p className="p">WARETA</p>
           <DynamicWidget className="logout-button" />
         </Box>
-        <Generator />
-        <Feed/>
+        <Nav />
       </div>
     </ChakraProvider>
   );

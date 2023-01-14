@@ -5,6 +5,8 @@ import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import UpdatedGallery from "../components/UpdatedGallery";
 import { useNavigate } from "react-router-dom";
+import Feed from "./Feed";
+
 
 function Generator() {
   const [currentwallet, setCurrentWallet] = useState(null);
@@ -36,7 +38,8 @@ function Generator() {
   } = useForm();
 
   return (
-    <Box className="Generator-body">
+    <Box>
+      <Box className="Generator-body">
           <Box className="form-widget">
             <form onSubmit={() => {
               navigate("./edit");
@@ -80,7 +83,10 @@ function Generator() {
               />
             </form>
           </Box>
-        </Box>
+     </Box>
+     <Feed/>
+    </Box>
+
   );
 }
 
