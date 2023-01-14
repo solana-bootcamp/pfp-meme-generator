@@ -5,13 +5,13 @@ import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import UpdatedGallery from "./components/UpdatedGallery";
 import { Navigate, useNavigate } from "react-router-dom";
+import get_nfts from "./utils/get_nfts";
 
 function Home() {
   const [currentwallet, setCurrentWallet] = useState(null);
-
   const navigate = useNavigate();
-
-  const [allNFTs, setAllNFTs] = useState([]);
+  const [owned_NFTs, set_owned_NFTs] = useState([]);
+  const [is_loading, set_is_loading] = useState([true]);
 
   const {
     user,
@@ -22,9 +22,22 @@ function Home() {
     authToken,
   } = useDynamicContext();
 
+
   useEffect(() => {
+
+    const fetch_NFTs = async () => {
+      try {
+        let nfts = await get_nfts("Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn");
+        set_owned_NFTs(nfts);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     if (user.walletPublicKey != null) {
       setCurrentWallet(user.walletPublicKey);
+      fetch_NFTs();
+      console.log(owned_NFTs);
     }
   }, [user, walletConnector]);
 
@@ -41,6 +54,8 @@ function Home() {
   //   navigate("./edit");
   // };
 
+  
+
   return (
     <ChakraProvider>
       <div className="Homer">
@@ -56,7 +71,7 @@ function Home() {
               <p className="p2">OG MEME GENERATOR</p>
               <label className="form-label2">1. Choose an NFT</label>
               <div>
-                <UpdatedGallery />
+                <UpdatedGallery nfts = {owned_NFTs} />
                 <label className="form-label">2. Select a meme style</label>
                 <Select
                   placeholder="Select option"

@@ -10,7 +10,8 @@ import {
     Button,
     Image,
     GridItem,
-    SimpleGrid
+    SimpleGrid,
+    Grid
   } from '@chakra-ui/react'
 import { useState } from 'react'
 import NFT from './Nft.js';
@@ -22,8 +23,8 @@ import NFT from './Nft.js';
 export default function UpdatedGallery(props) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { selectedNFT, setSelectedNFT } = useState(null);
-    const imageMapping = props.imageMapping;
-    const { images } = useState(null);
+    const { seletedIndex, setSelectedIndex} = useState(null)
+    const owned_NFTS = props.nfts;
 
     // use on click in each grid item
     return (
@@ -42,34 +43,14 @@ export default function UpdatedGallery(props) {
                   <NFT title ='Degen Ape' url = 'https://static.coincodex.com/en/resources/images//admin/news/solana-rallies-to-al/degenape-example.png' address = '1'/>
               </GridItem>
 
-              <GridItem w='100%' h='auto' bg='blue.500'>
-                  <NFT title ='Degen Ape' url = 'https://static.coincodex.com/en/resources/images//admin/news/solana-rallies-to-al/degenape-example.png' address = '1'/>
-              </GridItem>
-
-              <GridItem w='100%' h='auto' bg='blue.500'>
-                  <NFT title ='Degen Ape' url = 'https://static.coincodex.com/en/resources/images//admin/news/solana-rallies-to-al/degenape-example.png' address = '1'/>
-              </GridItem>
-
-              <GridItem w='100%' h='auto' bg='blue.500'>
-                  <NFT title ='Degen Ape' url = 'https://static.coincodex.com/en/resources/images//admin/news/solana-rallies-to-al/degenape-example.png' address = '1'/>
-              </GridItem>
-
-              <GridItem w='100%' h='auto' bg='blue.500'>
-                  <NFT title ='Degen Ape' url = 'https://static.coincodex.com/en/resources/images//admin/news/solana-rallies-to-al/degenape-example.png' address = '1'/>
-              </GridItem>
-
-              <GridItem w='100%' h='auto' bg='blue.500'>
-                  <NFT title ='Degen Ape' url = 'https://static.coincodex.com/en/resources/images//admin/news/solana-rallies-to-al/degenape-example.png' address = '1'/>
-              </GridItem>
-
-              <GridItem w='100%' h='auto' bg='blue.500'>
-                  <NFT title ='Degen Ape' url = 'https://static.coincodex.com/en/resources/images//admin/news/solana-rallies-to-al/degenape-example.png' address = '1'/>
-              </GridItem>
-
-              <GridItem w='100%' h='auto' bg='blue.500'>
-                  <NFT title ='Degen Ape' url = 'https://static.coincodex.com/en/resources/images//admin/news/solana-rallies-to-al/degenape-example.png' address = '1'/>
-              </GridItem>
-
+              { owned_NFTS.map((nft, index) => {
+                return (
+                  <GridItem w='100%' h='auto' bg='blue.500' key= {index}>
+                    <NFT title = {nft.title} url = {nft.image_url} address = {nft.mint_address} />
+                  </GridItem>
+                )
+              })}
+    
             </SimpleGrid>
             </ModalBody>
   
