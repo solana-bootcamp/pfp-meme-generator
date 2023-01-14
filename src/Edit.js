@@ -2,6 +2,7 @@ import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./Home.css";
+import "./Edit.css";
 import { Box, Select, Input, ChakraProvider, propNames } from "@chakra-ui/react";
 import FilerobotImageEditor, {
     TABS,
