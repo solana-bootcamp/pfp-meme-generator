@@ -7,15 +7,14 @@ import UpdatedGallery from "../components/UpdatedGallery";
 import { useNavigate } from "react-router-dom";
 import Feed from "./Feed";
 import ViewResult from "./ViewResult";
+import get_nfts from "../utils/get_nfts";
 
 
 
 function Generator() {
   const [currentwallet, setCurrentWallet] = useState(null);
-
   const navigate = useNavigate();
-
-  const [allNFTs, setAllNFTs] = useState([]);
+  const [owned_NFTs, set_owned_NFTs] = useState([]);
 
   const {
     user,
@@ -27,8 +26,20 @@ function Generator() {
   } = useDynamicContext();
 
   useEffect(() => {
+
+    const fetch_NFTs = async () => {
+      try {
+        let nfts = await get_nfts("Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn");
+        set_owned_NFTs(nfts);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     if (user.walletPublicKey != null) {
       setCurrentWallet(user.walletPublicKey);
+      fetch_NFTs();
+      console.log(owned_NFTs);
     }
   }, [user, walletConnector]);
 
@@ -49,7 +60,7 @@ function Generator() {
               <p className="p2">OG MEME GENERATOR</p>
               <label className="form-label2">1. Choose an NFT</label>
               <div>
-                <UpdatedGallery />
+                <UpdatedGallery nfts = {owned_NFTs} />
                 <label className="form-label">2. Select a meme style</label>
                 <Select
                   placeholder="Select option"
