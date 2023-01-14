@@ -6,8 +6,8 @@ export default function BackgroundTemplate(props) {
   return (
     <IconButton
       aria-label="Search database"
-      icon={<Image src={image_URL} alt={title} w='50px' h='50px'/>}
-      w="60px" h="60px" 
+      icon={<Image src={image_URL} alt={title} w='70px' h='70px'/>}
+      w="80px" h="80px" 
     />
   );
 }

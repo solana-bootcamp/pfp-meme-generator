@@ -41,6 +41,16 @@ const templates_list = [
     name: "Always Has Been",
     image: "https://imgflip.com/s/meme/Always-Has-Been.png",
   },
+  {
+    name: "Ancient Aliens",
+    image: "https://images.squarespace-cdn.com/content/v1/5893faa1ebbd1a8f680352a1/1531348702940-P6MXBXMNCQAGB5K2KXT7/ORIGINAL.jpg?format=1500w",
+  },
+  {
+    name: "Buff Doge vs Cheems",
+    image: "https://imgflip.com/s/meme/Buff-Doge-vs-Cheems.png",
+  },
+
+  
 ];
 
 export default function BackgroundTemplates(props) {
