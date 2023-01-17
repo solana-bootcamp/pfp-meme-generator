@@ -24,7 +24,6 @@ export default function UpdatedGallery(props) {
         fontFamily={"Montserrat"}
         fontWeight="600"
         onClick={onOpen}
-        _hover={{ cursor: 'pointer' }}
       >
         EDIT
       </Button>

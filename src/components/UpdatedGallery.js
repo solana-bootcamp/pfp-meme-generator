@@ -53,9 +53,9 @@ export default function UpdatedGallery(props) {
         size={"xl"}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent style={{borderRadius: '30px', padding: '0.5rem 0rem 0rem 0.5rem'}}>
           <ModalHeader>Select your NFT</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton style={{margin: '0.5rem 0.5rem 0rem 0rem'}}/>
           <ModalBody>
             <SimpleGrid minChildWidth="120px" spacing="20px">
               {/* <GridItem w='100%' h='auto' bg='blue.500'>
@@ -71,14 +71,14 @@ export default function UpdatedGallery(props) {
             <Button
               bg="#FFD307"
               color={"black"}
-              mr={3}
+              m='0rem 0rem 0.25rem 0rem'
               onClick={onClose}
               _hover={{ bg: "black", color: "white" }}
               fontFamily={"Montserrat"}
               fontWeight="600"
               disabled={selectedNFT == null}
             >
-              Select
+              SELECT
             </Button>
           </ModalFooter>
         </ModalContent>

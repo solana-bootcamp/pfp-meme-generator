@@ -65,7 +65,7 @@ function ViewResult({ filled }) {
               fontWeight="600"
               bg='#FFD307'
               color='#000000'
-              _hover={{bg: ''}}
+              _hover={{bg: '#f4c907'}}
               onClick={() => {handleSave()}}
             >
               SAVE
