@@ -54,17 +54,21 @@ function Generator() {
   } = useForm();
 
   return (
-    <Box>
-      <p className="p2">MEME GENERATOR</p>
-      <Box className="Generator-body">
-        <Box className="form-widget">
-          <form onSubmit={() => {}}>
-            <label className="form-label2">1. CHOOSE AN NFT</label>
-            <div>
-              <UpdatedGallery nfts={owned_NFTs} />
-              <label className="form-label">2. SELECT A MEME BACKGROUND</label>
-              <BackgroundTemplates />
-              {/* <label className="form-label">3. Select a meme style</label>
+    <div classname="maindiv">
+      <div className="leftcolumn">
+        <Box>
+          <p className="title">MEME GENERATOR</p>
+          <Box className="Generator-body">
+            <Box className="form-widget">
+              <form onSubmit={() => {}}>
+                <label className="form-label2">1. CHOOSE AN NFT</label>
+                <div>
+                  <UpdatedGallery nfts={owned_NFTs} />
+                  <label className="form-label">
+                    2. SELECT A MEME BACKGROUND
+                  </label>
+                  <BackgroundTemplates />
+                  {/* <label className="form-label">3. Select a meme style</label>
                 <Select
                   placeholder="Select option"
                   variant="filled"
@@ -76,27 +80,27 @@ function Generator() {
                   <option value="option1">Deep Fry</option>
                   <option value="option2">Pixelate</option>
                 </Select>{" "} */}
-              <label className="form-label">3. INPUT YOUR MEME TEXT</label>
-              <Input
-                placeholder="Meme Text"
-                variant="filled"
-                _focus={{ bg: "white" }}
-                fontFamily={"Montserrat"}
-                fontWeight="600"
-                margin={"0rem 0rem 2rem 0rem"}
-              />
-            </div>
-            <Box
-              style={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "end",
-                alignItems: "center",
-              }}
-            >
-              <ViewResult />
-            </Box>
-            {/* <Input
+                  <label className="form-label">3. INPUT YOUR MEME TEXT</label>
+                  <Input
+                    placeholder="Meme Text"
+                    variant="filled"
+                    _focus={{ bg: "white" }}
+                    fontFamily={"Montserrat"}
+                    fontWeight="600"
+                    margin={"0rem 0rem 2rem 0rem"}
+                  />
+                </div>
+                <Box
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "end",
+                    alignItems: "center",
+                  }}
+                >
+                  <ViewResult />
+                </Box>
+                {/* <Input
                 w="100%"
                 h="2.75rem"
                 color="white"
@@ -107,11 +111,15 @@ function Generator() {
                 fontWeight="800"
                 _hover={{bg: "#2F3238", cursor: "pointer"}}
               /> */}
-          </form>
+              </form>
+            </Box>
+          </Box>
         </Box>
-      </Box>
-      <Feed />
-    </Box>
+      </div>
+      <div className="rightcolumn">
+        <Feed />
+      </div>
+    </div>
   );
 }
 

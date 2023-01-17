@@ -1,5 +1,9 @@
 
   
+  .maindiv {
+    display: grid;
+  }
+  
   .Generator-body {
     background-color: #ed1c24;
     display: grid;
@@ -33,7 +37,7 @@
     font-weight: 800;
     font-size: 16px;
     letter-spacing: 1px;
-    padding: 2rem 0rem 1rem 0rem;
+    padding: 1.5rem 0rem 0.5rem 0rem;
   }
   
   .form-label2 {
@@ -44,7 +48,7 @@
     font-weight: 800;
     font-size: 16px;
     letter-spacing: 1px;
-    padding: 0rem 0rem 1rem 0rem;
+    padding: 0rem 0rem 0.5rem 0rem;
   }
   
   .p {
@@ -61,4 +65,27 @@
     font-family: East Sea Dokdo;
     font-style: italic;
     font-size: 64px;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    color: white;
+    font-family: East Sea Dokdo;
+    font-style: italic;
+    font-size: 64px;
+    padding: 0rem 0rem 0rem 0.1rem;
+  }
+
+  .rightcolumn {
+    width: 50rem;
+    float:right;
+    padding: 0rem 0rem 2rem 0rem;
+  }
+
+  .leftcolumn {
+    width: 35rem;
+    float:left;
+    padding: 0rem 0rem 2rem 0rem;
   }
