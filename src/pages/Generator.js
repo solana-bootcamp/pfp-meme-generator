@@ -59,7 +59,7 @@ function Generator() {
       <Box className="Generator-body">
         <Box className="form-widget">
           <form onSubmit={() => {}}>
-            <label className="form-label2">1. Choose an NFT</label>
+            <label className="form-label2">1. CHOOSE AN NFT</label>
             <div>
               <UpdatedGallery nfts={owned_NFTs} />
               <label className="form-label">2. Select a meme background</label>

@@ -22,7 +22,8 @@ export default function UpdatedGallery(props) {
     <>
       <Button
         fontFamily={"Montserrat"}
-        fontWeight="600"
+        fontWeight="800"
+        fontSize="14px"
         onClick={onOpen}
       >
         EDIT

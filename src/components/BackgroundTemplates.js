@@ -4,6 +4,8 @@ import {
   Box,
   GridItem,
   SimpleGrid,
+  Image, 
+  IconButton
 } from "@chakra-ui/react";
 import { useState } from "react";
 import BackgroundTemplate from "./BackgroundTemplate.js";
@@ -43,33 +45,54 @@ const templates_list = [
   },
   {
     name: "Ancient Aliens",
-    image: "https://images.squarespace-cdn.com/content/v1/5893faa1ebbd1a8f680352a1/1531348702940-P6MXBXMNCQAGB5K2KXT7/ORIGINAL.jpg?format=1500w",
+    image:
+      "https://images.squarespace-cdn.com/content/v1/5893faa1ebbd1a8f680352a1/1531348702940-P6MXBXMNCQAGB5K2KXT7/ORIGINAL.jpg?format=1500w",
   },
   {
     name: "Buff Doge vs Cheems",
     image: "https://imgflip.com/s/meme/Buff-Doge-vs-Cheems.png",
   },
-
-  
 ];
 
-export default function BackgroundTemplates(props) {
+
+
+export default function BackgroundTemplates() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { selectedNFT, setSelectedNFT } = useState(null);
+  const [ selectedNFT, setSelectedNFT ] = useState('');
   const { seletedIndex, setSelectedIndex } = useState(null);
+
+  function handleIt(currentName) {
+    setSelectedNFT(currentName);
+    return (currentName);
+  }
+
+
 
   // use on click in each grid item
   return (
     <Box>
       <Box>
-        <SimpleGrid columns={5} spacingX='20px' spacingY='20px'>
+        <SimpleGrid columns={5} spacingX="20px" spacingY="20px">
           {templates_list.map((background, index) => {
             return (
-                <BackgroundTemplate
-                  title={background.name}
-                  url={background.image}
-                  key2={index}
-                />
+              <IconButton
+                aria-label={background.name}
+                icon={
+                  <Image
+                    src={background.image}
+                    alt={background.name}
+                    w="70px"
+                    h="70px"
+                    key={background.name}
+                  />
+                }
+                w="80px"
+                h="80px"
+                key={index}
+                bg={selectedNFT === background.name ? "#FFD307" : ""}
+                _hover={{ bg: selectedNFT === background.name ? "#FFD307" : "", cursor: 'pointer'}}
+                onClick={() => {handleIt(background.name)}}
+              />
             );
           })}
         </SimpleGrid>

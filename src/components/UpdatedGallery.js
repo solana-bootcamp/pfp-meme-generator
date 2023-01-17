@@ -41,8 +41,8 @@ export default function UpdatedGallery(props) {
   // use on click in each grid item
   return (
     <>
-      <Button fontFamily={"Montserrat"} fontWeight="600" onClick={onOpen}>
-        Select NFTs
+      <Button fontFamily={"Montserrat"} fontWeight="800" fontSize='14px' padding='0rem 4rem 0rem 4rem' onClick={onOpen}>
+        SELECT
       </Button>
 
       <Modal
@@ -75,7 +75,8 @@ export default function UpdatedGallery(props) {
               onClick={onClose}
               _hover={{ bg: "black", color: "white" }}
               fontFamily={"Montserrat"}
-              fontWeight="600"
+              fontWeight="800"
+              fontSize="14px"
               disabled={selectedNFT == null}
             >
               SELECT

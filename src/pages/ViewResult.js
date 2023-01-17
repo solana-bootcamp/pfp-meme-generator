@@ -37,9 +37,9 @@ function ViewResult({ filled }) {
 
   return (
         <>
-    <Button fontFamily="Montserrat" fontWeight="600" bg="#000000" color='white' onClick={onOpen} disabled={filled === true} _hover={{bg: '#2f3238', cursor: ''}} style={{bg: '#FFD307'}}>GENERATE</Button>
+    <Button fontFamily="Montserrat" w="100%" fontSize="14px" fontWeight="800" bg="#FFD307" color='black' padding="0rem 4rem 0rem 4rem" onClick={onOpen} disabled={filled === true} _hover={{bg: '#000000', color: '#FFFFFF'}} style={{bg: '#FFD307'}}>GENERATE</Button>
 
-    <Modal isOpen={isOpen} onClose={onClose} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
+    <Modal isOpen={isOpen} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
       <ModalOverlay/>
       <ModalContent style={{borderRadius: '30px'}}>
         <ModalHeader></ModalHeader>
@@ -62,7 +62,8 @@ function ViewResult({ filled }) {
             <Edit />
             <Button
               fontFamily={"Montserrat"}
-              fontWeight="600"
+              fontWeight="800"
+              fontSize="14px"
               bg='#FFD307'
               color='#000000'
               _hover={{bg: '#f4c907'}}
@@ -72,7 +73,8 @@ function ViewResult({ filled }) {
             </Button>
             <Button
               fontFamily={"Montserrat"}
-              fontWeight="600"
+              fontWeight="800"
+              fontSize="14px"
               bg='#000000'
               color='#FFFFFF'
               _hover={{bg: '#2f3238'}}
