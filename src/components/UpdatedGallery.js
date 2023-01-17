@@ -53,8 +53,8 @@ export default function UpdatedGallery(props) {
         size={"xl"}
       >
         <ModalOverlay />
-        <ModalContent style={{borderRadius: '30px', padding: '0.5rem 0rem 0rem 0.5rem'}}>
-          <ModalHeader>Select your NFT</ModalHeader>
+        <ModalContent style={{borderRadius: '30px', padding: '0rem 0rem 0rem 0.5rem'}}>
+          <ModalHeader style={{ fontFamily: "Montserrat", fontSize: "24px", fontWeight: "800"}}>SELECT YOUR NFT</ModalHeader>
           <ModalCloseButton style={{margin: '0.5rem 0.5rem 0rem 0rem'}}/>
           <ModalBody>
             <SimpleGrid minChildWidth="120px" spacing="20px">

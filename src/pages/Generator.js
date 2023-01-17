@@ -62,7 +62,7 @@ function Generator() {
             <label className="form-label2">1. CHOOSE AN NFT</label>
             <div>
               <UpdatedGallery nfts={owned_NFTs} />
-              <label className="form-label">2. Select a meme background</label>
+              <label className="form-label">2. SELECT A MEME BACKGROUND</label>
               <BackgroundTemplates />
               {/* <label className="form-label">3. Select a meme style</label>
                 <Select
@@ -76,7 +76,7 @@ function Generator() {
                   <option value="option1">Deep Fry</option>
                   <option value="option2">Pixelate</option>
                 </Select>{" "} */}
-              <label className="form-label">3. Input your meme text</label>
+              <label className="form-label">3. INPUT YOUR MEME TEXT</label>
               <Input
                 placeholder="Meme Text"
                 variant="filled"

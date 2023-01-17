@@ -8,7 +8,6 @@ import {
   IconButton
 } from "@chakra-ui/react";
 import { useState } from "react";
-import BackgroundTemplate from "./BackgroundTemplate.js";
 
 const templates_list = [
   {

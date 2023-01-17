@@ -37,7 +37,7 @@ function ViewResult({ filled }) {
 
   return (
         <>
-    <Button fontFamily="Montserrat" w="100%" fontSize="14px" fontWeight="800" bg="#FFD307" color='black' padding="0rem 4rem 0rem 4rem" onClick={onOpen} disabled={filled === true} _hover={{bg: '#000000', color: '#FFFFFF'}} style={{bg: '#FFD307'}}>GENERATE</Button>
+    <Button fontFamily="Montserrat" w="100%" fontSize="16px" fontWeight="800" bg="#FFD307" color='black' padding="0rem 4rem 0rem 4rem" onClick={onOpen} disabled={filled === true} _hover={{bg: '#000000', color: '#FFFFFF'}} style={{bg: '#FFD307'}}>GENERATE</Button>
 
     <Modal isOpen={isOpen} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
       <ModalOverlay/>
