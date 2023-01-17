@@ -10,12 +10,9 @@ import {
   Button,
   Image,
   GridItem,
-  SimpleGrid
-} from '@chakra-ui/react'
-import { useState } from 'react'
-
-
-
+  SimpleGrid,
+} from "@chakra-ui/react";
+import { useState } from "react";
 
 export default function UpdatedGallery(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -23,16 +20,28 @@ export default function UpdatedGallery(props) {
   // use on click in each grid item
   return (
     <>
-      <Button fontFamily={"Montserrat"} fontWeight="600" onClick={onOpen}>EDIT</Button>
+      <Button
+        fontFamily={"Montserrat"}
+        fontWeight="600"
+        onClick={onOpen}
+        _hover={{ cursor: 'pointer' }}
+      >
+        EDIT
+      </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        bg="#FA4303"
+        scrollBehavior="inside"
+        size={"xl"}
+      >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent style={{borderRadius: '30px'}}>
           <ModalHeader>Edit your meme</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-
-          <p>editor goes here</p>
+            <p>editor goes here</p>
           </ModalBody>
 
           <ModalFooter>
@@ -44,5 +53,5 @@ export default function UpdatedGallery(props) {
         </ModalContent>
       </Modal>
     </>
-  )
+  );
 }

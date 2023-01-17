@@ -22,7 +22,8 @@ export default function UpdatedGallery(props) {
   const owned_NFTS = props.nfts;
 
   function fillGallery() {
-    owned_NFTS.map((nft, index) => {
+
+    owned_NFTS.map((nft, index) => {   
       return (
         <GridItem w="100%" h="auto" bg="blue.500" key={index}>
           <NFT
@@ -34,6 +35,8 @@ export default function UpdatedGallery(props) {
       );
     });
   }
+
+  
 
   // use on click in each grid item
   return (

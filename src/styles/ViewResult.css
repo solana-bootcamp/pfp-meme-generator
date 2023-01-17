@@ -6,6 +6,7 @@
     align-items: center;
     border-radius: 30px;
     padding: 1rem 2rem 2rem 2rem;
+    margin: 0rem 1rem 0rem 1rem;
   }
 
   .button-group {
@@ -13,6 +14,7 @@
     justify-content: end;
     align-items: center;
     width: 100%;
+    padding: 0rem 0rem 0.5rem 0rem;
   }
 
   .pvr {

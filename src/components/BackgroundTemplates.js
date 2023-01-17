@@ -61,8 +61,8 @@ export default function BackgroundTemplates(props) {
   // use on click in each grid item
   return (
     <Box>
-      <Box style={{padding: "1rem 0rem 1rem 0rem"}}>
-        <SimpleGrid columns={5} spacingX='0px' spacingY='30px'>
+      <Box>
+        <SimpleGrid columns={5} spacingX='20px' spacingY='20px'>
           {templates_list.map((background, index) => {
             return (
                 <BackgroundTemplate

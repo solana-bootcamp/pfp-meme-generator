@@ -27,17 +27,23 @@ function ViewResult({ filled }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  function handleSave() {
+
+  }
+
+  function handleFinish() {
+    onClose();
+  }
+
   return (
         <>
-    <Button fontFamily="Montserrat" colorScheme='yellow' fontWeight="600" onClick={onOpen} disabled={filled === true}>Generate</Button>
+    <Button fontFamily="Montserrat" fontWeight="600" bg="#000000" color='white' onClick={onOpen} disabled={filled === true} _hover={{bg: '#2f3238', cursor: ''}} style={{bg: '#FFD307'}}>GENERATE</Button>
 
     <Modal isOpen={isOpen} onClose={onClose} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>View your result</ModalHeader>
-        <ModalCloseButton />
+      <ModalOverlay/>
+      <ModalContent style={{borderRadius: '30px'}}>
+        <ModalHeader></ModalHeader>
         <ModalBody>
-
         <Box className="View-body">
         <Box>
           <p className="pvr">insert created image here</p>
@@ -56,19 +62,24 @@ function ViewResult({ filled }) {
             <Edit />
             <Button
               fontFamily={"Montserrat"}
-              colorScheme="yellow"
               fontWeight="600"
-              onClick={() => {}}
+              bg='#FFD307'
+              color='#000000'
+              _hover={{bg: ''}}
+              onClick={() => {handleSave()}}
             >
               SAVE
             </Button>
             <Button
               fontFamily={"Montserrat"}
-              colorScheme="blue"
               fontWeight="600"
-              onClick={() => {}}
+              bg='#000000'
+              color='#FFFFFF'
+              _hover={{bg: '#2f3238'}}
+              _focus={{ bg: '#2f3238'}}
+              onClick={() => {handleFinish()}}
             >
-              POST
+              FINISH
             </Button>
           </ButtonGroup>
         </Box>
