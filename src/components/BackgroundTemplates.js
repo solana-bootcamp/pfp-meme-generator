@@ -68,6 +68,7 @@ export default function BackgroundTemplates(props) {
                 <BackgroundTemplate
                   title={background.name}
                   url={background.image}
+                  key2={index}
                 />
             );
           })}

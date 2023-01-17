@@ -29,7 +29,7 @@ function ViewResult({ filled }) {
 
   return (
         <>
-    <Button fontFamily="Montserrat" colorScheme='yellow' fontWeight="600" onClick={onOpen} disabled={filled === true}>GENERATE</Button>
+    <Button fontFamily="Montserrat" colorScheme='yellow' fontWeight="600" onClick={onOpen} disabled={filled === true}>Generate</Button>
 
     <Modal isOpen={isOpen} onClose={onClose} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
       <ModalOverlay />

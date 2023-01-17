@@ -34,19 +34,19 @@ function Generator() {
     authToken,
   } = useDynamicContext();
 
+  
+
   useEffect(() => {
-
-    const fetch_NFTs = async () => {
-      try {
-        let nfts = await get_nfts("Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn");
-        set_owned_NFTs(nfts);
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
     if (user.walletPublicKey != null) {
-      setCurrentWallet(user.walletPublicKey);
+      const fetch_NFTs = async () => {
+        try {
+          setCurrentWallet(user.walletPublicKey);
+          let nfts = await get_nfts(user.walletPublicKey);
+          set_owned_NFTs(nfts);
+        } catch (error) {
+          console.log(error)
+        }
+      }
       fetch_NFTs();
       console.log(owned_NFTs);
     }
@@ -84,7 +84,7 @@ function Generator() {
                   <option value="option1">Deep Fry</option>
                   <option value="option2">Pixelate</option>
                 </Select>{" "} */}
-                <label className="form-label">4. Input your meme text</label>
+                <label className="form-label">3. Input your meme text</label>
                 <Input
                   placeholder="Meme Text"
                   variant="filled"
