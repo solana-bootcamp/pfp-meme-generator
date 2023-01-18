@@ -10,9 +10,10 @@ import {
   Button,
   Image,
   GridItem,
-  SimpleGrid,
-} from "@chakra-ui/react";
-import { useState } from "react";
+  SimpleGrid
+} from '@chakra-ui/react'
+import { useState } from 'react'
+import Editor from "../components/Editor"
 
 export default function UpdatedGallery(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,7 +42,7 @@ export default function UpdatedGallery(props) {
           <ModalHeader>Edit your meme</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <p>editor goes here</p>
+          <Editor backgroundImageURL="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg" pfpImageURL="null" text="null"/>
           </ModalBody>
 
           <ModalFooter>

@@ -19,6 +19,14 @@ function Home() {
     formState: { errors },
   } = useForm();
 
+  // const onSubmit = () => {
+  //   navigate('./edit', {state: {
+  //     backgroundImageURL: "https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg", 
+  //     pfpImageURL: "https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg", 
+  //     text: "hey"
+  //   }})
+  // }
+
   return (
     <ChakraProvider>
       <div className="Homer">
