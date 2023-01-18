@@ -3,9 +3,9 @@ import "../styles/Feed.css";
 
 function Feed() {
   return (
-    <Box>
+    <Box className="Feed-body">
       <p className="pf">DA MEMES</p>
-      <p className="pff">memes go here</p>
+      <p className="pff">No memes have been created</p>
     </Box>
   );
 }

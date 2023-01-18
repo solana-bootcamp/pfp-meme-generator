@@ -15,24 +15,33 @@ import {
 import { useState } from 'react'
 import Editor from "../components/Editor"
 
-
-
-
 export default function UpdatedGallery(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // use on click in each grid item
   return (
     <>
-      <Button fontFamily={"Montserrat"} fontWeight="600" onClick={onOpen}>EDIT</Button>
+      <Button
+        fontFamily={"Montserrat"}
+        fontWeight="800"
+        fontSize="14px"
+        onClick={onOpen}
+      >
+        EDIT
+      </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        bg="#FA4303"
+        scrollBehavior="inside"
+        size={"xl"}
+      >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent style={{borderRadius: '30px'}}>
           <ModalHeader>Edit your meme</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-
           <Editor backgroundImageURL="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg" pfpImageURL="null" text="null"/>
           </ModalBody>
 
@@ -45,5 +54,5 @@ export default function UpdatedGallery(props) {
         </ModalContent>
       </Modal>
     </>
-  )
+  );
 }

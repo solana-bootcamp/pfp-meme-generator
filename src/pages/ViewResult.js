@@ -27,17 +27,23 @@ function ViewResult({ filled }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  function handleSave() {
+
+  }
+
+  function handleFinish() {
+    onClose();
+  }
+
   return (
         <>
-    <Button fontFamily="Montserrat" colorScheme='yellow' fontWeight="600" onClick={onOpen} disabled={filled === true}>GENERATE</Button>
+    <Button fontFamily="Montserrat" w="100%" fontSize="16px" fontWeight="800" bg="#FFD307" color='black' padding="0rem 4rem 0rem 4rem" onClick={onOpen} disabled={filled === true} _hover={{bg: '#000000', color: '#FFFFFF'}} style={{bg: '#FFD307'}}>GENERATE</Button>
 
-    <Modal isOpen={isOpen} onClose={onClose} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>View your result</ModalHeader>
-        <ModalCloseButton />
+    <Modal isOpen={isOpen} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
+      <ModalOverlay/>
+      <ModalContent style={{borderRadius: '30px'}}>
+        <ModalHeader></ModalHeader>
         <ModalBody>
-
         <Box className="View-body">
         <Box>
           <p className="pvr">insert created image here</p>
@@ -56,19 +62,26 @@ function ViewResult({ filled }) {
             <Edit />
             <Button
               fontFamily={"Montserrat"}
-              colorScheme="yellow"
-              fontWeight="600"
-              onClick={() => {}}
+              fontWeight="800"
+              fontSize="14px"
+              bg='#FFD307'
+              color='#000000'
+              _hover={{bg: '#f4c907'}}
+              onClick={() => {handleSave()}}
             >
               SAVE
             </Button>
             <Button
               fontFamily={"Montserrat"}
-              colorScheme="blue"
-              fontWeight="600"
-              onClick={() => {}}
+              fontWeight="800"
+              fontSize="14px"
+              bg='#000000'
+              color='#FFFFFF'
+              _hover={{bg: '#2f3238'}}
+              _focus={{ bg: '#2f3238'}}
+              onClick={() => {handleFinish()}}
             >
-              POST
+              FINISH
             </Button>
           </ButtonGroup>
         </Box>
