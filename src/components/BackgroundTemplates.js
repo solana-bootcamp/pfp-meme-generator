@@ -58,7 +58,7 @@ const templates_list = [
 export default function BackgroundTemplates() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [ selectedNFT, setSelectedNFT ] = useState('Distracted Boyfriend');
-  const { seletedIndex, setSelectedIndex } = useState(null);
+  const [ seletedIndex, setSelectedIndex ] = useState(null);
 
   function handleIt(currentName) {
     setSelectedNFT(currentName);

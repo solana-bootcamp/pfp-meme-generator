@@ -14,9 +14,9 @@ function Generator() {
   const navigate = useNavigate();
 
   const [currentwallet, setCurrentWallet] = useState(null);
-  const [owned_NFTs, set_owned_NFTs] = useState([]);
-  const [selectedNFTImage, setSelectedNFTImage] = useState([]);
-  const [selectedNFTStyle, setSelectedNFTStyle] = useState([]);
+  const [owned_NFTs, set_owned_NFTs] = useState('');
+  const [selectedNFTImage, setSelectedNFTImage] = useState('');
+  const [selectedNFTStyle, setSelectedNFTStyle] = useState('');
   const [selectedNFTBackgroundImage, setSelectedNFTBackgroundImage] = useState(
     []
   );
@@ -44,6 +44,8 @@ function Generator() {
       fetch_NFTs();
       console.log(owned_NFTs);
     }
+    setSelectedNFTImage(BackgroundTemplates.selectedNFT);
+    console.log("selected: " + BackgroundTemplates.selectedNFT);
   }, [user, walletConnector]);
 
   const {
@@ -54,7 +56,7 @@ function Generator() {
   } = useForm();
 
   return (
-    <div classname="maindiv">
+    <div>
       <div className="leftcolumn">
         <Box>
           <p className="title">MEME GENERATOR</p>
