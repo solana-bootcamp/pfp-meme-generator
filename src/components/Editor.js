@@ -15,7 +15,6 @@ export default function Editor({backgroundImageURL, pfpImageURL, text}) {
                 <FilerobotImageEditor
                     source={backgroundImageURL}
                     onSave={(editedImageObject, designState) => saveImage(editedImageObject, designState)}
-                    onClose={() => console.log("lol")}
                     annotationsCommon={{
                         fill: '#ff0000',
                     }}
