@@ -92,7 +92,16 @@ function Generator() {
                   <option value="option1">Deep Fry</option>
                   <option value="option2">Pixelate</option>
                 </Select>{" "} */}
-                  <label className="form-label">3. INPUT YOUR MEME TEXT</label>
+                  <label className="form-label">3. INPUT YOUR UPPER MEME TEXT</label>
+                  <Input
+                    placeholder="Meme Text"
+                    variant="filled"
+                    _focus={{ bg: "white" }}
+                    fontFamily={"Montserrat"}
+                    fontWeight="600"
+                    margin={"0rem 0rem 0rem 0rem"}
+                  />
+                  <label className="form-label">4. INPUT YOUR LOWER MEME TEXT</label>
                   <Input
                     placeholder="Meme Text"
                     variant="filled"

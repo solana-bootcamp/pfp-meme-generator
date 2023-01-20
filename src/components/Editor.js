@@ -9,8 +9,6 @@ import toDataURL from "../utils/toDataURL";
 
 export default function Editor({backgroundImageURL, pfpImageURL, bottomText, topText}) {
 
-    const [overlayURL, setOverlayURL] = useState(null);
-
     const [background, setBackground] = useState(backgroundImageURL);
     const [pfp, setPfp] = useState(pfpImageURL);
     const [bottomMemeText, setBottom] = useState(bottomText);
@@ -18,12 +16,14 @@ export default function Editor({backgroundImageURL, pfpImageURL, bottomText, top
     
 
 
-
+    //editedImageObject is the base64 image
     const saveImage = (editedImageObject, designState) => {
         console.log('saved', editedImageObject, designState);
     }
 
     //THIS WORKS AND IS TESTED FOR SOME IMAGES, but CORS policy is preventing me from doing it on a lot of images
+    //KEEP COMMENTED FOR NOW
+    //const [overlayURL, setOverlayURL] = useState(null);
     // useEffect(() => {
     //     toDataURL(pfpImageURL).then(dataUrl => {
     //         setOverlayURL(dataUrl)
