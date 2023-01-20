@@ -42,7 +42,12 @@ export default function UpdatedGallery(props) {
           <ModalHeader>Edit your meme</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-          {/* <Editor backgroundImageURL="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg" pfpImageURL="null" topText="null"/> */}
+            {/* <Editor
+              backgroundImageURL="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg"
+              pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
+              bottomText="MemeBottom" 
+              topText="Meme"
+            /> */}
           </ModalBody>
 
           <ModalFooter>
