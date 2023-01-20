@@ -35,14 +35,14 @@ export default function UpdatedGallery(props) {
         onClose={onClose}
         bg="#FA4303"
         scrollBehavior="inside"
-        size={"xl"}
+        size={"xxl"}
       >
         <ModalOverlay />
         <ModalContent style={{borderRadius: '30px'}}>
           <ModalHeader>Edit your meme</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-          <Editor backgroundImageURL="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg" pfpImageURL="null" text="null"/>
+          {/* <Editor backgroundImageURL="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg" pfpImageURL="null" topText="null"/> */}
           </ModalBody>
 
           <ModalFooter>
