@@ -13,11 +13,9 @@ import get_nfts from "../utils/get_nfts";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Editor from "../components/Editor";
 
-
 function Generator() {
   const navigate = useNavigate();
 
-  const [currentwallet, setCurrentWallet] = useState(null);
   const [owned_NFTs, set_owned_NFTs] = useState("");
   const [selectedNFTImage, setSelectedNFTImage] = useState("");
   const [selectedNFTStyle, setSelectedNFTStyle] = useState("");
@@ -38,10 +36,11 @@ function Generator() {
     if (user.walletPublicKey != null) {
       const fetch_NFTs = async () => {
         try {
-          const testaddress = "Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn"
-          setCurrentWallet(user.walletPublicKey);
-          let nfts = await get_nfts(testaddress);
-          set_owned_NFTs(nfts);
+          const testaddress = "Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn";
+          if (owned_NFTs === "") {
+            let nfts = await get_nfts(testaddress);
+            set_owned_NFTs(nfts);
+          }
         } catch (error) {
           console.log(error);
         }
@@ -72,7 +71,7 @@ function Generator() {
     console.log("Called NFT Callback!");
   };
 
-   const handleAINFTCallback = (childData) => {
+  const handleAINFTCallback = (childData) => {
     setSelectedNFTImage(childData);
     console.log("Called NFT Callback!");
   };
@@ -148,7 +147,7 @@ function Generator() {
                         <label className="form-label">
                           2. SELECT A MEME BACKGROUND
                         </label>
-                        <BackgroundTemplates 
+                        <BackgroundTemplates
                           parentCallback={handleOGBackgroundCallback}
                         />
                         {/* <label className="form-label">3. Select a meme style</label>
@@ -222,7 +221,9 @@ function Generator() {
                         <label className="form-label">
                           2. SELECT A MEME BACKGROUND
                         </label>
-                        <AIBackgroundTemplates />
+                        <AIBackgroundTemplates
+                          parentCallback={handleAIBackgroundCallback}
+                        />
                         {/* <label className="form-label">3. Select a meme style</label>
                 <Select
                   placeholder="Select option"
@@ -272,14 +273,14 @@ function Generator() {
                   </Box>
                 </TabPanel>
                 <TabPanel>
-                <Box style={{maxWidth: "30rem"}}>
-                <Editor
-                    backgroundImageURL="https://media.wbur.org/wp/2021/10/Disaster-Girl-OG-pic-1000x666.jpeg"
-                    pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
-                    bottomText="MemeBottom"
-                    topText="Meme"
-                  />
-                </Box>
+                  <Box style={{ maxWidth: "30rem" }}>
+                    <Editor
+                      backgroundImageURL="https://media.wbur.org/wp/2021/10/Disaster-Girl-OG-pic-1000x666.jpeg"
+                      pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
+                      bottomText="MemeBottom"
+                      topText="Meme"
+                    />
+                  </Box>
                 </TabPanel>
               </TabPanels>
             </Tabs>
