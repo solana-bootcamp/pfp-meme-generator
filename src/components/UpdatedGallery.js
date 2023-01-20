@@ -17,26 +17,40 @@ import NFT from "./Nft.js";
 
 export default function UpdatedGallery(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { selectedNFT, setSelectedNFT } = useState(null);
-  const { seletedIndex, setSelectedIndex } = useState(null);
+  const [ selectedNFT, setSelectedNFT ] = useState("");
+  const [ seletedIndex, setSelectedIndex ] = useState(-1);
   const owned_NFTS = props.nfts;
+  
+
+  function handleClick(nft_to_set, index_to_set) {
+    setSelectedNFT({
+      title: nft_to_set.title,
+      url: nft_to_set.image_url,
+      address: nft_to_set.mint_address
+    });
+    setSelectedIndex(index_to_set);
+  }
+
+  function handleClose() {
+    props.parentCallback(selectedNFT);
+    onClose();
+  }
 
   function fillGallery() {
 
-    owned_NFTS.map((nft, index) => {   
+    return owned_NFTS.map((nft, index) => {   
+      const nft_to_insert = <NFT title= {nft.title} url={nft.image_url} address={nft.mint_address} />;
       return (
-        <GridItem w="100%" h="auto" bg="blue.500" key={index}>
-          <NFT
-            title={nft.title}
-            url={nft.image_url}
-            address={nft.mint_address}
-          />
+        <GridItem w="100%" h="auto" 
+        key={index} 
+        bg= {seletedIndex === index ? "#FFD307" : ""} 
+        p= "5px" _hover= {{ bg: seletedIndex !== index ? "#FFD307" : "", cursor: 'pointer'}} 
+        onClick= {() => {handleClick(nft, index)}} >
+          { nft_to_insert }
         </GridItem>
       );
     });
   }
-
-  
 
   // use on click in each grid item
   return (
@@ -47,7 +61,7 @@ export default function UpdatedGallery(props) {
 
       <Modal
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={() => {handleClose()}}
         bg="#FA4303"
         scrollBehavior="inside"
         size={"xl"}
@@ -63,7 +77,8 @@ export default function UpdatedGallery(props) {
             </GridItem> */}
               {owned_NFTS.length === 0
                 ? "You have no NFTs in your wallet!"
-                : fillGallery()}
+                : fillGallery() 
+                }
             </SimpleGrid>
           </ModalBody>
 
@@ -72,7 +87,7 @@ export default function UpdatedGallery(props) {
               bg="#FFD307"
               color={"black"}
               m='0rem 0rem 0.25rem 0rem'
-              onClick={onClose}
+              onClick={() => {handleClose()}}
               _hover={{ bg: "black", color: "white" }}
               fontFamily={"Montserrat"}
               fontWeight="800"

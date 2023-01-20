@@ -44,9 +44,9 @@ async function parse_metadata(metadata, nfts) {
                 mint_address: nftmeta['mint_address'],
                 image_url: meta_from_url['image']
             })
-            console.log(meta_from_url['name']);
-            console.log(nftmeta['mint_address']);
-            console.log(meta_from_url['image']);
+            // console.log(meta_from_url['name']);
+            // console.log(nftmeta['mint_address']);
+            // console.log(meta_from_url['image']);
         } catch (error) {
             console.log(error);
         }

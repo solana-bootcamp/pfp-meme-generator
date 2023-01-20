@@ -34,6 +34,7 @@ function Generator() {
     if (user.walletPublicKey != null) {
       const fetch_NFTs = async () => {
         try {
+          // test address = "Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn"
           setCurrentWallet(user.walletPublicKey);
           let nfts = await get_nfts(user.walletPublicKey);
           set_owned_NFTs(nfts);
@@ -44,9 +45,12 @@ function Generator() {
       fetch_NFTs();
       console.log(owned_NFTs);
     }
-    setSelectedNFTImage(BackgroundTemplates.selectedNFT);
-    console.log("selected: " + BackgroundTemplates.selectedNFT);
-  }, [user, walletConnector]);
+
+    // I don't think this works, see how I did the callback for getting the NFT image from a child element
+    setSelectedNFTBackgroundImage(BackgroundTemplates.selectedBackground);
+    console.log("selected: " + BackgroundTemplates.selectedBackground);
+    console.log("selected: " + selectedNFTImage['title'] + " with mint address: " + selectedNFTImage['address'] + " and url: " + selectedNFTImage['url']);
+  }, [user, walletConnector, selectedNFTImage]);
 
   const {
     register,
@@ -54,6 +58,12 @@ function Generator() {
     watch,
     formState: { errors },
   } = useForm();
+
+  const handleNFTCallback = (childData) => {
+    setSelectedNFTImage(childData);
+    console.log("Called Callback!");
+  };
+
 
   return (
     <div>
@@ -65,11 +75,11 @@ function Generator() {
               <form onSubmit={() => {}}>
                 <label className="form-label2">1. CHOOSE AN NFT</label>
                 <div>
-                  <UpdatedGallery nfts={owned_NFTs} />
+                  <UpdatedGallery nfts={owned_NFTs} parentCallback = {handleNFTCallback} />
                   <label className="form-label">
                     2. SELECT A MEME BACKGROUND
                   </label>
-                  <BackgroundTemplates />
+                  <BackgroundTemplates/>
                   {/* <label className="form-label">3. Select a meme style</label>
                 <Select
                   placeholder="Select option"
