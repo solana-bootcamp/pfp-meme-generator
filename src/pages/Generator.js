@@ -36,9 +36,8 @@ function Generator() {
     if (user.walletPublicKey != null) {
       const fetch_NFTs = async () => {
         try {
-          const testaddress = "Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn";
           if (owned_NFTs === "") {
-            let nfts = await get_nfts(testaddress);
+            let nfts = await get_nfts(user.walletPublicKey);
             set_owned_NFTs(nfts);
           }
         } catch (error) {
