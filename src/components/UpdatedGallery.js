@@ -20,6 +20,7 @@ export default function UpdatedGallery(props) {
   const [ selectedNFT, setSelectedNFT ] = useState("");
   const [ seletedIndex, setSelectedIndex ] = useState(-1);
   const owned_NFTS = props.nfts;
+  let button_text;
   
 
   function handleClick(nft_to_set, index_to_set) {
@@ -55,8 +56,8 @@ export default function UpdatedGallery(props) {
   // use on click in each grid item
   return (
     <>
-      <Button fontFamily={"Montserrat"} fontWeight="800" fontSize='14px' padding='0rem 4rem 0rem 4rem' onClick={onOpen}>
-        SELECT
+      <Button fontFamily={"Montserrat"} fontWeight="800" fontSize='14px' padding='0rem 4rem 0rem 4rem' onClick={onOpen} >
+        { button_text = selectedNFT !== "" ? selectedNFT['title'] : "SELECT"} {button_text}
       </Button>
 
       <Modal
