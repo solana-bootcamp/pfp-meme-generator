@@ -11,6 +11,14 @@ export default function Editor({backgroundImageURL, pfpImageURL, bottomText, top
 
     const [overlayURL, setOverlayURL] = useState(null);
 
+    const [background, setBackground] = useState(backgroundImageURL);
+    const [pfp, setPfp] = useState(pfpImageURL);
+    const [bottomMemeText, setBottom] = useState(bottomText);
+    const [topMemeText, setTop] = useState(topText);
+    
+
+
+
     const saveImage = (editedImageObject, designState) => {
         console.log('saved', editedImageObject, designState);
     }
@@ -29,7 +37,7 @@ export default function Editor({backgroundImageURL, pfpImageURL, bottomText, top
             <div className="form-widget">
                 <FilerobotImageEditor
                     loadableDesignState={{
-                        imgSrc: {backgroundImageURL},
+                        imgSrc: background,
                         filter: null,
                         adjustments: {
                             crop: {
@@ -52,7 +60,7 @@ export default function Editor({backgroundImageURL, pfpImageURL, bottomText, top
                                 "shadowColor": "#000000",
                                 "shadowOpacity": 1,
                                 "opacity": 1,
-                                "text": topText,
+                                "text": topMemeText,
                                 "fontFamily": "Arial",
                                 "fontSize": 21,
                                 "letterSpacing": 0,
@@ -76,7 +84,7 @@ export default function Editor({backgroundImageURL, pfpImageURL, bottomText, top
                                 "shadowColor": "#000000",
                                 "shadowOpacity": 1,
                                 "opacity": 1,
-                                "text": bottomText,
+                                "text": bottomMemeText,
                                 "fontFamily": "Arial",
                                 "fontSize": 21,
                                 "letterSpacing": 0,
@@ -103,7 +111,7 @@ export default function Editor({backgroundImageURL, pfpImageURL, bottomText, top
                                 "shadowOpacity": 1,
                                 "opacity": 1,
                                 "name": "Image",
-                                "image": pfpImageURL,
+                                "image": pfp,
                                 "x": 115.87735334960924,
                                 "y": 32.464847806697634,
                                 "width": 162.20470771562896,
@@ -124,11 +132,11 @@ export default function Editor({backgroundImageURL, pfpImageURL, bottomText, top
                     defaultSavedImageName="meme"
                     onSave={(editedImageObject, designState) => saveImage(editedImageObject, designState)}
                     annotationsCommon={{
-                        fill: '#ff0000',
+                        fill: '#ffffff',
                     }}
                     Text={
                         { 
-                            text: 'Bonk Memes',
+                            text: 'Bonk Bonk',
                             fontSize: 21,
                             align: 'center',
                         }
