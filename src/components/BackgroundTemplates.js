@@ -57,15 +57,13 @@ const templates_list = [
 
 export default function BackgroundTemplates() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [ selectedNFT, setSelectedNFT ] = useState('Distracted Boyfriend');
+  const [ selectedBackground, setSelectedBackground ] = useState('Distracted Boyfriend');
   const [ seletedIndex, setSelectedIndex ] = useState(null);
 
   function handleIt(currentName) {
-    setSelectedNFT(currentName);
+    setSelectedBackground(currentName);
     return (currentName);
   }
-
-
 
   // use on click in each grid item
   return (
@@ -88,8 +86,8 @@ export default function BackgroundTemplates() {
                 w="80px"
                 h="80px"
                 key={index}
-                bg={selectedNFT === background.name ? "#FFD307" : ""}
-                _hover={{ bg: selectedNFT === background.name ? "#FFD307" : "", cursor: 'pointer'}}
+                bg={selectedBackground === background.name ? "#FFD307" : ""}
+                _hover={{ bg: selectedBackground === background.name ? "#FFD307" : "", cursor: 'pointer'}}
                 onClick={() => {handleIt(background.name)}}
               />
             );
