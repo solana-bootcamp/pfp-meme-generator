@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Feed from "./Feed";
 import ViewResult from "./ViewResult";
 import BackgroundTemplates from "../components/BackgroundTemplates";
+import AIBackgroundTemplates from "../components/AIBackgroundTemplates";
 import get_nfts from "../utils/get_nfts";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Editor from "../components/Editor";
@@ -37,9 +38,9 @@ function Generator() {
     if (user.walletPublicKey != null) {
       const fetch_NFTs = async () => {
         try {
-          // test address = "Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn"
+          const testaddress = "Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn"
           setCurrentWallet(user.walletPublicKey);
-          let nfts = await get_nfts(user.walletPublicKey);
+          let nfts = await get_nfts(testaddress);
           set_owned_NFTs(nfts);
         } catch (error) {
           console.log(error);
@@ -49,9 +50,6 @@ function Generator() {
       console.log(owned_NFTs);
     }
 
-    // I don't think this works, see how I did the callback for getting the NFT image from a child element
-    setSelectedNFTBackgroundImage(BackgroundTemplates.selectedBackground);
-    console.log("selected: " + BackgroundTemplates.selectedBackground);
     console.log(
       "selected: " +
         selectedNFTImage["title"] +
@@ -60,7 +58,7 @@ function Generator() {
         " and url: " +
         selectedNFTImage["url"]
     );
-  }, [user, walletConnector, selectedNFTImage]);
+  }, [user, walletConnector, selectedNFTImage, owned_NFTs]);
 
   const {
     register,
@@ -69,9 +67,24 @@ function Generator() {
     formState: { errors },
   } = useForm();
 
-  const handleNFTCallback = (childData) => {
+  const handleOGNFTCallback = (childData) => {
     setSelectedNFTImage(childData);
-    console.log("Called Callback!");
+    console.log("Called NFT Callback!");
+  };
+
+   const handleAINFTCallback = (childData) => {
+    setSelectedNFTImage(childData);
+    console.log("Called NFT Callback!");
+  };
+
+  const handleOGBackgroundCallback = (childImageData) => {
+    setSelectedNFTBackgroundImage(childImageData);
+    console.log("Called Background Callback!");
+  };
+
+  const handleAIBackgroundCallback = (childImageData) => {
+    setSelectedNFTBackgroundImage(childImageData);
+    console.log("Called Background Callback!");
   };
 
   return (
@@ -130,12 +143,14 @@ function Generator() {
                       <div>
                         <UpdatedGallery
                           nfts={owned_NFTs}
-                          parentCallback={handleNFTCallback}
+                          parentCallback={handleOGNFTCallback}
                         />
                         <label className="form-label">
                           2. SELECT A MEME BACKGROUND
                         </label>
-                        <BackgroundTemplates />
+                        <BackgroundTemplates 
+                          parentCallback={handleOGBackgroundCallback}
+                        />
                         {/* <label className="form-label">3. Select a meme style</label>
                 <Select
                   placeholder="Select option"
@@ -202,12 +217,12 @@ function Generator() {
                       <div>
                         <UpdatedGallery
                           nfts={owned_NFTs}
-                          parentCallback={handleNFTCallback}
+                          parentCallback={handleAINFTCallback}
                         />
                         <label className="form-label">
                           2. SELECT A MEME BACKGROUND
                         </label>
-                        <BackgroundTemplates />
+                        <AIBackgroundTemplates />
                         {/* <label className="form-label">3. Select a meme style</label>
                 <Select
                   placeholder="Select option"

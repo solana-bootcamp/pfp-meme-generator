@@ -55,7 +55,7 @@ const templates_list = [
 
 
 
-export default function BackgroundTemplates(props) {
+export default function AIBackgroundTemplates(props) {
   const [ selectedBackground, setSelectedBackground ] = useState("Distracted Boyfriend");
 
   function handleIt(currentName) {
