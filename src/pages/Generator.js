@@ -44,6 +44,9 @@ function Generator() {
     if (user.walletPublicKey != null) {
       const fetch_NFTs = async () => {
         try {
+          // let testaddress = "Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn"
+          setCurrentWallet(user.walletPublicKey);
+          
           if (owned_NFTs === "") {
             let nfts = await get_nfts(user.walletPublicKey);
             set_owned_NFTs(nfts);
@@ -55,6 +58,7 @@ function Generator() {
       fetch_NFTs();
       console.log(owned_NFTs);
     }
+
 
     console.log(
       "selected: " +
@@ -76,6 +80,7 @@ function Generator() {
 
   const handleAINFTCallback = (childData) => {
     setSelectedNFTImage(childData);
+
     console.log("Called NFT Callback!");
   };
 
@@ -99,7 +104,6 @@ function Generator() {
 
       memesList.push(createdmeme);
     }
-
   };
 
 
@@ -111,7 +115,7 @@ function Generator() {
         <Box>
           <p className="title">MEME GENERATOR</p>
           <Box className="Generator-body">
-            <Tabs isFitted variant="soft-rounded">
+            <Tabs isLazy isFitted variant="soft-rounded">
               <TabList mb="1em">
                 <Tab
                   color={"white"}
