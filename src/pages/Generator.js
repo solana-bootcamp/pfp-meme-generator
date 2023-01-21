@@ -1,35 +1,28 @@
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
 import "../styles/Generator.css";
-import { Box, Button, Select, Input, ChakraProvider } from "@chakra-ui/react";
+import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import UpdatedGallery from "../components/UpdatedGallery";
 import { useNavigate } from "react-router-dom";
 import Feed from "./Feed";
 import ViewResult from "./ViewResult";
 import BackgroundTemplates from "../components/BackgroundTemplates";
-import AIBackgroundTemplates from "../components/AIBackgroundTemplates";
 import get_nfts from "../utils/get_nfts";
-import createMeme from "../utils/createMeme";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Editor from "../components/Editor";
-import { toBeEmptyDOMElement } from "@testing-library/jest-dom/dist/matchers";
+
 
 function Generator() {
   const navigate = useNavigate();
 
+  const [currentwallet, setCurrentWallet] = useState(null);
   const [owned_NFTs, set_owned_NFTs] = useState("");
   const [selectedNFTImage, setSelectedNFTImage] = useState("");
-  // const [selectedNFTStyle, setSelectedNFTStyle] = useState("");
-  const [selectedNFTBackgroundImage, setSelectedNFTBackgroundImage] = useState("");
-  const [topText, setTopText] = useState("");
-  const [bottomText, setBottomText] = useState("");
-  const [memeURL, setMemeURL] = useState("");
-
-  const [loading, setLoading] = useState(false);
-
-  const [memesList, setMemesList] = useState([]);
-
+  const [selectedNFTStyle, setSelectedNFTStyle] = useState("");
+  const [selectedNFTBackgroundImage, setSelectedNFTBackgroundImage] = useState(
+    []
+  );
 
   const {
     user,
@@ -46,7 +39,6 @@ function Generator() {
         try {
           // let testaddress = "Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn"
           setCurrentWallet(user.walletPublicKey);
-          
           if (owned_NFTs === "") {
             let nfts = await get_nfts(user.walletPublicKey);
             set_owned_NFTs(nfts);
@@ -59,12 +51,11 @@ function Generator() {
       console.log(owned_NFTs);
     }
 
-
-    console.log(
-      "selected: " +
-        selectedNFTImage
-    );
-  }, [user, walletConnector, selectedNFTImage, owned_NFTs]);
+    // I don't think this works, see how I did the callback for getting the NFT image from a child element
+    setSelectedNFTBackgroundImage(BackgroundTemplates.selectedBackground);
+    console.log("selected: " + BackgroundTemplates.selectedBackground);
+    
+  }, [user, walletConnector]);
 
   const {
     register,
@@ -73,41 +64,18 @@ function Generator() {
     formState: { errors },
   } = useForm();
 
-  const handleOGNFTCallback = (childData) => {
-    setSelectedNFTImage(childData["url"]);
-    console.log("Called NFT Callback!");
-  };
-
-  const handleAINFTCallback = (childData) => {
+  const handleNFTCallback = (childData) => {
     setSelectedNFTImage(childData);
-
-    console.log("Called NFT Callback!");
+    console.log("Called Callback!");
+    console.log(
+      "selected: " +
+        selectedNFTImage["title"] +
+        " with mint address: " +
+        selectedNFTImage["address"] +
+        " and url: " +
+        selectedNFTImage["url"]
+    );
   };
-
-  const handleOGBackgroundCallback = (childImageData) => {
-    setSelectedNFTBackgroundImage(childImageData);
-    console.log("Called Background Callback!");
-  };
-
-  const handleAIBackgroundCallback = (childImageData) => {
-    setSelectedNFTBackgroundImage(childImageData);
-    console.log("Called Background Callback!");
-  };
-
-  const handleOGGenerate = async () => {
-    if ((selectedNFTImage !== "")) {
-      const createdmeme = await createMeme(selectedNFTImage, topText, bottomText);
-      console.log("Called Create MEME!!!!!!!!!");
-      setMemeURL(JSON.stringify(createdmeme));
-      // console.log('This is meme: ' + JSON.stringify(createdmeme));
-      // console.log('This is meme url: ' + memeURL);
-
-      memesList.push(createdmeme);
-    }
-  };
-
-
-
 
   return (
     <div>
@@ -160,19 +128,17 @@ function Generator() {
               <TabPanels>
                 <TabPanel>
                   <Box className="form-widget">
-                    <form onSubmit={handleOGGenerate}>
+                    <form onSubmit={() => {}}>
                       <label className="form-label2">1. CHOOSE AN NFT</label>
                       <div>
                         <UpdatedGallery
                           nfts={owned_NFTs}
-                          parentCallback={handleOGNFTCallback}
+                          parentCallback={handleNFTCallback}
                         />
                         <label className="form-label">
                           2. SELECT A MEME BACKGROUND
                         </label>
-                        <BackgroundTemplates
-                          parentCallback={handleOGBackgroundCallback}
-                        />
+                        <BackgroundTemplates />
                         {/* <label className="form-label">3. Select a meme style</label>
                 <Select
                   placeholder="Select option"
@@ -195,8 +161,6 @@ function Generator() {
                           fontFamily={"Montserrat"}
                           fontWeight="600"
                           margin={"0rem 0rem 0rem 0rem"}
-                          value={topText || ""}
-                          onChange={(e) => setTopText(e.target.value)}
                         />
                         <label className="form-label">
                           4. INPUT YOUR LOWER MEME TEXT
@@ -208,8 +172,6 @@ function Generator() {
                           fontFamily={"Montserrat"}
                           fontWeight="600"
                           margin={"0rem 0rem 2rem 0rem"}
-                          value={bottomText || ""}
-                          onChange={(e) => setBottomText(e.target.value)}
                         />
                       </div>
                       <Box
@@ -220,15 +182,7 @@ function Generator() {
                           alignItems: "center",
                         }}
                       >
-                        {/* <ViewResult
-                        parentCallback={handleOGGenerate}
-                        // selectedNFTBackgroundImage={selectedNFTBackgroundImage}
-                        // topText={topText}
-                        // bottomText={bottomText} 
-                        /> */}
-
-                        <Button fontFamily="Montserrat" w="100%" fontSize="16px" fontWeight="800" bg="#FFD307" color='black' padding="0rem 4rem 0rem 4rem" onClick={handleOGGenerate} _hover={{bg: '#000000', color: '#FFFFFF'}} style={{bg: '#FFD307'}}>GENERATE</Button>
-
+                        <ViewResult />
                       </Box>
                       {/* <Input
                 w="100%"
@@ -251,14 +205,12 @@ function Generator() {
                       <div>
                         <UpdatedGallery
                           nfts={owned_NFTs}
-                          parentCallback={handleAINFTCallback}
+                          parentCallback={handleNFTCallback}
                         />
                         <label className="form-label">
                           2. SELECT A MEME BACKGROUND
                         </label>
-                        <AIBackgroundTemplates
-                          parentCallback={handleAIBackgroundCallback}
-                        />
+                        <BackgroundTemplates />
                         {/* <label className="form-label">3. Select a meme style</label>
                 <Select
                   placeholder="Select option"
@@ -308,8 +260,8 @@ function Generator() {
                   </Box>
                 </TabPanel>
                 <TabPanel>
-                  <Box style={{ maxWidth: "30rem" }}>
-                    <Editor
+                <Box style={{maxWidth: "30rem"}}>
+                  <Editor
                       backgroundImageURL="https://media.wbur.org/wp/2021/10/Disaster-Girl-OG-pic-1000x666.jpeg"
                       pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
                       bottomText="MemeBottom"
@@ -323,8 +275,7 @@ function Generator() {
         </Box>
       </div>
       <div className="rightcolumn">
-        <Feed
-        listofmemes={memesList} />
+        <Feed />
       </div>
     </div>
   );
