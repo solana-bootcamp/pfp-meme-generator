@@ -23,7 +23,7 @@ import { useForm } from "react-hook-form";
 import UpdatedGallery from "../components/UpdatedGallery";
 import Edit from "./Edit";
 
-function ViewResult({ filled }) {
+function ViewResult(props) {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -35,9 +35,15 @@ function ViewResult({ filled }) {
     onClose();
   }
 
+  function handleClick() {
+    props.parentCallback();
+    onOpen();
+  }
+  
+
   return (
         <>
-    <Button fontFamily="Montserrat" w="100%" fontSize="16px" fontWeight="800" bg="#FFD307" color='black' padding="0rem 4rem 0rem 4rem" onClick={onOpen} disabled={filled === true} _hover={{bg: '#000000', color: '#FFFFFF'}} style={{bg: '#FFD307'}}>GENERATE</Button>
+    <Button fontFamily="Montserrat" w="100%" fontSize="16px" fontWeight="800" bg="#FFD307" color='black' padding="0rem 4rem 0rem 4rem" onClick={handleClick} _hover={{bg: '#000000', color: '#FFFFFF'}} style={{bg: '#FFD307'}}>GENERATE</Button>
 
     <Modal isOpen={isOpen} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
       <ModalOverlay/>
