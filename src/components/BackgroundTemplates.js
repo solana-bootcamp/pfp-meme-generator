@@ -55,12 +55,13 @@ const templates_list = [
 
 
 
-export default function BackgroundTemplates(props) {
-  const [ selectedBackground, setSelectedBackground ] = useState("Distracted Boyfriend");
+export default function BackgroundTemplates() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [ selectedBackground, setSelectedBackground ] = useState('Distracted Boyfriend');
+  const [ seletedIndex, setSelectedIndex ] = useState(null);
 
   function handleIt(currentName) {
     setSelectedBackground(currentName);
-    props.parentCallback(templates_list[selectedBackground]);
     return (currentName);
   }
 

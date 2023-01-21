@@ -36,8 +36,7 @@ async function get_nfts_api(account_address) {
 
 async function parse_metadata(metadata, nfts) {
 
-    await Promise.all(
-        metadata?.map(async (nftmeta) => {
+    await Promise.all(metadata.map(async (nftmeta) => {
         try {
             let meta_from_url = await get_meta_from_url(nftmeta['metadata_url']);
             nfts.push({
