@@ -1,7 +1,7 @@
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
 import "../styles/Generator.css";
-import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
+import { Box, Button, Select, Input, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import UpdatedGallery from "../components/UpdatedGallery";
 import { useNavigate } from "react-router-dom";
@@ -10,18 +10,26 @@ import ViewResult from "./ViewResult";
 import BackgroundTemplates from "../components/BackgroundTemplates";
 import AIBackgroundTemplates from "../components/AIBackgroundTemplates";
 import get_nfts from "../utils/get_nfts";
+import createMeme from "../utils/createMeme";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Editor from "../components/Editor";
+import { toBeEmptyDOMElement } from "@testing-library/jest-dom/dist/matchers";
 
 function Generator() {
   const navigate = useNavigate();
 
   const [owned_NFTs, set_owned_NFTs] = useState("");
   const [selectedNFTImage, setSelectedNFTImage] = useState("");
-  const [selectedNFTStyle, setSelectedNFTStyle] = useState("");
-  const [selectedNFTBackgroundImage, setSelectedNFTBackgroundImage] = useState(
-    []
-  );
+  // const [selectedNFTStyle, setSelectedNFTStyle] = useState("");
+  const [selectedNFTBackgroundImage, setSelectedNFTBackgroundImage] = useState("");
+  const [topText, setTopText] = useState("");
+  const [bottomText, setBottomText] = useState("");
+  const [memeURL, setMemeURL] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  const [memesList, setMemesList] = useState([]);
+
 
   const {
     user,
@@ -50,11 +58,7 @@ function Generator() {
 
     console.log(
       "selected: " +
-        selectedNFTImage["title"] +
-        " with mint address: " +
-        selectedNFTImage["address"] +
-        " and url: " +
-        selectedNFTImage["url"]
+        selectedNFTImage
     );
   }, [user, walletConnector, selectedNFTImage, owned_NFTs]);
 
@@ -66,7 +70,7 @@ function Generator() {
   } = useForm();
 
   const handleOGNFTCallback = (childData) => {
-    setSelectedNFTImage(childData);
+    setSelectedNFTImage(childData["url"]);
     console.log("Called NFT Callback!");
   };
 
@@ -84,6 +88,22 @@ function Generator() {
     setSelectedNFTBackgroundImage(childImageData);
     console.log("Called Background Callback!");
   };
+
+  const handleOGGenerate = async () => {
+    if ((selectedNFTImage !== "")) {
+      const createdmeme = await createMeme(selectedNFTImage, topText, bottomText);
+      console.log("Called Create MEME!!!!!!!!!");
+      setMemeURL(JSON.stringify(createdmeme));
+      // console.log('This is meme: ' + JSON.stringify(createdmeme));
+      // console.log('This is meme url: ' + memeURL);
+
+      memesList.push(createdmeme);
+    }
+
+  };
+
+
+
 
   return (
     <div>
@@ -136,7 +156,7 @@ function Generator() {
               <TabPanels>
                 <TabPanel>
                   <Box className="form-widget">
-                    <form onSubmit={() => {}}>
+                    <form onSubmit={handleOGGenerate}>
                       <label className="form-label2">1. CHOOSE AN NFT</label>
                       <div>
                         <UpdatedGallery
@@ -171,6 +191,8 @@ function Generator() {
                           fontFamily={"Montserrat"}
                           fontWeight="600"
                           margin={"0rem 0rem 0rem 0rem"}
+                          value={topText || ""}
+                          onChange={(e) => setTopText(e.target.value)}
                         />
                         <label className="form-label">
                           4. INPUT YOUR LOWER MEME TEXT
@@ -182,6 +204,8 @@ function Generator() {
                           fontFamily={"Montserrat"}
                           fontWeight="600"
                           margin={"0rem 0rem 2rem 0rem"}
+                          value={bottomText || ""}
+                          onChange={(e) => setBottomText(e.target.value)}
                         />
                       </div>
                       <Box
@@ -192,7 +216,15 @@ function Generator() {
                           alignItems: "center",
                         }}
                       >
-                        <ViewResult />
+                        {/* <ViewResult
+                        parentCallback={handleOGGenerate}
+                        // selectedNFTBackgroundImage={selectedNFTBackgroundImage}
+                        // topText={topText}
+                        // bottomText={bottomText} 
+                        /> */}
+
+                        <Button fontFamily="Montserrat" w="100%" fontSize="16px" fontWeight="800" bg="#FFD307" color='black' padding="0rem 4rem 0rem 4rem" onClick={handleOGGenerate} _hover={{bg: '#000000', color: '#FFFFFF'}} style={{bg: '#FFD307'}}>GENERATE</Button>
+
                       </Box>
                       {/* <Input
                 w="100%"
@@ -287,7 +319,8 @@ function Generator() {
         </Box>
       </div>
       <div className="rightcolumn">
-        <Feed />
+        <Feed
+        listofmemes={memesList} />
       </div>
     </div>
   );
