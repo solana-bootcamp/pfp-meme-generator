@@ -42,10 +42,11 @@ export default function UpdatedGallery(props) {
     return owned_NFTS.map((nft, index) => {   
       const nft_to_insert = <NFT title= {nft.title} url={nft.image_url} address={nft.mint_address} />;
       return (
-        <GridItem w="100%" h="auto" 
+        <GridItem w="auto" h="auto" 
         key={index} 
-        bg= {seletedIndex === index ? "#FFD307" : ""} 
-        p= "5px" _hover= {{ bg: seletedIndex !== index ? "#FFD307" : "", cursor: 'pointer'}} 
+        bg={seletedIndex === index ? "#FFD307" : ""} 
+        p="5px" 
+        _hover= {{ bg: seletedIndex !== index ? "#FFD307" : "", cursor: 'pointer'}} 
         onClick= {() => {handleClick(nft, index)}} >
           { nft_to_insert }
         </GridItem>
@@ -56,8 +57,8 @@ export default function UpdatedGallery(props) {
   // use on click in each grid item
   return (
     <>
-      <Button fontFamily={"Montserrat"} fontWeight="800" fontSize='14px' padding='0rem 4rem 0rem 4rem' onClick={onOpen} >
-        { button_text = selectedNFT !== "" ? selectedNFT['title'] : "SELECT"} {button_text}
+      <Button bg={selectedNFT !== "" ? "#FFD307" : "#FFFFFF"}fontFamily={"Montserrat"} fontWeight="800" fontSize='14px' padding='0rem 4rem 0rem 4rem' onClick={onOpen} >
+        { button_text = selectedNFT !== "" ? selectedNFT['title'] : "SELECT"}
       </Button>
 
       <Modal
