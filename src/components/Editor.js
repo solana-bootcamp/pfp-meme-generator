@@ -7,7 +7,7 @@ import { Button } from "@chakra-ui/react";
 import {useState, useEffect} from "react";
 import toDataURL from "../utils/toDataURL";
 
-export default function Editor({backgroundImageURL, pfpImageURL, bottomText, topText}) {
+export default function Editor({backgroundImageURL, pfpImageURL, bottomText, topText, isInvisible}) {
 
     const [background, setBackground] = useState(backgroundImageURL);
     const [pfp, setPfp] = useState(pfpImageURL);
@@ -36,6 +36,24 @@ export default function Editor({backgroundImageURL, pfpImageURL, bottomText, top
     return (
             <div className="form-widget">
                 <FilerobotImageEditor
+                    showCanvasOnly={isInvisible}
+                    theme={
+                        {
+                            palette: {
+                                
+                                'bg-primary-active': '#ffabab',
+                                'bg-primary-hover': '#DCDCDC',
+                                'bg-secondary': '#050505',
+                                'txt-primary': '#C0C0C0',
+                                'txt-secondary': '#FFFFFF',
+                                'txt-secondary-invert': '#FFFFFF',
+                                'accent-primary': '#FF0000',
+                                'accent-primary-active': '#ff4949',
+                                'accent-primary-hover': '#DD0000',
+
+                            }
+                        }
+                    }
                     loadableDesignState={{
                         imgSrc: background,
                         filter: null,

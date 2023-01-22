@@ -266,6 +266,7 @@ function Generator() {
                       pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
                       bottomText="MemeBottom"
                       topText="Meme"
+                      isInvisible={false}
                     />
                   </Box>
                 </TabPanel>
