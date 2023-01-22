@@ -11,9 +11,6 @@ export default function Nav() {
     <Router>
     <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path='/edit' element={<Edit/>} />
-        <Route path='/viewresult' element={<ViewResult/>} />
-        <Route path='/feed' element={<Feed/>} />
     </Routes>
     </Router>
   );

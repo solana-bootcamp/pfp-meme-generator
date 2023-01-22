@@ -3,11 +3,9 @@ import { useState, useEffect } from "react";
 import "../styles/ViewResult.css";
 import {
   Box,
-  Select,
-  Input,
-  ChakraProvider,
   Button,
   ButtonGroup,
+  ChakraProvider,
 } from "@chakra-ui/react";
 import {
   Modal,
@@ -16,11 +14,8 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useForm } from "react-hook-form";
-import UpdatedGallery from "../components/UpdatedGallery";
 import Edit from "./Edit";
 
 function ViewResult({ filled }) {
@@ -36,7 +31,7 @@ function ViewResult({ filled }) {
   }
 
   return (
-        <>
+        <ChakraProvider>
     <Button fontFamily="Montserrat" w="100%" fontSize="16px" fontWeight="800" bg="#FFD307" color='black' padding="0rem 4rem 0rem 4rem" onClick={onOpen} disabled={filled === true} _hover={{bg: '#000000', color: '#FFFFFF'}} style={{bg: '#FFD307'}}>GENERATE</Button>
 
     <Modal isOpen={isOpen} bg='#FA4303' scrollBehavior='inside' size={'xl'}>
@@ -88,7 +83,7 @@ function ViewResult({ filled }) {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  </>
+  </ChakraProvider>
   );
 }
 

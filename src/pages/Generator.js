@@ -1,17 +1,12 @@
-import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
+import { useDynamicContext } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
 import "../styles/Generator.css";
-import { Box, Select, Input, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import UpdatedGallery from "../components/UpdatedGallery";
 import { useNavigate } from "react-router-dom";
 import Feed from "./Feed";
-import ViewResult from "./ViewResult";
 import BackgroundTemplates from "../components/BackgroundTemplates";
 import get_nfts from "../utils/get_nfts";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import Editor from "../components/Editor";
-
+import TabPicker from "../components/TabPicker";
 
 function Generator() {
   const navigate = useNavigate();
@@ -23,6 +18,10 @@ function Generator() {
   const [selectedNFTBackgroundImage, setSelectedNFTBackgroundImage] = useState(
     []
   );
+
+  const [isOGActive, setIsOGActive] = useState(true);
+  const [isAIActive, setIsAIActive] = useState(false);
+  const [isCustomActive, setIsCustomActive] = useState(false);
 
   const {
     user,
@@ -54,7 +53,6 @@ function Generator() {
     // I don't think this works, see how I did the callback for getting the NFT image from a child element
     setSelectedNFTBackgroundImage(BackgroundTemplates.selectedBackground);
     console.log("selected: " + BackgroundTemplates.selectedBackground);
-    
   }, [user, walletConnector]);
 
   const {
@@ -77,203 +75,47 @@ function Generator() {
     );
   };
 
+  const setTabs = (ogstatus, aistatus, customstatus) => {
+    setIsOGActive(ogstatus);
+    setIsAIActive(aistatus);
+    setIsCustomActive(customstatus);
+  };
+
   return (
     <div>
       <div className="leftcolumn">
-        <Box>
-          <p className="title">MEME GENERATOR</p>
-          <Box className="Generator-body">
-            <Tabs isLazy isFitted variant="soft-rounded">
-              <TabList mb="1em">
-                <Tab
-                  color={"white"}
-                  fontFamily="Montserrat"
-                  fontWeight="800"
-                  _selected={{
-                    color: "black",
-                    fontFamily: "Montserrat",
-                    fontWeight: "800",
-                    bg: "white",
-                  }}
-                >
-                  OG
-                </Tab>
-                <Tab
-                  color={"white"}
-                  fontFamily="Montserrat"
-                  fontWeight="800"
-                  _selected={{
-                    color: "black",
-                    fontFamily: "Montserrat",
-                    fontWeight: "800",
-                    bg: "white",
-                  }}
-                >
-                  AI
-                </Tab>
-                <Tab
-                  color={"white"}
-                  fontFamily="Montserrat"
-                  fontWeight="800"
-                  _selected={{
-                    color: "black",
-                    fontFamily: "Montserrat",
-                    fontWeight: "800",
-                    bg: "white",
-                  }}
-                >
-                  CUSTOM
-                </Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel>
-                  <Box className="form-widget">
-                    <form onSubmit={() => {}}>
-                      <label className="form-label2">1. CHOOSE AN NFT</label>
-                      <div>
-                        <UpdatedGallery
-                          nfts={owned_NFTs}
-                          parentCallback={handleNFTCallback}
-                        />
-                        <label className="form-label">
-                          2. SELECT A MEME BACKGROUND
-                        </label>
-                        <BackgroundTemplates />
-                        {/* <label className="form-label">3. Select a meme style</label>
-                <Select
-                  placeholder="Select option"
-                  variant="filled"
-                  _focus={{ bg: "white" }}
-                  _hover={{cursor: "pointer"}}
-                  fontFamily={"Montserrat"}
-                  fontWeight="600"
-                >
-                  <option value="option1">Deep Fry</option>
-                  <option value="option2">Pixelate</option>
-                </Select>{" "} */}
-                        <label className="form-label">
-                          3. INPUT YOUR UPPER MEME TEXT
-                        </label>
-                        <Input
-                          placeholder="Meme Text"
-                          variant="filled"
-                          _focus={{ bg: "white" }}
-                          fontFamily={"Montserrat"}
-                          fontWeight="600"
-                          margin={"0rem 0rem 0rem 0rem"}
-                        />
-                        <label className="form-label">
-                          4. INPUT YOUR LOWER MEME TEXT
-                        </label>
-                        <Input
-                          placeholder="Meme Text"
-                          variant="filled"
-                          _focus={{ bg: "white" }}
-                          fontFamily={"Montserrat"}
-                          fontWeight="600"
-                          margin={"0rem 0rem 2rem 0rem"}
-                        />
-                      </div>
-                      <Box
-                        style={{
-                          display: "flex",
-                          width: "100%",
-                          justifyContent: "end",
-                          alignItems: "center",
-                        }}
-                      >
-                        <ViewResult />
-                      </Box>
-                      {/* <Input
-                w="100%"
-                h="2.75rem"
-                color="white"
-                bg={"black"}
-                border={"0px"}
-                type="submit"
-                fontFamily={"Montserrat"}
-                fontWeight="800"
-                _hover={{bg: "#2F3238", cursor: "pointer"}}
-              /> */}
-                    </form>
-                  </Box>
-                </TabPanel>
-                <TabPanel>
-                  <Box className="form-widget">
-                    <form onSubmit={() => {}}>
-                      <label className="form-label2">1. CHOOSE AN NFT</label>
-                      <div>
-                        <UpdatedGallery
-                          nfts={owned_NFTs}
-                          parentCallback={handleNFTCallback}
-                        />
-                        <label className="form-label">
-                          2. SELECT A MEME BACKGROUND
-                        </label>
-                        <BackgroundTemplates />
-                        {/* <label className="form-label">3. Select a meme style</label>
-                <Select
-                  placeholder="Select option"
-                  variant="filled"
-                  _focus={{ bg: "white" }}
-                  _hover={{cursor: "pointer"}}
-                  fontFamily={"Montserrat"}
-                  fontWeight="600"
-                >
-                  <option value="option1">Deep Fry</option>
-                  <option value="option2">Pixelate</option>
-                </Select>{" "} */}
-                        <label className="form-label">
-                          4. DESCRIBE YOUR MEME
-                        </label>
-                        <Input
-                          placeholder="Meme Description"
-                          variant="filled"
-                          _focus={{ bg: "white" }}
-                          fontFamily={"Montserrat"}
-                          fontWeight="600"
-                          margin={"0rem 0rem 2rem 0rem"}
-                        />
-                      </div>
-                      <Box
-                        style={{
-                          display: "flex",
-                          width: "100%",
-                          justifyContent: "end",
-                          alignItems: "center",
-                        }}
-                      >
-                        <ViewResult />
-                      </Box>
-                      {/* <Input
-                w="100%"
-                h="2.75rem"
-                color="white"
-                bg={"black"}
-                border={"0px"}
-                type="submit"
-                fontFamily={"Montserrat"}
-                fontWeight="800"
-                _hover={{bg: "#2F3238", cursor: "pointer"}}
-              /> */}
-                    </form>
-                  </Box>
-                </TabPanel>
-                <TabPanel>
-                <Box style={{maxWidth: "30rem"}}>
-                  <Editor
-                      backgroundImageURL="https://media.wbur.org/wp/2021/10/Disaster-Girl-OG-pic-1000x666.jpeg"
-                      pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
-                      bottomText="MemeBottom"
-                      topText="Meme"
-                      isInvisible={false}
-                    />
-                  </Box>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-          </Box>
-        </Box>
+        <p className="title">MEME GENERATOR</p>
+        <div className="Generator-body">
+          <div className="button-group">
+            <button
+              className={isOGActive ? "activeTabButton" : "inactiveTabButton"}
+              onClick={() => setTabs(true, false, false)}
+            >
+              <p>OG</p>
+            </button>
+            <button
+              className={isAIActive ? "activeTabButton" : "inactiveTabButton"}
+              onClick={() => setTabs(false, true, false)}
+            >
+              <p>AI</p>
+            </button>
+            <button
+              className={
+                isCustomActive ? "activeTabButton" : "inactiveTabButton"
+              }
+              onClick={() => setTabs(false, false, true)}
+            >
+              <p>CUSTOM</p>
+            </button>
+          </div>
+          <TabPicker
+            handleNFTCallback={handleNFTCallback}
+            owned_NFTs={owned_NFTs}
+            isOGActive={isOGActive}
+            isAIActive={isAIActive}
+            isCustomActive={isCustomActive}
+          />
+        </div>
       </div>
       <div className="rightcolumn">
         <Feed />

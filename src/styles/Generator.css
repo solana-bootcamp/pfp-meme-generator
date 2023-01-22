@@ -6,8 +6,7 @@
   align-items: center;
   border-radius: 30px;
   padding: 2rem 2rem 2rem 2rem;
-  min-width: 36rem;
-  max-width: 36rem;
+  width: 36rem;
 }
 
 .Generator-header {
@@ -16,35 +15,6 @@
   align-items: center;
   padding: 0rem 2rem 0rem 3rem;
   margin: 0rem 0rem 8rem 0rem;
-}
-
-.form-widget {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.form-label {
-  justify-content: start;
-  display: flex;
-  color: white;
-  font-family: Montserrat;
-  font-weight: 800;
-  font-size: 16px;
-  letter-spacing: 1px;
-  padding: 1.5rem 0rem 0.5rem 0rem;
-}
-
-.form-label2 {
-  justify-content: start;
-  display: flex;
-  color: white;
-  font-family: Montserrat;
-  font-weight: 800;
-  font-size: 16px;
-  letter-spacing: 1px;
-  padding: 0rem 0rem 0.5rem 0rem;
 }
 
 .p {
@@ -84,4 +54,34 @@
   width: 35rem;
   float: left;
   padding: 0rem 0rem 2rem 0rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+}
+
+.activeTabButton {
+  color: black;
+  font-family: Montserrat;
+  font-weight: 800;
+  background-color: white;
+  width: 33.33%;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+  margin: 0rem 0rem 2rem 0rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.inactiveTabButton {
+  color: white;
+  font-family: Montserrat;
+  font-weight: 800;
+  width: 33.33%;
+  margin: 0rem 0rem 2rem 0rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }

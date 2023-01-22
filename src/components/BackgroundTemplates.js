@@ -5,7 +5,8 @@ import {
   GridItem,
   SimpleGrid,
   Image, 
-  IconButton
+  IconButton,
+  ChakraProvider
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -67,7 +68,8 @@ export default function BackgroundTemplates() {
 
   // use on click in each grid item
   return (
-    <Box>
+    <ChakraProvider>
+          <Box>
       <Box>
         <SimpleGrid columns={5} spacingX="20px" spacingY="20px">
           {templates_list.map((background, index) => {
@@ -95,5 +97,6 @@ export default function BackgroundTemplates() {
         </SimpleGrid>
       </Box>
     </Box>
+    </ChakraProvider>
   );
 }
