@@ -3,6 +3,7 @@ import UpdatedGallery from "../components/UpdatedGallery";
 import ViewResult from "../pages/ViewResult";
 import BackgroundTemplates from "../components/BackgroundTemplates";
 import "../styles/Generator.css";
+import { Input, ChakraProvider } from "@chakra-ui/react";
 
 export default function TabPicker({
   handleNFTCallback,
@@ -20,7 +21,7 @@ export default function TabPicker({
   if (isOGActive) {
     return (
       <div className="tab-picker-body">
-        <div>
+        <div className="form-widget">
           <form onSubmit={() => {}}>
             <label className="form-label2">1. CHOOSE AN NFT</label>
             <div>
@@ -33,25 +34,30 @@ export default function TabPicker({
               <label className="form-label">
                 3. INPUT YOUR UPPER MEME TEXT
               </label>
-              <input
-                placeholder="Meme Text"
-                variant="filled"
-                _focus={{ bg: "white" }}
-                fontFamily={"Montserrat"}
-                fontWeight="600"
-                margin={"0rem 0rem 0rem 0rem"}
-              />
+              <ChakraProvider>
+                <Input
+                  placeholder="Meme Text"
+                  variant="filled"
+                  _focus={{ bg: "white" }}
+                  fontFamily="Montserrat"
+                  fontWeight="600"
+                  margin="0rem 0rem 0rem 0rem"
+                />
+              </ChakraProvider>
+
               <label className="form-label">
                 4. INPUT YOUR LOWER MEME TEXT
               </label>
-              <input
-                placeholder="Meme Text"
-                variant="filled"
-                _focus={{ bg: "white" }}
-                fontFamily={"Montserrat"}
-                fontWeight="600"
-                margin={"0rem 0rem 2rem 0rem"}
-              />
+              <ChakraProvider>
+                <Input
+                  placeholder="Meme Text"
+                  variant="filled"
+                  _focus={{ bg: "white" }}
+                  fontFamily={"Montserrat"}
+                  fontWeight="600"
+                  margin="0rem 0rem 0.25rem 0rem"
+                />
+              </ChakraProvider>
             </div>
             <div
               style={{
@@ -92,15 +98,18 @@ export default function TabPicker({
             />
             <label className="form-label">2. SELECT A MEME BACKGROUND</label>
             <BackgroundTemplates />
-            <label className="form-label">4. DESCRIBE YOUR MEME</label>
-            <input
-              placeholder="Meme Description"
-              variant="filled"
-              _focus={{ bg: "white" }}
-              fontFamily={"Montserrat"}
-              fontWeight="600"
-              margin={"0rem 0rem 2rem 0rem"}
-            />
+            <label className="form-label">3. DESCRIBE YOUR MEME</label>
+            <ChakraProvider>
+              <Input
+                placeholder="Meme Description"
+                variant="filled"
+                _focus={{ bg: "white" }}
+                fontFamily={"Montserrat"}
+                fontWeight="600"
+                margin="0rem 0rem 0.25rem 0rem"
+              />
+            </ChakraProvider>
+
             <div
               style={{
                 display: "flex",
@@ -130,21 +139,19 @@ export default function TabPicker({
 
   return (
     <div className="tab-picker-body">
+      <div className="tchooser">
+        <label className="form-label4">1. SELECT A MEME BACKGROUND</label>
+        <BackgroundTemplates />
+      </div>
       <div>
-        <div className="tchooser">
-          <label className="form-label4">SELECT A MEME BACKGROUND</label>
-          <BackgroundTemplates />
-        </div>
-        <div>
-          <label className="form-label3">EDIT YOUR MEME</label>
-          <Editor
-            backgroundImageURL="https://media.wbur.org/wp/2021/10/Disaster-Girl-OG-pic-1000x666.jpeg"
-            pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
-            bottomText="MemeBottom"
-            topText="Meme"
-            isInvisible={false}
-          />
-        </div>
+        <label className="form-label3">2. EDIT YOUR MEME</label>
+        <Editor
+          backgroundImageURL="https://media.wbur.org/wp/2021/10/Disaster-Girl-OG-pic-1000x666.jpeg"
+          pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
+          bottomText="MemeBottom"
+          topText="Meme"
+          isInvisible={false}
+        />
       </div>
     </div>
   );

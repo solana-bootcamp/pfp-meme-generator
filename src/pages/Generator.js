@@ -84,33 +84,31 @@ function Generator() {
   return (
     <div>
       <div className="leftcolumn">
-      <div>
-      <p className="title">MEME GENERATOR</p>
-      </div>
-      <div className="Generator-body">
-          <div className="button-group">
-            <button
-              className={isOGActive ? "activeTabButton" : "inactiveTabButton"}
-              onClick={() => setTabs(true, false, false)}
-            >
-              <p>OG</p>
-            </button>
-            <button
-              className={isAIActive ? "activeTabButton" : "inactiveTabButton"}
-              onClick={() => setTabs(false, true, false)}
-            >
-              <p>AI</p>
-            </button>
-            
-            <button
-              className={
-                isCustomActive ? "activeTabButton" : "inactiveTabButton"
-              }
-              onClick={() => setTabs(false, false, true)}
-            >
-              <p>CUSTOM</p>
-            </button>
-          </div>
+        <div>
+        <p className="title">MEME GENERATOR</p>
+        </div>
+        <div className="Generator-body">
+                <div className="button-group">
+          <button
+            className={isOGActive ? "activeTabButton" : "inactiveTabButton"}
+            onClick={() => setTabs(true, false, false)}
+          >
+            <p>OG</p>
+          </button>
+          <button
+            className={isAIActive ? "activeTabButton" : "inactiveTabButton"}
+            onClick={() => setTabs(false, true, false)}
+          >
+            <p>AI</p>
+          </button>
+
+          <button
+            className={isCustomActive ? "activeTabButton" : "inactiveTabButton"}
+            onClick={() => setTabs(false, false, true)}
+          >
+            <p>CUSTOM</p>
+          </button>
+        </div>
           <TabPicker
             handleNFTCallback={handleNFTCallback}
             owned_NFTs={owned_NFTs}
@@ -119,7 +117,6 @@ function Generator() {
             isCustomActive={isCustomActive}
           />
         </div>
-        
       </div>
       <div className="rightcolumn">
         <Feed />

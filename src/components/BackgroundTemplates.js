@@ -69,8 +69,7 @@ export default function BackgroundTemplates() {
   // use on click in each grid item
   return (
     <ChakraProvider>
-      <Box>
-        <SimpleGrid columns={5} spacingX="0rem" spacingY="1rem">
+    <SimpleGrid columns={5} width="31rem" spacingY="1rem">
           {templates_list.map((background, index) => {
             return (
               <IconButton
@@ -99,7 +98,6 @@ export default function BackgroundTemplates() {
             );
           })}
         </SimpleGrid>
-      </Box>
     </ChakraProvider>
   );
 }
