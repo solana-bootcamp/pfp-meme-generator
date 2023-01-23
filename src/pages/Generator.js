@@ -8,6 +8,7 @@ import BackgroundTemplates from "../components/BackgroundTemplates";
 import get_nfts from "../utils/get_nfts";
 import TabPicker from "../components/TabPicker";
 
+
 function Generator() {
   const navigate = useNavigate();
 
@@ -119,7 +120,7 @@ function Generator() {
         </div>
       </div>
       <div className="rightcolumn">
-        <Feed />
+        <Feed currentwallet={user.walletPublicKey}/>
       </div>
     </div>
   );

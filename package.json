@@ -7,6 +7,7 @@
     "@dynamic-labs/sdk-react": "^0.14.24",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@supabase/supabase-js": "^2.4.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -44,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "supabase": "^1.34.5"
   }
 }

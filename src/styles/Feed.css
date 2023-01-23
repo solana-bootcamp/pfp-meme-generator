@@ -7,19 +7,22 @@
     min-height: 100vh;
     width: 100%;
   }
+
+  .Feed {
+    padding: 0rem 4rem 4rem 6rem;
+    width: 100%;
+  }
   
   
   .Feed-body {
-    display: grid;
+    display: flex;
     justify-content: start;
-    align-items: start;
-    padding: 0rem 4rem 0rem 10rem;
   }
   
   .pf {
     display: flex;
     align-items: start;
-    justify-content: start;
+    justify-content: center;
     color: white;
     font-family: East Sea Dokdo;
     font-style: italic;
