@@ -4,8 +4,9 @@ import {
   Box,
   GridItem,
   SimpleGrid,
-  Image, 
-  IconButton
+  Image,
+  IconButton,
+  ChakraProvider,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -53,23 +54,22 @@ const templates_list = [
   },
 ];
 
-
-
 export default function BackgroundTemplates() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [ selectedBackground, setSelectedBackground ] = useState('Distracted Boyfriend');
-  const [ seletedIndex, setSelectedIndex ] = useState(null);
+  const [selectedBackground, setSelectedBackground] = useState(
+    "Distracted Boyfriend"
+  );
+  const [seletedIndex, setSelectedIndex] = useState(null);
 
   function handleIt(currentName) {
     setSelectedBackground(currentName);
-    return (currentName);
+    return currentName;
   }
 
   // use on click in each grid item
   return (
-    <Box>
-      <Box>
-        <SimpleGrid columns={5} spacingX="20px" spacingY="20px">
+    <ChakraProvider>
+    <SimpleGrid columns={5} width="31rem" spacingY="1rem">
           {templates_list.map((background, index) => {
             return (
               <IconButton
@@ -87,13 +87,17 @@ export default function BackgroundTemplates() {
                 h="80px"
                 key={index}
                 bg={selectedBackground === background.name ? "#FFD307" : ""}
-                _hover={{ bg: selectedBackground === background.name ? "#FFD307" : "", cursor: 'pointer'}}
-                onClick={() => {handleIt(background.name)}}
+                _hover={{
+                  bg: selectedBackground === background.name ? "#FFD307" : "",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  handleIt(background.name);
+                }}
               />
             );
           })}
         </SimpleGrid>
-      </Box>
-    </Box>
+    </ChakraProvider>
   );
 }

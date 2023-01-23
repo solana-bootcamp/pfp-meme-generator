@@ -11,9 +11,11 @@ import {
   Image,
   GridItem,
   SimpleGrid,
+  ChakraProvider,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import NFT from "./Nft.js";
+
 
 export default function UpdatedGallery(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -56,7 +58,8 @@ export default function UpdatedGallery(props) {
 
   // use on click in each grid item
   return (
-    <>
+
+    <ChakraProvider>
       <Button bg={selectedNFT !== "" ? "#FFD307" : "#FFFFFF"}fontFamily={"Montserrat"} fontWeight="800" fontSize='14px' padding='0rem 4rem 0rem 4rem' onClick={onOpen} >
         { button_text = selectedNFT !== "" ? selectedNFT['title'] : "SELECT"}
       </Button>
@@ -101,6 +104,6 @@ export default function UpdatedGallery(props) {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </ChakraProvider>
   );
 }

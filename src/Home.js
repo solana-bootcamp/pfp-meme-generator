@@ -1,7 +1,6 @@
 import { useDynamicContext, DynamicWidget } from "@dynamic-labs/sdk-react";
 import { useState, useEffect } from "react";
 import "./Home.css";
-import { Box, Button, ButtonGroup, ChakraProvider } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import UpdatedGallery from "./components/UpdatedGallery";
 import Nav from "./Nav";
@@ -28,15 +27,15 @@ function Home() {
   // }
 
   return (
-    <ChakraProvider>
       <div className="Homer">
-        <Box w="100%" bg="#ED1C24" className="Home-header">
-          <p className="p">WARETA</p>
-          <DynamicWidget className="logout-button" />
-        </Box>
+        <div className="Home-header">
+          <p className="pw">WARETA</p>
+          <div className="button">
+          <DynamicWidget/>
+          </div>
+        </div>
         <Generator />
       </div>
-    </ChakraProvider>
   );
 }
 
