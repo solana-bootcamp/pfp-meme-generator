@@ -6,6 +6,7 @@ import UpdatedGallery from "./components/UpdatedGallery";
 import Nav from "./Nav";
 import Generator from "./pages/Generator";
 
+// DEPLOY
 
 function Home() {
   const [currentwallet, setCurrentWallet] = useState(null);
