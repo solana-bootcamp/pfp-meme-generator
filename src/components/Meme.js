@@ -1,7 +1,11 @@
-import { Image, GridItem } from "@chakra-ui/react";
+import { Image, GridItem, border } from "@chakra-ui/react";
 
 export default function Meme({ memecreator, memeimage }) {
   const image_URL = memeimage;
   const creator = memecreator;
-  return <Image src={image_URL} alt={creator} />;
+  return (
+    <div style={{background: "#ed1c24", padding: "10px", margin: "10px", borderRadius: "10px"}}>
+      <Image src={image_URL} alt={creator} borderRadius={"10px"} width={"12rem"}/>
+    </div>
+  );
 }

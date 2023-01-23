@@ -36,8 +36,9 @@ function Feed({currentwallet}) {
   }, [currentwallet, memes]);
 
   return (
-    <Box className="Feed-body">
-      <p className="pf">DA MEMES</p>
+    <div className="Feed">
+            <p className="pf">DA MEMES</p>
+            <Box className="Feed-body">
       {memes !== [] ? (
         memes.map((currentmeme, index) => {
           return <Meme key={index} memecreator={currentmeme.user_id} memeimage={currentmeme.meme_uri} />;
@@ -48,6 +49,8 @@ function Feed({currentwallet}) {
         </div>
       )}
     </Box>
+    </div>
+
   );
 }
 
