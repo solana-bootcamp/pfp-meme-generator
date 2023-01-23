@@ -1,9 +1,12 @@
 import Editor from "../components/Editor";
 import UpdatedGallery from "../components/UpdatedGallery";
-import ViewResult from "../pages/ViewResult";
+import OGViewResult from "../pages/OGViewResult";
+import AIViewResult from "../pages/AIViewResult";
 import BackgroundTemplates from "../components/BackgroundTemplates";
 import "../styles/Generator.css";
 import { Input, ChakraProvider } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+
 
 export default function TabPicker({
   handleNFTCallback,
@@ -12,11 +15,24 @@ export default function TabPicker({
   isAIActive,
   isCustomActive,
 }) {
-  console.log("This is callback: " + handleNFTCallback);
-  console.log("This is ownednfts: " + owned_NFTs);
-  console.log("This is og status: " + isOGActive);
-  console.log("This is ai status: " + isAIActive);
-  console.log("This is custom status: " + isCustomActive);
+  // console.log("This is callback: " + handleNFTCallback);
+  // console.log("This is ownednfts: " + owned_NFTs);
+  // console.log("This is og status: " + isOGActive);
+  // console.log("This is ai status: " + isAIActive);
+  // console.log("This is custom status: " + isCustomActive);
+  const [selectedTabNFTImage, setSelectedTabNFTIamge] = useState("");
+  const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] = useState("");
+
+  const handleOGCallback = (childData) => {
+    setSelectedTabNFTIamge(childData);
+    console.log("Called OG Callback!");
+  };
+
+  const handleOGBackgroundCallback = (childData) => {
+    selectedTabNFTBackgroundImage(childData);
+    console.log("Called OG Background Callback!");
+  };
+
 
   if (isOGActive) {
     return (
@@ -28,6 +44,7 @@ export default function TabPicker({
               <UpdatedGallery
                 nfts={owned_NFTs}
                 parentCallback={handleNFTCallback}
+                secondCallback={handleOGCallback}
               />
               <label className="form-label">2. SELECT A MEME BACKGROUND</label>
               <BackgroundTemplates />
@@ -67,7 +84,9 @@ export default function TabPicker({
                 alignItems: "center",
               }}
             >
-              <ViewResult />
+              <OGViewResult
+              handleOGBackgroundCallback={handleOGBackgroundCallback}
+              />
             </div>
             {/* <Input
                 w="100%"
@@ -118,7 +137,7 @@ export default function TabPicker({
                 alignItems: "center",
               }}
             >
-              <ViewResult />
+              <AIViewResult />
             </div>
             {/* <Input
               w="100%"

@@ -15,7 +15,6 @@ function Generator() {
   const [currentwallet, setCurrentWallet] = useState(null);
   const [owned_NFTs, set_owned_NFTs] = useState("");
   const [selectedNFTImage, setSelectedNFTImage] = useState("");
-  const [selectedNFTStyle, setSelectedNFTStyle] = useState("");
   const [selectedNFTBackgroundImage, setSelectedNFTBackgroundImage] = useState(
     []
   );

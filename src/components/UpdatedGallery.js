@@ -36,6 +36,7 @@ export default function UpdatedGallery(props) {
 
   function handleClose() {
     props.parentCallback(selectedNFT);
+    props.ogCallback(selectedNFT)
     onClose();
   }
 
