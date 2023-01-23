@@ -10,20 +10,26 @@ function Feed({currentwallet}) {
   useEffect(() => {
     const fetchMemes = async () => {
       try {
-        if (currentwallet !== null) {
+        console.log("runningggg");
+        if ((currentwallet !== null)) {
+          console.log("runningggg");
+
           let { data, error } = await supabase
             .from("memes")
             .select()
             .order("inserted_at", { ascending: false });
 
+          console.log("rannnnn");
+
+          console.log("memes are: " + JSON.stringify(data));
+
           if (error) {
             throw error;
           }
           setMemes(data);
-          console.log("memes are: " + JSON.stringify(memes));
         }
       } catch (error) {
-        alert(error.message);
+        console.log(error.message);
       }
     };
     fetchMemes();
@@ -32,9 +38,9 @@ function Feed({currentwallet}) {
   return (
     <Box className="Feed-body">
       <p className="pf">DA MEMES</p>
-      {memes.length > 0 ? (
+      {memes !== [] ? (
         memes.map((currentmeme, index) => {
-          return <Meme key={index} memecreator={currentmeme.currentwallet} memeimage={currentmeme.meme_uri} />;
+          return <Meme key={index} memecreator={currentmeme.user_id} memeimage={currentmeme.meme_uri} />;
         })
       ) : (
         <div>
