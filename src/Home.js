@@ -30,7 +30,9 @@ function Home() {
       <div className="Homer">
         <div className="Home-header">
           <p className="pw">WARETA</p>
-          <DynamicWidget className="logout-button" />
+          <div className="button">
+          <DynamicWidget/>
+          </div>
         </div>
         <Generator />
       </div>

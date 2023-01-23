@@ -5,16 +5,73 @@
   justify-content: center;
   align-items: center;
   border-radius: 30px;
-  padding: 2rem 2rem 2rem 2rem;
-  width: 36rem;
+  padding: 2rem 1rem 2rem 1rem;
+  margin: 0rem 0rem 0rem 0rem;
+  min-width: 36rem;
+  max-width: 36rem;
+
 }
 
-.Generator-header {
+/* .Generator-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 2rem 0rem 3rem;
+  padding: 0rem 2rem 0rem 2rem;
   margin: 0rem 0rem 8rem 0rem;
+} */
+
+
+.form-widget {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34rem;
+  padding: 0rem 0rem 0rem 0rem;
+  margin: 0rem 0rem 0rem 0rem;
+}
+
+.form-label {
+  justify-content: start;
+  display: flex;
+  color: white;
+  font-family: Montserrat;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 1.5rem 0rem 0.5rem 0rem;
+}
+
+.form-label2 {
+  justify-content: start;
+  display: flex;
+  color: white;
+  font-family: Montserrat;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 1rem 0rem 0.5rem 0rem;
+}
+
+.form-label3 {
+  justify-content: start;
+  display: flex;
+  color: white;
+  font-family: Montserrat;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 2rem 0rem 0.5rem 0rem;
+}
+
+.form-label4 {
+  justify-content: start;
+  display: flex;
+  color: white;
+  font-family: Montserrat;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 1rem 0rem 0.5rem 0rem;
 }
 
 .p {
@@ -41,36 +98,46 @@
   font-family: East Sea Dokdo;
   font-style: italic;
   font-size: 64px;
-  padding: 0rem 0rem 0rem 0.1rem;
-}
-
-.rightcolumn {
-  width: 50rem;
-  float: right;
-  padding: 0rem 0rem 2rem 0rem;
+  padding: 0rem 0rem 0.5rem 0rem;
+  margin: 0rem 0rem 0rem 0rem;
 }
 
 .leftcolumn {
+  display: grid;
+  align-items: start;
+  justify-content: start;
   width: 35rem;
   float: left;
-  padding: 0rem 0rem 2rem 0rem;
+  padding: 1rem 0rem 0rem 0rem;
+  margin: 1rem 0rem 0rem 0rem;
+}
+
+.rightcolumn {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 50rem;
+  float: right;
+  padding: 1rem 0rem 0rem 0rem;
+  margin: 1rem 0rem 0rem 0rem;
 }
 
 .button-group {
   display: flex;
   justify-content: space-between;
-  padding: 0rem 0.5rem 0rem 0.5rem;
+  padding: 0rem 2rem 1rem 2rem;
+  width: 34rem;
 }
 
 .activeTabButton {
   color: black;
   font-family: Montserrat;
   font-weight: 800;
-  background-color: white;
-  width: 33.33%;
-  padding: 0.5rem 0rem 0.5rem 0rem;
-  margin: 0rem 0rem 2rem 0rem;
+  font-size: 14px;
+  width: 10rem;
+  height: 2.5rem;
   border-radius: 30px;
+  background-color: white;
   border: none;
   cursor: pointer;
 }
@@ -79,9 +146,23 @@
   color: white;
   font-family: Montserrat;
   font-weight: 800;
-  width: 33.33%;
-  margin: 0rem 0rem 2rem 0rem;
+  font-size: 14px;
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 30px;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
+
+.tab-picker-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tchooser {
+  padding: 0rem 0rem 0rem 0rem;
+  margin: 0rem 0rem 0rem 0rem;
+}
+

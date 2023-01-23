@@ -84,8 +84,10 @@ function Generator() {
   return (
     <div>
       <div className="leftcolumn">
-        <p className="title">MEME GENERATOR</p>
-        <div className="Generator-body">
+      <div>
+      <p className="title">MEME GENERATOR</p>
+      </div>
+      <div className="Generator-body">
           <div className="button-group">
             <button
               className={isOGActive ? "activeTabButton" : "inactiveTabButton"}
@@ -99,6 +101,7 @@ function Generator() {
             >
               <p>AI</p>
             </button>
+            
             <button
               className={
                 isCustomActive ? "activeTabButton" : "inactiveTabButton"
@@ -116,6 +119,7 @@ function Generator() {
             isCustomActive={isCustomActive}
           />
         </div>
+        
       </div>
       <div className="rightcolumn">
         <Feed />
