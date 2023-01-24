@@ -17,7 +17,7 @@ import { useState } from "react";
 import NFT from "./Nft.js";
 
 
-export default function UpdatedGallery({ownednfts, parentCallback, secondCallback}) {
+export default function UpdatedGallery({ownednfts, parentCallback}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [ selectedNFT, setSelectedNFT ] = useState("");
   const [ seletedIndex, setSelectedIndex ] = useState(-1);
@@ -36,7 +36,6 @@ export default function UpdatedGallery({ownednfts, parentCallback, secondCallbac
 
   function handleClose() {
     parentCallback(selectedNFT);
-    secondCallback(selectedNFT);
     onClose();
   }
 

@@ -20,9 +20,9 @@ export default function BackgroundTemplates(props) {
   );
   const [seletedIndex, setSelectedIndex] = useState(null);
 
-  function handleIt(currentName) {
+  function handleIt(currentName, currentImage) {
     setSelectedBackground(currentName);
-    props.backgroundCallback(currentName)
+    props.backgroundCallback(currentImage)
     return currentName;
   }
 
@@ -54,7 +54,7 @@ export default function BackgroundTemplates(props) {
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  handleIt(background.name);
+                  handleIt(background.name, background.image);
                 }}
               />
             );

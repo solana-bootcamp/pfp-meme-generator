@@ -17,16 +17,29 @@ export default function TabPicker({
 }) {
  
   const [selectedTabNFTImage, setSelectedTabNFTImage] = useState("");
-  const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] = useState("");
+
+  const [selectedTabNFT, setSelectedTabNFT] = useState("");
+  const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] =
+    useState("https://media.wired.com/photos/59a459d3b345f64511c5e3d4/master/pass/MemeLoveTriangle_297886754.jpg");
   const [ogTopText, setOgTopText] = useState("");
   const [ogBottomText, setOgBottomText] = useState("");
   const [aiPrompt, setAIPrompt] = useState("");
   const [aiText, setAIText] = useState("");
+  const [editorVisibility, setEditorVisibility] = useState(false);
 
 
-  const handleTopChange = (event) => setOgTopText(event.target.value);
-  const handleBottomChange = (event) => setOgBottomText(event.target.value);
-  const handleAIChange = (event) => setAIPrompt(event.target.value);
+  const handleTopChange = (event) => {
+    setOgTopText(event.target.value);
+    setEditorVisibility(false);
+  }
+  const handleBottomChange = (event) => {
+    setOgBottomText(event.target.value);
+    setEditorVisibility(false);
+  }
+  const handleAIChange = (event) => {
+    setAIPrompt(event.target.value);
+    setEditorVisibility(false);
+  }
 
   const handleOGCallback = (childData) => {
     setSelectedTabNFTImage(childData);
