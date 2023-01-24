@@ -1,7 +1,5 @@
-import { supabase } from "../supabaseClient";
-import { useState, useEffect } from "react";
-
 const api_key = process.env.CHAT_GPT;
+
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
