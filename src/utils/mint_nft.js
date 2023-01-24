@@ -23,7 +23,7 @@ export default async function mint_nft(title, image_url, orignal_nft_title, mint
     const { nft } = await metaplex.nfts().create({
         uri: uri,
         name: "My NFT",
-        // sellerFeeBasisPoints: 500, // Represents 5.00%.
+        sellerFeeBasisPoints: 0, // Represents 0.00%.
         updateAuthority: wallet,
         tokenOwner: minter_wallet_address,
         maxSupply: BigNumber.from(1)
