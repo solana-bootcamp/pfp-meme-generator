@@ -224,56 +224,49 @@ export default function TabPicker({
           </form>
         </div>
         <div className="editor-div">
-        {aiVisibility == false ? (<div
-              style={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <ChakraProvider>
-                <Button
-                  fontFamily="Montserrat"
-                  w="100%"
-                  fontSize="16px"
-                  fontWeight="800"
-                  bg="#FFD307"
-                  color="black"
-                  padding="0rem 4rem 0rem 4rem"
-                  margin="2rem 0rem 0rem 0rem"
-                  onClick={() => {
-                    if (selectedAITabNFT == "" ||
-                    selectedAITabNFTBackgroundImage == ""
-                    ) {
-                      alert("NFT not selected")
-                    } else if (aiPrompt == "") {
-                      alert("Please describe your meme");
-                    } else {
-                      callChatGPT(aiPrompt);
-                      setAIResponse(aiText);
-                      setAIVisibility(true);
-                    }
-                  }}
-                  _hover={{ bg: "#000000", color: "#FFFFFF" }}
-                  style={{ bg: "#FFD307" }}
-                >
-                  GENERATE
-                </Button>
-              </ChakraProvider>
-          </div>) : (
-            <>
-              <label className="form-label3">4. EDIT YOUR MEME</label>
-              <Editor
-                backgroundImageURL={selectedAITabNFTBackgroundImage}
-                pfpImageURL={selectedAITabNFTImage}
-                bottomText=""
-                topText={aiResponse}
-                isInvisible={false}
-                onNFTSave={onSave}
-              />
-            </>
-          )}
+          {aiVisibility == false ? (
+                <ChakraProvider>
+                  <Button
+                    fontFamily="Montserrat"
+                    w="100%"
+                    fontSize="16px"
+                    fontWeight="800"
+                    bg="#FFD307"
+                    color="black"
+                    padding="0rem 4rem 0rem 4rem"
+                    margin="2rem 0rem 0rem 0rem"
+                    onClick={() => {
+                      if (selectedAITabNFT == "" ||
+                      selectedAITabNFTBackgroundImage == ""
+                      ) {
+                        alert("NFT not selected")
+                      } else if (aiPrompt == "") {
+                        alert("Please describe your meme");
+                      } else {
+                        callChatGPT(aiPrompt);
+                        setAIResponse(aiText);
+                        setAIVisibility(true);
+                      }
+                    }}
+                    _hover={{ bg: "#000000", color: "#FFFFFF" }}
+                    style={{ bg: "#FFD307" }}
+                  >
+                    GENERATE
+                  </Button>
+                </ChakraProvider>
+                ) : (
+              <div>
+                <label className="form-label2">4. EDIT YOUR MEME</label>
+                <Editor
+                  backgroundImageURL={selectedAITabNFTBackgroundImage}
+                  pfpImageURL={selectedAITabNFTImage}
+                  bottomText=""
+                  topText={aiResponse}
+                  isInvisible={false}
+                  onNFTSave={onSave}
+                />
+              </div>
+            )}
           </div>
       </div>
     );
