@@ -24,10 +24,12 @@ export default async function mint_nft(title, image_url, orignal_nft_title, mint
         uri: uri,
         name: "My NFT",
         sellerFeeBasisPoints: 0, // Represents 0.00%.
-        updateAuthority: wallet,
+        updateAuthority: metaplex.identity(),
         tokenOwner: minter_wallet_address,
         maxSupply: BigNumber.from(1)
     });
+
+    
 
 
 
