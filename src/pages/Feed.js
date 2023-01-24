@@ -32,8 +32,10 @@ function Feed({currentwallet}) {
         console.log(error.message);
       }
     };
-    fetchMemes();
-  }, [currentwallet]);
+    if (memes === []) {
+      fetchMemes();
+    }
+  }, [currentwallet, memes]);
 
   return (
     <div className="Feed">
