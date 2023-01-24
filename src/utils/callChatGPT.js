@@ -18,4 +18,5 @@ async function callChatGPT(meme_description) {
         temperature: 0,
         max_tokens: 7,
       });
+      return response;
 }
