@@ -2,16 +2,19 @@ import { Metaplex, bundlrStorage } from "@metaplex-foundation/js";
 import { Connection, clusterApiUrl, Keypair } from "@solana/web3.js";
 
 SECRET_KEY = process.env.wareta_wallet_sk;
-const wallet = Keypair.fromSecretKey(SECRET_KEY);
+const wareta_wallet = Keypair.fromSecretKey(SECRET_KEY);
 
 const connection = new Connection(clusterApiUrl("mainnet-beta"));
-const metaplex = new Metaplex(connection).use(bundlrStorage()).use(wallet); // this might be a problem
+
 
 import { BigNumber } from "ethers";
-import { supabase } from "../supabaseClient";
 
 
-export default async function mint_nft(title, image_url, orignal_nft_title, minter_wallet_address) {
+export default async function mint_nft(title, image_url, orignal_nft_title, wallet_connector) {
+
+    const user_wallet = await wallet_connector.getSigner();
+    
+    const metaplex = new Metaplex(connection).use(bundlrStorage()).use(user_wallet); 
 
     const { uri } = await metaplex.nfts().uploadMetadata({
         name: title,
@@ -23,13 +26,11 @@ export default async function mint_nft(title, image_url, orignal_nft_title, mint
         uri: uri,
         name: "My NFT",
         sellerFeeBasisPoints: 0,
-        updateAuthority: metaplex.identity(),
+        updateAuthority: wareta_wallet,
         tokenOwner: minter_wallet_address,
         maxSupply: BigNumber.from(1)
     });
 
     console.log("MINTED NFT: " + nft);
-
     return nft;
-
 }
