@@ -276,7 +276,7 @@ export default function TabPicker({
             <label className="form-label3">2. EDIT YOUR MEME</label>
             <NFTEditor
               backgroundImageURL={selectedCustomNFTImage}
-              isInvisible={false}
+              onNFTSave={onSave}
             />
           </>
         ) : (
