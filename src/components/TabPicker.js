@@ -8,6 +8,8 @@ import { Input, ChakraProvider, Button } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import callChatGPT from "../utils/callChatGPT";
 import createMeme from "../utils/createMeme";
+import NFTEditor from "../components/NFTEditor";
+
 
 export default function TabPicker({
   owned_NFTs,
@@ -26,7 +28,11 @@ export default function TabPicker({
   const [ogBottomText, setOgBottomText] = useState("");
   const [aiPrompt, setAIPrompt] = useState("");
   const [aiText, setAIText] = useState("");
+  const [aiResponse, setAIResponse] = useState("");
   const [editorVisibility, setEditorVisibility] = useState(false);
+
+  const [selectedCustomNFTImage, setSelectedCustomNFTImage] = useState("");
+  const [customVisibility, setCustomVisibility] = useState(false);
 
   const onSave = (data) => {
     console.log("this is d: " + data);
@@ -60,6 +66,11 @@ export default function TabPicker({
     setEditorVisibility(false);
     console.log("Called AI Callback!");
   };
+
+  const handleCustomCallback = (childData) => {
+    setSelectedCustomNFTImage(childData["url"]);
+    setCustomVisibility(true);
+  }
 
   const handleOGBackgroundCallback = (childData) => {
     setSelectedTabNFTBackgroundImage(childData);
@@ -211,7 +222,7 @@ export default function TabPicker({
                   color="black"
                   padding="0rem 4rem 0rem 4rem"
                   margin="2rem 0rem 0rem 0rem"
-                  onClick={() => {}}
+                  onClick={() => {setAIResponse(callChatGPT(aiPrompt))}}
                   disabled={true}
                   _hover={{ bg: "#000000", color: "#FFFFFF" }}
                   style={{ bg: "#FFD307" }}
@@ -233,28 +244,33 @@ export default function TabPicker({
     );
   }
 
+  //setEditorVisibility(false);
   return (
     <div className="tab-picker-body">
       <div className="chooser1">
         <label className="form-label">1. CHOOSE AN NFT</label>
         <UpdatedGallery
           ownednfts={owned_NFTs}
-          parentCallback={handleAICallback}
+          parentCallback={handleCustomCallback}
         />
       </div>
-      <div className="tchooser">
-        <label className="form-label3">2. UPLOAD A MEME BACKGROUND</label>
-        <BackgroundTemplates />
-      </div>
+      {/* <div className="tchooser">
+        <label className="form-label4">2. UPLOAD A MEME BACKGROUND</label>
+        <BackgroundTemplates backgroundCallback={handleOGBackgroundCallback}/>
+      </div> */}
       <div>
-        <label className="form-label2">3. EDIT YOUR MEME</label>
-        <Editor
-          backgroundImageURL="https://media.wbur.org/wp/2021/10/Disaster-Girl-OG-pic-1000x666.jpeg"
-          pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
-          bottomText="MemeBottom"
-          topText="Meme"
-          isInvisible={false}
-        />
+        {(customVisibility) ? (
+          <>
+            <label className="form-label3">2. EDIT YOUR MEME</label>
+            <NFTEditor
+              backgroundImageURL={selectedCustomNFTImage}
+              onNFTSave={onSave}
+            />
+          </>
+        ) : (
+          <></>
+        )
+        }
       </div>
     </div>
   );
