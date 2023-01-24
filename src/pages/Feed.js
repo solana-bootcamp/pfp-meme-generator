@@ -10,17 +10,11 @@ function Feed({currentwallet}) {
   useEffect(() => {
     const fetchMemes = async () => {
       try {
-        console.log("runningggg");
         if ((currentwallet !== null)) {
-          console.log("runningggg");
-
           let { data, error } = await supabase
             .from("memes")
             .select()
             .order("inserted_at", { ascending: false });
-
-          console.log("rannnnn");
-
           console.log("memes are: " + JSON.stringify(data));
 
           if (error) {
