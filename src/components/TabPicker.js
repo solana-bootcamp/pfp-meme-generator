@@ -7,7 +7,6 @@ import "../styles/Generator.css";
 import { Input, ChakraProvider } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
-
 export default function TabPicker({
   handleNFTCallback,
   owned_NFTs,
@@ -21,12 +20,16 @@ export default function TabPicker({
   // console.log("This is ai status: " + isAIActive);
   // console.log("This is custom status: " + isCustomActive);
   const [selectedTabNFTImage, setSelectedTabNFTIamge] = useState("");
-  const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] = useState("");
+  const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] =
+    useState("");
   const [ogTopText, setOgTopText] = useState("");
   const [ogBottomText, setOgBottomText] = useState("");
+  const [aiPrompt, setAIPrompt] = useState("");
 
-  const handleTopChange = (event) => setOgTopText(event.target.value)
-  const handleBottomChange = (event) => setOgBottomText(event.target.value)
+
+  const handleTopChange = (event) => setOgTopText(event.target.value);
+  const handleBottomChange = (event) => setOgBottomText(event.target.value);
+  const handleAIChange = (event) => setAIPrompt(event.target.value);
 
 
   const handleOGCallback = (childData) => {
@@ -34,11 +37,17 @@ export default function TabPicker({
     console.log("Called OG Callback!");
   };
 
+  const handleAICallback = (childData) => {
+    setSelectedTabNFTIamge(childData);
+    console.log("Called AI Callback!");
+  };
+
   const handleOGBackgroundCallback = (childData) => {
     setSelectedTabNFTBackgroundImage(childData);
     console.log("Called OG Background Callback!");
   };
 
+  
 
   if (isOGActive) {
     return (
@@ -53,13 +62,10 @@ export default function TabPicker({
                 secondCallback={handleOGCallback}
               />
               <label className="form-label">2. SELECT A MEME BACKGROUND</label>
-              <BackgroundTemplates 
+              <BackgroundTemplates
                 backgroundCallback={handleOGBackgroundCallback}
-
               />
-              <label className="form-label">
-                3. INPUT YOUR TOP MEME TEXT
-              </label>
+              <label className="form-label">3. INPUT YOUR TOP MEME TEXT</label>
               <ChakraProvider>
                 <Input
                   placeholder="Top Meme Text"
@@ -98,24 +104,13 @@ export default function TabPicker({
               }}
             >
               <OGViewResult
-              selectedTabNFTImage={selectedTabNFTImage["url"]}
-              selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
-              topText={ogTopText}
-              bottomText={ogBottomText}
-              filled={true}
+                selectedTabNFTImage={selectedTabNFTImage["url"]}
+                selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
+                topText={ogTopText}
+                bottomText={ogBottomText}
+                filled={true}
               />
             </div>
-            {/* <Input
-                w="100%"
-                h="2.75rem"
-                color="white"
-                bg={"black"}
-                border={"0px"}
-                type="submit"
-                fontFamily={"Montserrat"}
-                fontWeight="800"
-                _hover={{bg: "#2F3238", cursor: "pointer"}}
-              /> */}
           </form>
         </div>
       </div>
@@ -129,13 +124,12 @@ export default function TabPicker({
           <form onSubmit={() => {}}>
             <label className="form-label2">1. CHOOSE AN NFT</label>
             <UpdatedGallery
-              nfts={owned_NFTs}
+              ownednfts={owned_NFTs}
               parentCallback={handleNFTCallback}
+              secondCallback={handleOGCallback}
             />
             <label className="form-label">2. SELECT A MEME BACKGROUND</label>
-            <BackgroundTemplates 
-
-            />
+            <BackgroundTemplates />
             <label className="form-label">3. DESCRIBE YOUR MEME</label>
             <ChakraProvider>
               <Input
@@ -145,6 +139,8 @@ export default function TabPicker({
                 fontFamily={"Montserrat"}
                 fontWeight="600"
                 margin="0rem 0rem 0.25rem 0rem"
+                value={aiPrompt || ""}
+                onChange={handleAIChange}
               />
             </ChakraProvider>
 
@@ -156,19 +152,13 @@ export default function TabPicker({
                 alignItems: "center",
               }}
             >
-              <AIViewResult />
+              <AIViewResult 
+                selectedTabNFTImage={selectedTabNFTImage["url"]}
+                selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
+                aiPrompt={aiPrompt}
+                filled={true}
+              />
             </div>
-            {/* <Input
-              w="100%"
-              h="2.75rem"
-              color="white"
-              bg={"black"}
-              border={"0px"}
-              type="submit"
-              fontFamily={"Montserrat"}
-              fontWeight="800"
-              _hover={{bg: "#2F3238", cursor: "pointer"}}
-            /> */}
           </form>
         </div>
       </div>
