@@ -8,14 +8,12 @@ import BackgroundTemplates from "../components/BackgroundTemplates";
 import get_nfts from "../utils/get_nfts";
 import TabPicker from "../components/TabPicker";
 
-
 function Generator() {
   const navigate = useNavigate();
 
   const [currentwallet, setCurrentWallet] = useState(null);
   const [owned_NFTs, set_owned_NFTs] = useState("");
   const [selectedNFTImage, setSelectedNFTImage] = useState("");
-  const [selectedNFTStyle, setSelectedNFTStyle] = useState("");
   const [selectedNFTBackgroundImage, setSelectedNFTBackgroundImage] = useState(
     []
   );
@@ -40,8 +38,8 @@ function Generator() {
           // let testaddress = "Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn"
           setCurrentWallet(user.walletPublicKey);
           if (owned_NFTs === "") {
-            let nfts = await get_nfts(user.walletPublicKey);
-            set_owned_NFTs(nfts);
+            const nfts2 = await get_nfts(user.walletPublicKey);
+            set_owned_NFTs(nfts2);
           }
         } catch (error) {
           console.log(error);
@@ -50,10 +48,6 @@ function Generator() {
       fetch_NFTs();
       console.log(owned_NFTs);
     }
-
-    // I don't think this works, see how I did the callback for getting the NFT image from a child element
-    setSelectedNFTBackgroundImage(BackgroundTemplates.selectedBackground);
-    console.log("selected: " + BackgroundTemplates.selectedBackground);
   }, [user, walletConnector]);
 
   const {
@@ -66,14 +60,7 @@ function Generator() {
   const handleNFTCallback = (childData) => {
     setSelectedNFTImage(childData);
     console.log("Called Callback!");
-    console.log(
-      "selected: " +
-        selectedNFTImage["title"] +
-        " with mint address: " +
-        selectedNFTImage["address"] +
-        " and url: " +
-        selectedNFTImage["url"]
-    );
+    console.log("selected: " + JSON.stringify(childData));
   };
 
   const setTabs = (ogstatus, aistatus, customstatus) => {
@@ -86,41 +73,43 @@ function Generator() {
     <div>
       <div className="leftcolumn">
         <div>
-        <p className="title">MEME GENERATOR</p>
+          <p className="title">MEME GENERATOR</p>
         </div>
         <div className="Generator-body">
-                <div className="button-group">
-          <button
-            className={isOGActive ? "activeTabButton" : "inactiveTabButton"}
-            onClick={() => setTabs(true, false, false)}
-          >
-            <p>OG</p>
-          </button>
-          <button
-            className={isAIActive ? "activeTabButton" : "inactiveTabButton"}
-            onClick={() => setTabs(false, true, false)}
-          >
-            <p>AI</p>
-          </button>
-
-          <button
-            className={isCustomActive ? "activeTabButton" : "inactiveTabButton"}
-            onClick={() => setTabs(false, false, true)}
-          >
-            <p>CUSTOM</p>
-          </button>
-        </div>
+          <div>
+            <button
+              className={isOGActive ? "activeTabButton" : "inactiveTabButton"}
+              onClick={() => setTabs(true, false, false)}
+            >
+              <p>OG</p>
+            </button>
+            <button
+              className={isAIActive ? "activeTabButton" : "inactiveTabButton"}
+              onClick={() => setTabs(false, true, false)}
+            >
+              <p>AI</p>
+            </button>
+            <button
+              className={
+                isCustomActive ? "activeTabButton" : "inactiveTabButton"
+              }
+              onClick={() => setTabs(false, false, true)}
+            >
+              <p>CUSTOM</p>
+            </button>
+          </div>
           <TabPicker
             handleNFTCallback={handleNFTCallback}
             owned_NFTs={owned_NFTs}
             isOGActive={isOGActive}
             isAIActive={isAIActive}
             isCustomActive={isCustomActive}
+            pubkey={user.walletPublicKey}
           />
         </div>
       </div>
       <div className="rightcolumn">
-        <Feed currentwallet={user.walletPublicKey}/>
+        <Feed currentwallet={user.walletPublicKey} />
       </div>
     </div>
   );

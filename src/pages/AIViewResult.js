@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import Edit from "./Edit";
 
-function ViewResult({ filled }) {
+function AIViewResult({ filled }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   function handleSave() {}
@@ -97,4 +97,4 @@ function ViewResult({ filled }) {
   );
 }
 
-export default ViewResult;
+export default AIViewResult;
