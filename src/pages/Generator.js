@@ -39,8 +39,8 @@ function Generator() {
           // let testaddress = "Ee6rCpsPJkEQZbNMv3itLP7s71rRSyWedYHQphn7MwKn"
           setCurrentWallet(user.walletPublicKey);
           if (owned_NFTs === "") {
-            let nfts = await get_nfts(user.walletPublicKey);
-            set_owned_NFTs(nfts);
+            const nfts2 = await get_nfts(user.walletPublicKey);
+            set_owned_NFTs(nfts2);
           }
         } catch (error) {
           console.log(error);
@@ -49,10 +49,6 @@ function Generator() {
       fetch_NFTs();
       console.log(owned_NFTs);
     }
-
-    // I don't think this works, see how I did the callback for getting the NFT image from a child element
-    setSelectedNFTBackgroundImage(BackgroundTemplates.selectedBackground);
-    console.log("selected: " + BackgroundTemplates.selectedBackground);
   }, [user, walletConnector]);
 
   const {
@@ -67,11 +63,7 @@ function Generator() {
     console.log("Called Callback!");
     console.log(
       "selected: " +
-        selectedNFTImage["title"] +
-        " with mint address: " +
-        selectedNFTImage["address"] +
-        " and url: " +
-        selectedNFTImage["url"]
+        JSON.stringify(childData)
     );
   };
 

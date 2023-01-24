@@ -22,6 +22,12 @@ export default function TabPicker({
   // console.log("This is custom status: " + isCustomActive);
   const [selectedTabNFTImage, setSelectedTabNFTIamge] = useState("");
   const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] = useState("");
+  const [ogTopText, setOgTopText] = useState("");
+  const [ogBottomText, setOgBottomText] = useState("");
+
+  const handleTopChange = (event) => setOgTopText(event.target.value)
+  const handleBottomChange = (event) => setOgBottomText(event.target.value)
+
 
   const handleOGCallback = (childData) => {
     setSelectedTabNFTIamge(childData);
@@ -29,7 +35,7 @@ export default function TabPicker({
   };
 
   const handleOGBackgroundCallback = (childData) => {
-    selectedTabNFTBackgroundImage(childData);
+    setSelectedTabNFTBackgroundImage(childData);
     console.log("Called OG Background Callback!");
   };
 
@@ -42,37 +48,44 @@ export default function TabPicker({
             <label className="form-label2">1. CHOOSE AN NFT</label>
             <div>
               <UpdatedGallery
-                nfts={owned_NFTs}
+                ownednfts={owned_NFTs}
                 parentCallback={handleNFTCallback}
                 secondCallback={handleOGCallback}
               />
               <label className="form-label">2. SELECT A MEME BACKGROUND</label>
-              <BackgroundTemplates />
+              <BackgroundTemplates 
+                backgroundCallback={handleOGBackgroundCallback}
+
+              />
               <label className="form-label">
-                3. INPUT YOUR UPPER MEME TEXT
+                3. INPUT YOUR TOP MEME TEXT
               </label>
               <ChakraProvider>
                 <Input
-                  placeholder="Meme Text"
+                  placeholder="Top Meme Text"
                   variant="filled"
                   _focus={{ bg: "white" }}
                   fontFamily="Montserrat"
                   fontWeight="600"
                   margin="0rem 0rem 0rem 0rem"
+                  value={ogTopText || ""}
+                  onChange={handleTopChange}
                 />
               </ChakraProvider>
 
               <label className="form-label">
-                4. INPUT YOUR LOWER MEME TEXT
+                4. INPUT YOUR BOTTOM MEME TEXT
               </label>
               <ChakraProvider>
                 <Input
-                  placeholder="Meme Text"
+                  placeholder="Bottom Meme Text"
                   variant="filled"
                   _focus={{ bg: "white" }}
                   fontFamily={"Montserrat"}
                   fontWeight="600"
                   margin="0rem 0rem 0.25rem 0rem"
+                  value={ogBottomText || ""}
+                  onChange={handleBottomChange}
                 />
               </ChakraProvider>
             </div>
@@ -85,7 +98,11 @@ export default function TabPicker({
               }}
             >
               <OGViewResult
-              handleOGBackgroundCallback={handleOGBackgroundCallback}
+              selectedTabNFTImage={selectedTabNFTImage["url"]}
+              selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
+              topText={ogTopText}
+              bottomText={ogBottomText}
+              filled={true}
               />
             </div>
             {/* <Input
@@ -116,7 +133,9 @@ export default function TabPicker({
               parentCallback={handleNFTCallback}
             />
             <label className="form-label">2. SELECT A MEME BACKGROUND</label>
-            <BackgroundTemplates />
+            <BackgroundTemplates 
+
+            />
             <label className="form-label">3. DESCRIBE YOUR MEME</label>
             <ChakraProvider>
               <Input

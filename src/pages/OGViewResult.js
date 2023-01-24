@@ -10,12 +10,13 @@ import {
   ModalFooter,
   ModalBody,
   useDisclosure,
+  Image,
 } from "@chakra-ui/react";
 import Edit from "./Edit";
 import { Stage, Layer, Rect, Circle } from 'react-konva';
 
 
-function OGViewResult({ filled }) {
+function OGViewResult({ filled, selectedTabNFTImage, selectedTabNFTBackgroundImage, topText, bottomText}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   function handleSave() {}
@@ -53,9 +54,16 @@ function OGViewResult({ filled }) {
           <ModalHeader></ModalHeader>
           <ModalBody>
           <Stage width={window.innerWidth} height={window.innerHeight}>
+        
       <Layer>
-        <Rect width={50} height={50} fill="red" />
-        <Circle x={200} y={200} stroke="black" radius={50} />
+      <Image src={selectedTabNFTImage} alt={"NFT Image"} width={"30rem"}/>
+      <Image src={selectedTabNFTBackgroundImage} alt={"Background Image"} width={"12rem"}/>
+      <p>{topText}</p>
+      <p>{bottomText}</p>
+
+
+        {/* <Rect width={50} height={50} fill="red" />
+        <Circle x={200} y={200} stroke="black" radius={50} /> */}
       </Layer>
     </Stage>
           </ModalBody>

@@ -9,6 +9,7 @@ import {
   ChakraProvider,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import getTemplateList from "../utils/getTemplatesList";
 
 
 
@@ -21,9 +22,11 @@ export default function BackgroundTemplates(props) {
 
   function handleIt(currentName) {
     setSelectedBackground(currentName);
-    props.handleOGBackgroundCallback(currentName)
+    props.backgroundCallback(currentName)
     return currentName;
   }
+
+  const templates_list = getTemplateList();
 
   // use on click in each grid item
   return (
