@@ -27,7 +27,7 @@ function Feed({currentwallet}) {
       }
     };
     fetchMemes();
-  }, [currentwallet, memes]);
+  }, [currentwallet]);
 
   return (
     <div className="Feed">
