@@ -10,17 +10,12 @@ import callChatGPT from "../utils/callChatGPT";
 
 
 export default function TabPicker({
-  handleNFTCallback,
   owned_NFTs,
   isOGActive,
   isAIActive,
   isCustomActive,
 }) {
-  // console.log("This is callback: " + handleNFTCallback);
-  // console.log("This is ownednfts: " + owned_NFTs);
-  // console.log("This is og status: " + isOGActive);
-  // console.log("This is ai status: " + isAIActive);
-  // console.log("This is custom status: " + isCustomActive);
+ 
   const [selectedTabNFTImage, setSelectedTabNFTIamge] = useState("");
   const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] =
     useState("");
@@ -68,8 +63,7 @@ export default function TabPicker({
             <div>
               <UpdatedGallery
                 ownednfts={owned_NFTs}
-                parentCallback={handleNFTCallback}
-                secondCallback={handleOGCallback}
+                parentCallback={handleOGCallback}
               />
               <label className="form-label">2. SELECT A MEME BACKGROUND</label>
               <BackgroundTemplates
@@ -154,8 +148,7 @@ export default function TabPicker({
             <label className="form-label2">1. CHOOSE AN NFT</label>
             <UpdatedGallery
               ownednfts={owned_NFTs}
-              parentCallback={handleNFTCallback}
-              secondCallback={handleOGCallback}
+              parentCallback={handleAICallback}
             />
             <label className="form-label">2. SELECT A MEME BACKGROUND</label>
             <BackgroundTemplates />
