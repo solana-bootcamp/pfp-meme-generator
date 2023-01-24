@@ -17,7 +17,6 @@ export default function TabPicker({
 }) {
  
   const [selectedTabNFTImage, setSelectedTabNFTImage] = useState("");
-
   const [selectedTabNFT, setSelectedTabNFT] = useState("");
   const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] =
     useState("https://media.wired.com/photos/59a459d3b345f64511c5e3d4/master/pass/MemeLoveTriangle_297886754.jpg");
@@ -42,23 +41,24 @@ export default function TabPicker({
   }
 
   const handleOGCallback = (childData) => {
-    setSelectedTabNFTImage(childData);
+    setSelectedTabNFT(childData);
+    setSelectedTabNFTImage(childData['url']);
+    setEditorVisibility(false);
     console.log("Called OG Callback!");
   };
 
   const handleAICallback = (childData) => {
-    setSelectedTabNFTImage(childData);
+    setSelectedTabNFT(childData);
+    setSelectedTabNFTImage(childData['url']);
+    setEditorVisibility(false);    
     console.log("Called AI Callback!");
   };
 
   const handleOGBackgroundCallback = (childData) => {
     setSelectedTabNFTBackgroundImage(childData);
+    setEditorVisibility(false);
     console.log("Called OG Background Callback!");
   };
-
-  function passToEditor() {
-
-  }
 
   async function getAIText(prompt) {
     const text = await callChatGPT(prompt);
@@ -111,33 +111,53 @@ export default function TabPicker({
                 />
               </ChakraProvider>
             </div>
-            <div
-              style={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "end",
-                alignItems: "center",
-              }}
-            >
-              <ChakraProvider>
-                <Button
-                  fontFamily="Montserrat"
-                  w="100%"
-                  fontSize="16px"
-                  fontWeight="800"
-                  bg="#FFD307"
-                  color="black"
-                  padding="0rem 4rem 0rem 4rem"
-                  margin="2rem 0rem 0rem 0rem"
-                  onClick={passToEditor}
-                  disabled={true}
-                  _hover={{ bg: "#000000", color: "#FFFFFF" }}
-                  style={{ bg: "#FFD307" }}
-                >
-                  GENERATE
-                </Button>
-              </ChakraProvider>
+            {editorVisibility === false ? (
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "end",
+                  alignItems: "center",
+                }}
+              >
+                <ChakraProvider>
+                  <Button
+                    fontFamily="Montserrat"
+                    w="100%"
+                    fontSize="16px"
+                    fontWeight="800"
+                    bg="#FFD307"
+                    color="black"
+                    padding="0rem 4rem 0rem 4rem"
+                    margin="2rem 0rem 0rem 0rem"
+                    onClick={() => {
+                      if (selectedTabNFT == "" || selectedTabNFTBackgroundImage == "") {
+                        alert("NFT not selected");
+                      } else {
+                        setEditorVisibility(true);
+                      }
 
+                    }}
+                    _hover={{ bg: "#000000", color: "#FFFFFF" }}
+                    style={{ bg: "#FFD307" }}
+                  >
+                    GENERATE
+                  </Button>
+              </ChakraProvider>
+              </div>
+            ) : (
+              <>
+                <label className="form-label3">5. EDIT YOUR MEME</label>
+                <Editor
+                  backgroundImageURL={selectedTabNFTBackgroundImage}
+                  pfpImageURL={selectedTabNFTImage}
+                  bottomText={ogBottomText}
+                  topText={ogTopText}
+                  isInvisible={false}
+                />
+              </>
+            )}
+            
               {/* <OGViewResult
                 selectedTabNFTImage={selectedTabNFTImage["url"]}
                 selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
@@ -145,7 +165,7 @@ export default function TabPicker({
                 bottomText={ogBottomText}
                 filled={true}
               /> */}
-            </div>
+            
           </form>
         </div>
       </div>
@@ -196,7 +216,7 @@ export default function TabPicker({
                   color="black"
                   padding="0rem 4rem 0rem 4rem"
                   margin="2rem 0rem 0rem 0rem"
-                  onClick={passToEditor}
+                  onClick={() => {}}
                   disabled={true}
                   _hover={{ bg: "#000000", color: "#FFFFFF" }}
                   style={{ bg: "#FFD307" }}
