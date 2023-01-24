@@ -27,6 +27,7 @@ export default function TabPicker({
   const [ogBottomText, setOgBottomText] = useState("");
   const [aiPrompt, setAIPrompt] = useState("");
   const [aiText, setAIText] = useState("");
+  const [aiResponse, setAIResponse] = useState("");
   const [editorVisibility, setEditorVisibility] = useState(false);
 
   const onSave = (data) => {
@@ -225,7 +226,7 @@ export default function TabPicker({
                   color="black"
                   padding="0rem 4rem 0rem 4rem"
                   margin="2rem 0rem 0rem 0rem"
-                  onClick={() => {}}
+                  onClick={() => {setAIResponse(callChatGPT(aiPrompt))}}
                   disabled={true}
                   _hover={{ bg: "#000000", color: "#FFFFFF" }}
                   style={{ bg: "#FFD307" }}
