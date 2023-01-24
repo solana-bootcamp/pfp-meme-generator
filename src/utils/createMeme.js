@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 //saves meme to db
 export default async function createMeme({ currentwallet, memeurl }) {
-
     try {  
         const updates = {
           user_id: currentwallet,
