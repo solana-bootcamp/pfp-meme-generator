@@ -12,7 +12,7 @@ export default async function createMeme({ currentwallet, memeurl }) {
           inserted_at: new Date(),
         }
   
-        let { error } = await supabase.from('memes').upsert(updates)
+        let { error } = await supabase.from('memes').insert(updates)
   
         if (error) {
           throw error
