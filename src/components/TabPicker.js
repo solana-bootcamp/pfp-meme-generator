@@ -18,6 +18,7 @@ export default function TabPicker({
   isCustomActive,
   pubkey,
 }) {
+  //OG states
   const [selectedTabNFTImage, setSelectedTabNFTImage] = useState("");
   const [selectedTabNFT, setSelectedTabNFT] = useState("");
   const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] =
@@ -26,11 +27,21 @@ export default function TabPicker({
     );
   const [ogTopText, setOgTopText] = useState("");
   const [ogBottomText, setOgBottomText] = useState("");
+  const [editorVisibility, setEditorVisibility] = useState(false);
+
+  //AI states
+  const [selectedAITabNFTImage, setSelectedAITabNFTImage] = useState("");
+  const [selectedAITabNFT, setSelectedAITabNFT] = useState("");
+  const [selectedAITabNFTBackgroundImage, setSelectedAITabNFTBackgroundImage] =
+    useState(
+      "https://media.wired.com/photos/59a459d3b345f64511c5e3d4/master/pass/MemeLoveTriangle_297886754.jpg"
+    );
   const [aiPrompt, setAIPrompt] = useState("");
   const [aiText, setAIText] = useState("");
   const [aiResponse, setAIResponse] = useState("");
-  const [editorVisibility, setEditorVisibility] = useState(false);
+  const [aiVisibility, setAIVisibility] = useState(false);
 
+  //custom states
   const [selectedCustomNFTImage, setSelectedCustomNFTImage] = useState("");
   const [customVisibility, setCustomVisibility] = useState(false);
 
@@ -50,7 +61,7 @@ export default function TabPicker({
   };
   const handleAIChange = (event) => {
     setAIPrompt(event.target.value);
-    setEditorVisibility(false);
+    setAIVisibility(false);
   };
 
   const handleOGCallback = (childData) => {
@@ -61,15 +72,15 @@ export default function TabPicker({
   };
 
   const handleAICallback = (childData) => {
-    setSelectedTabNFT(childData);
-    setSelectedTabNFTImage(childData["url"]);
-    setEditorVisibility(false);
+    setSelectedAITabNFT(childData);
+    setSelectedAITabNFTImage(childData["url"]);
+    setAIVisibility(false);
     console.log("Called AI Callback!");
   };
 
   const handleCustomCallback = (childData) => {
     setSelectedCustomNFTImage(childData["url"]);
-    setCustomVisibility(true);
+    setCustomVisibility(false);
   }
 
   const handleOGBackgroundCallback = (childData) => {
@@ -77,6 +88,11 @@ export default function TabPicker({
     setEditorVisibility(false);
     console.log("Called OG Background Callback!");
   };
+
+  const handleAIBackgroundCallback = (childData) => {
+    setSelectedAITabNFTBackgroundImage(childData);
+    setAIVisibility(false);
+  }
 
   async function getAIText(prompt) {
     const text = await callChatGPT(prompt);
@@ -149,7 +165,8 @@ export default function TabPicker({
                   justifyContent: "end",
                   alignItems: "center",
                 }}
-              >                <ChakraProvider>
+              >                
+              <ChakraProvider>
                   <Button
                     fontFamily="Montserrat"
                     w="100%"
@@ -202,7 +219,9 @@ export default function TabPicker({
               parentCallback={handleAICallback}
             />
             <label className="form-label">2. SELECT A MEME BACKGROUND</label>
-            <BackgroundTemplates />
+            <BackgroundTemplates 
+              backgroundCallback={handleAIBackgroundCallback}
+            />
             <label className="form-label">3. DESCRIBE YOUR MEME</label>
             <ChakraProvider>
               <Input
@@ -216,8 +235,10 @@ export default function TabPicker({
                 onChange={handleAIChange}
               />
             </ChakraProvider>
-
-            <div
+          </form>
+        </div>
+        <div className="editor-div">
+        {aiVisibility == false ? (<div
               style={{
                 display: "flex",
                 width: "100%",
@@ -235,29 +256,43 @@ export default function TabPicker({
                   color="black"
                   padding="0rem 4rem 0rem 4rem"
                   margin="2rem 0rem 0rem 0rem"
-                  onClick={() => {setAIResponse(callChatGPT(aiPrompt))}}
-                  disabled={true}
+                  onClick={() => {
+                    if (selectedAITabNFT == "" ||
+                    selectedAITabNFTBackgroundImage == ""
+                    ) {
+                      alert("NFT not selected")
+                    } else if (aiPrompt == "") {
+                      alert("Please describe your meme");
+                    } else {
+                      callChatGPT(aiPrompt);
+                      setAIResponse(aiText);
+                      setAIVisibility(true);
+                    }
+                  }}
                   _hover={{ bg: "#000000", color: "#FFFFFF" }}
                   style={{ bg: "#FFD307" }}
                 >
                   GENERATE
                 </Button>
               </ChakraProvider>
-
-              {/* <AIViewResult 
-                selectedTabNFTImage={selectedTabNFTImage["url"]}
-                selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
-                aiPrompt={aiPrompt}
-                filled={true}
-              /> */}
-            </div>
-          </form>
-        </div>
+          </div>) : (
+            <>
+              <label className="form-label3">4. EDIT YOUR MEME</label>
+              <Editor
+                backgroundImageURL={selectedAITabNFTBackgroundImage}
+                pfpImageURL={selectedAITabNFTImage}
+                bottomText=""
+                topText={aiResponse}
+                isInvisible={false}
+                onNFTSave={onSave}
+              />
+            </>
+          )}
+          </div>
       </div>
     );
   }
 
-  //setEditorVisibility(false);
   return (
     <div className="tab-picker-body">
       <div className="chooser1">
@@ -271,20 +306,51 @@ export default function TabPicker({
         <label className="form-label4">2. UPLOAD A MEME BACKGROUND</label>
         <BackgroundTemplates backgroundCallback={handleOGBackgroundCallback}/>
       </div> */}
-      <div>
-        {(customVisibility) ? (
-          <>
+        {customVisibility ? (
+          <div style={{padding: 2}}>
             <label className="form-label3">2. EDIT YOUR MEME</label>
             <NFTEditor
               backgroundImageURL={selectedCustomNFTImage}
               onNFTSave={onSave}
             />
-          </>
+          </div>
         ) : (
-          <></>
+          <div
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "end",
+                alignItems: "center",
+              }}
+            >                
+              <ChakraProvider>
+                  <Button
+                    fontFamily="Montserrat"
+                    w="100%"
+                    fontSize="16px"
+                    fontWeight="800"
+                    bg="#FFD307"
+                    color="black"
+                    padding="0rem 4rem 0rem 4rem"
+                    margin="2rem 0rem 0rem 0rem"
+                    onClick={() => {
+                      if (
+                        selectedCustomNFTImage == ""
+                      ) {
+                        alert("NFT not selected");
+                      } else {
+                        setCustomVisibility(true);
+                      }
+                    }}
+                    _hover={{ bg: "#000000", color: "#FFFFFF" }}
+                    style={{ bg: "#FFD307" }}
+                  >
+                    GENERATE
+                  </Button>
+                </ChakraProvider>
+              </div>
         )
         }
-      </div>
     </div>
   );
 }
