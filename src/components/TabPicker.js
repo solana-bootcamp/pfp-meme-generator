@@ -126,9 +126,7 @@ export default function TabPicker({
                   onChange={handleBottomChange}
                 />
               </ChakraProvider>
-            </div>
-            <label className="form-label3">5. EDIT YOUR MEME</label>
-            
+            </div>            
               {/* <OGViewResult
                 selectedTabNFTImage={selectedTabNFTImage["url"]}
                 selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
@@ -138,7 +136,11 @@ export default function TabPicker({
               /> */}
             
           </form>
-          {editorVisibility === false ? (
+        </div>
+        <div className="editor-div">
+        <label className="form-label3">5. EDIT YOUR MEME</label>
+
+        {editorVisibility === false ? (
               <div
                 style={{
                   display: "flex",
@@ -146,8 +148,7 @@ export default function TabPicker({
                   justifyContent: "end",
                   alignItems: "center",
                 }}
-              >
-                <ChakraProvider>
+              >                <ChakraProvider>
                   <Button
                     fontFamily="Montserrat"
                     w="100%"
