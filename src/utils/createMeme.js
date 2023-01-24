@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 
 
 //saves meme to db
-export default async function createMeme({ currentwallet, memeurl }) {
+export default async function createMeme(currentwallet, memeurl) {
     try {  
-      if (memeurl !== null) {
+      if ((memeurl !== null) && (currentwallet !== null)) {
+        console.log('this is memeurl:' + memeurl);
+        console.log('this is memeurl:' + currentwallet);
         const updates = {
-          user_id: currentwallet,
-          meme_uri: memeurl,
+          currentwallet: currentwallet,
+          memeuri: memeurl,
           inserted_at: new Date(),
         }
   
@@ -17,10 +19,10 @@ export default async function createMeme({ currentwallet, memeurl }) {
         if (error) {
           throw error
         }
+        console.log('😝 Meme created!!!')
+        window.location.reload();
       }
       } catch (error) {
         alert(error.message)
-      } finally {
-        alert('😝 Meme created!!!')
       }
 }

@@ -30,7 +30,8 @@ export default function TabPicker({
   const [editorVisibility, setEditorVisibility] = useState(false);
 
   const onSave = (data) => {
-    console.log(data);
+    console.log('this is d: ' + data);
+    console.log('this is pk: ' + pubkey);
     createMeme(pubkey, data);
   }
 
