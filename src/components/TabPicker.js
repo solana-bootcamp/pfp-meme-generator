@@ -249,7 +249,7 @@ export default function TabPicker({
   return (
     <div className="tab-picker-body">
       <div className="chooser1">
-        <label className="form-label4">1. CHOOSE AN NFT</label>
+        <label className="form-label3">1. CHOOSE AN NFT</label>
         <UpdatedGallery
           ownednfts={owned_NFTs}
           parentCallback={handleAICallback}
