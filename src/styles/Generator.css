@@ -167,3 +167,9 @@
   justify-content: center;
 }
 
+.chooser1 {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+

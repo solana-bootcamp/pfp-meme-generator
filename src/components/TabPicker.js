@@ -8,49 +8,48 @@ import { Input, ChakraProvider, Button } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import callChatGPT from "../utils/callChatGPT";
 
-
 export default function TabPicker({
   owned_NFTs,
   isOGActive,
   isAIActive,
   isCustomActive,
 }) {
- 
   const [selectedTabNFTImage, setSelectedTabNFTImage] = useState("");
   const [selectedTabNFT, setSelectedTabNFT] = useState("");
   const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] =
-    useState("https://media.wired.com/photos/59a459d3b345f64511c5e3d4/master/pass/MemeLoveTriangle_297886754.jpg");
+    useState(
+      "https://media.wired.com/photos/59a459d3b345f64511c5e3d4/master/pass/MemeLoveTriangle_297886754.jpg"
+    );
   const [ogTopText, setOgTopText] = useState("");
   const [ogBottomText, setOgBottomText] = useState("");
   const [aiPrompt, setAIPrompt] = useState("");
   const [aiText, setAIText] = useState("");
   const [editorVisibility, setEditorVisibility] = useState(false);
 
-
   const handleTopChange = (event) => {
     setOgTopText(event.target.value);
     setEditorVisibility(false);
-  }
+  };
   const handleBottomChange = (event) => {
     setOgBottomText(event.target.value);
     setEditorVisibility(false);
-  }
+  };
   const handleAIChange = (event) => {
     setAIPrompt(event.target.value);
     setEditorVisibility(false);
-  }
+  };
 
   const handleOGCallback = (childData) => {
     setSelectedTabNFT(childData);
-    setSelectedTabNFTImage(childData['url']);
+    setSelectedTabNFTImage(childData["url"]);
     setEditorVisibility(false);
     console.log("Called OG Callback!");
   };
 
   const handleAICallback = (childData) => {
     setSelectedTabNFT(childData);
-    setSelectedTabNFTImage(childData['url']);
-    setEditorVisibility(false);    
+    setSelectedTabNFTImage(childData["url"]);
+    setEditorVisibility(false);
     console.log("Called AI Callback!");
   };
 
@@ -64,7 +63,6 @@ export default function TabPicker({
     const text = await callChatGPT(prompt);
     setAIText(text);
   }
-
 
   if (isOGActive) {
     return (
@@ -131,19 +129,21 @@ export default function TabPicker({
                     padding="0rem 4rem 0rem 4rem"
                     margin="2rem 0rem 0rem 0rem"
                     onClick={() => {
-                      if (selectedTabNFT == "" || selectedTabNFTBackgroundImage == "") {
+                      if (
+                        selectedTabNFT == "" ||
+                        selectedTabNFTBackgroundImage == ""
+                      ) {
                         alert("NFT not selected");
                       } else {
                         setEditorVisibility(true);
                       }
-
                     }}
                     _hover={{ bg: "#000000", color: "#FFFFFF" }}
                     style={{ bg: "#FFD307" }}
                   >
                     GENERATE
                   </Button>
-              </ChakraProvider>
+                </ChakraProvider>
               </div>
             ) : (
               <>
@@ -157,15 +157,14 @@ export default function TabPicker({
                 />
               </>
             )}
-            
-              {/* <OGViewResult
+
+            {/* <OGViewResult
                 selectedTabNFTImage={selectedTabNFTImage["url"]}
                 selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
                 topText={ogTopText}
                 bottomText={ogBottomText}
                 filled={true}
               /> */}
-            
           </form>
         </div>
       </div>
@@ -240,12 +239,19 @@ export default function TabPicker({
 
   return (
     <div className="tab-picker-body">
+      <div className="chooser1">
+        <label className="form-label4">1. CHOOSE AN NFT</label>
+        <UpdatedGallery
+          ownednfts={owned_NFTs}
+          parentCallback={handleAICallback}
+        />
+      </div>
       <div className="tchooser">
-        <label className="form-label4">1. SELECT A MEME BACKGROUND</label>
+        <label className="form-label4">2. UPLOAD A MEME BACKGROUND</label>
         <BackgroundTemplates />
       </div>
       <div>
-        <label className="form-label3">2. EDIT YOUR MEME</label>
+        <label className="form-label3">3. EDIT YOUR MEME</label>
         <Editor
           backgroundImageURL="https://media.wbur.org/wp/2021/10/Disaster-Girl-OG-pic-1000x666.jpeg"
           pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
