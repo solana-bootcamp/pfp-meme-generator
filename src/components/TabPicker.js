@@ -8,6 +8,7 @@ import { Input, ChakraProvider, Button } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import callChatGPT from "../utils/callChatGPT";
 import createMeme from "../utils/createMeme";
+import NFTEditor from "../components/NFTEditor";
 
 
 export default function TabPicker({
@@ -28,6 +29,9 @@ export default function TabPicker({
   const [aiPrompt, setAIPrompt] = useState("");
   const [aiText, setAIText] = useState("");
   const [editorVisibility, setEditorVisibility] = useState(false);
+
+  const [selectedCustomNFTImage, setSelectedCustomNFTImage] = useState("");
+  const [customVisibility, setCustomVisibility] = useState(false);
 
   const onSave = (data) => {
     console.log('this is d: ' + data);
@@ -61,6 +65,11 @@ export default function TabPicker({
     setEditorVisibility(false);
     console.log("Called AI Callback!");
   };
+
+  const handleCustomCallback = (childData) => {
+    setSelectedCustomNFTImage(childData["url"]);
+    setCustomVisibility(true);
+  }
 
   const handleOGBackgroundCallback = (childData) => {
     setSelectedTabNFTBackgroundImage(childData);
@@ -246,28 +255,33 @@ export default function TabPicker({
     );
   }
 
+  //setEditorVisibility(false);
   return (
     <div className="tab-picker-body">
       <div className="chooser1">
         <label className="form-label3">1. CHOOSE AN NFT</label>
         <UpdatedGallery
           ownednfts={owned_NFTs}
-          parentCallback={handleAICallback}
+          parentCallback={handleCustomCallback}
         />
       </div>
-      <div className="tchooser">
+      {/* <div className="tchooser">
         <label className="form-label4">2. UPLOAD A MEME BACKGROUND</label>
-        <BackgroundTemplates />
-      </div>
+        <BackgroundTemplates backgroundCallback={handleOGBackgroundCallback}/>
+      </div> */}
       <div>
-        <label className="form-label3">3. EDIT YOUR MEME</label>
-        <Editor
-          backgroundImageURL="https://media.wbur.org/wp/2021/10/Disaster-Girl-OG-pic-1000x666.jpeg"
-          pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
-          bottomText="MemeBottom"
-          topText="Meme"
-          isInvisible={false}
-        />
+        {(customVisibility) ? (
+          <>
+            <label className="form-label3">2. EDIT YOUR MEME</label>
+            <NFTEditor
+              backgroundImageURL={selectedCustomNFTImage}
+              isInvisible={false}
+            />
+          </>
+        ) : (
+          <></>
+        )
+        }
       </div>
     </div>
   );
