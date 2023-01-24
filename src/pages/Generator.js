@@ -76,7 +76,7 @@ function Generator() {
           <p className="title">MEME GENERATOR</p>
         </div>
         <div className="Generator-body">
-          <div className="button-group">
+          <div>
             <button
               className={isOGActive ? "activeTabButton" : "inactiveTabButton"}
               onClick={() => setTabs(true, false, false)}
@@ -89,7 +89,6 @@ function Generator() {
             >
               <p>AI</p>
             </button>
-
             <button
               className={
                 isCustomActive ? "activeTabButton" : "inactiveTabButton"

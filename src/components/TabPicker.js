@@ -9,7 +9,6 @@ import { useState, useEffect } from "react";
 import callChatGPT from "../utils/callChatGPT";
 import createMeme from "../utils/createMeme";
 
-
 export default function TabPicker({
   owned_NFTs,
   isOGActive,
@@ -30,10 +29,10 @@ export default function TabPicker({
   const [editorVisibility, setEditorVisibility] = useState(false);
 
   const onSave = (data) => {
-    console.log('this is d: ' + data);
-    console.log('this is pk: ' + pubkey);
+    console.log("this is d: " + data);
+    console.log("this is pk: " + pubkey);
     createMeme(pubkey, data);
-  }
+  };
 
   const handleTopChange = (event) => {
     setOgTopText(event.target.value);
@@ -78,17 +77,17 @@ export default function TabPicker({
       <div className="tab-picker-body">
         <div className="form-widget">
           <form onSubmit={() => {}}>
-            <label className="form-label2">1. CHOOSE AN NFT</label>
+            <label className="form-label">1. CHOOSE AN NFT</label>
             <div>
               <UpdatedGallery
                 ownednfts={owned_NFTs}
                 parentCallback={handleOGCallback}
               />
-              <label className="form-label">2. SELECT A MEME BACKGROUND</label>
+              <label className="form-label3">2. SELECT A MEME BACKGROUND</label>
               <BackgroundTemplates
                 backgroundCallback={handleOGBackgroundCallback}
               />
-              <label className="form-label">3. INPUT YOUR TOP MEME TEXT</label>
+              <label className="form-label3">3. INPUT YOUR TOP MEME TEXT</label>
               <ChakraProvider>
                 <Input
                   placeholder="Top Meme Text"
@@ -102,7 +101,7 @@ export default function TabPicker({
                 />
               </ChakraProvider>
 
-              <label className="form-label">
+              <label className="form-label3">
                 4. INPUT YOUR BOTTOM MEME TEXT
               </label>
               <ChakraProvider>
@@ -117,65 +116,52 @@ export default function TabPicker({
                   onChange={handleBottomChange}
                 />
               </ChakraProvider>
-            </div>            
-              {/* <OGViewResult
-                selectedTabNFTImage={selectedTabNFTImage["url"]}
-                selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
-                topText={ogTopText}
-                bottomText={ogBottomText}
-                filled={true}
-              /> */}
-            
+            </div>
           </form>
         </div>
         <div className="editor-div">
-        <label className="form-label3">5. EDIT YOUR MEME</label>
+          {editorVisibility === false ? (
+            <ChakraProvider>
+                <Button
+                  fontFamily="Montserrat"
+                  width="31rem"
+                  fontSize="16px"
+                  fontWeight="800"
+                  bg="#FFD307"
+                  color="black"
+                  padding="0rem 0rem 0rem 0rem"
+                  margin="2rem 0rem 0rem 0rem"
+                  onClick={() => {
+                    if (
+                      selectedTabNFT == "" ||
+                      selectedTabNFTBackgroundImage == ""
+                    ) {
+                      alert("NFT not selected");
+                    } else {
+                      setEditorVisibility(true);
+                    }
+                  }}
+                  _hover={{ bg: "#000000", color: "#FFFFFF" }}
+                  style={{ bg: "#FFD307" }}
+                >
+                  GENERATE
+                </Button>
+              </ChakraProvider>
+          ) : (
+            <div>
+            <label className="form-label2">5. EDIT YOUR MEME</label>
 
-        {editorVisibility === false ? (
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  justifyContent: "end",
-                  alignItems: "center",
-                }}
-              >                <ChakraProvider>
-                  <Button
-                    fontFamily="Montserrat"
-                    w="100%"
-                    fontSize="16px"
-                    fontWeight="800"
-                    bg="#FFD307"
-                    color="black"
-                    padding="0rem 4rem 0rem 4rem"
-                    margin="2rem 0rem 0rem 0rem"
-                    onClick={() => {
-                      if (
-                        selectedTabNFT == "" ||
-                        selectedTabNFTBackgroundImage == ""
-                      ) {
-                        alert("NFT not selected");
-                      } else {
-                        setEditorVisibility(true);
-                      }
-                    }}
-                    _hover={{ bg: "#000000", color: "#FFFFFF" }}
-                    style={{ bg: "#FFD307" }}
-                  >
-                    GENERATE
-                  </Button>
-                </ChakraProvider>
-              </div>
-            ) : (
-                <Editor
-                  backgroundImageURL={selectedTabNFTBackgroundImage}
-                  pfpImageURL={selectedTabNFTImage}
-                  bottomText={ogBottomText}
-                  topText={ogTopText}
-                  isInvisible={false}
-                  onNFTSave={onSave}
-                />
-            )}
+            <Editor
+              backgroundImageURL={selectedTabNFTBackgroundImage}
+              pfpImageURL={selectedTabNFTImage}
+              bottomText={ogBottomText}
+              topText={ogTopText}
+              isInvisible={false}
+              onNFTSave={onSave}
+            />
+            </div>
+            
+          )}
         </div>
       </div>
     );
@@ -186,14 +172,14 @@ export default function TabPicker({
       <div className="tab-picker-body">
         <div className="form-widget">
           <form onSubmit={() => {}}>
-            <label className="form-label2">1. CHOOSE AN NFT</label>
+            <label className="form-label">1. CHOOSE AN NFT</label>
             <UpdatedGallery
               ownednfts={owned_NFTs}
               parentCallback={handleAICallback}
             />
-            <label className="form-label">2. SELECT A MEME BACKGROUND</label>
+            <label className="form-label3">2. SELECT A MEME BACKGROUND</label>
             <BackgroundTemplates />
-            <label className="form-label">3. DESCRIBE YOUR MEME</label>
+            <label className="form-label3">3. DESCRIBE YOUR MEME</label>
             <ChakraProvider>
               <Input
                 placeholder="Meme Description"
@@ -211,7 +197,7 @@ export default function TabPicker({
               style={{
                 display: "flex",
                 width: "100%",
-                justifyContent: "end",
+                justifyContent: "center",
                 alignItems: "center",
               }}
             >
@@ -250,18 +236,18 @@ export default function TabPicker({
   return (
     <div className="tab-picker-body">
       <div className="chooser1">
-        <label className="form-label3">1. CHOOSE AN NFT</label>
+        <label className="form-label">1. CHOOSE AN NFT</label>
         <UpdatedGallery
           ownednfts={owned_NFTs}
           parentCallback={handleAICallback}
         />
       </div>
       <div className="tchooser">
-        <label className="form-label4">2. UPLOAD A MEME BACKGROUND</label>
+        <label className="form-label3">2. UPLOAD A MEME BACKGROUND</label>
         <BackgroundTemplates />
       </div>
       <div>
-        <label className="form-label3">3. EDIT YOUR MEME</label>
+        <label className="form-label2">3. EDIT YOUR MEME</label>
         <Editor
           backgroundImageURL="https://media.wbur.org/wp/2021/10/Disaster-Girl-OG-pic-1000x666.jpeg"
           pfpImageURL="https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0"
