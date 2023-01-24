@@ -11,7 +11,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-async function callChatGPT(meme_description) {
+export default async function callChatGPT(meme_description) {
     const response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: "Write me a meme caption for a meme with the following desciption: " + meme_description,
