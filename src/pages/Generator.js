@@ -8,7 +8,6 @@ import BackgroundTemplates from "../components/BackgroundTemplates";
 import get_nfts from "../utils/get_nfts";
 import TabPicker from "../components/TabPicker";
 
-
 function Generator() {
   const navigate = useNavigate();
 
@@ -61,10 +60,7 @@ function Generator() {
   const handleNFTCallback = (childData) => {
     setSelectedNFTImage(childData);
     console.log("Called Callback!");
-    console.log(
-      "selected: " +
-        JSON.stringify(childData)
-    );
+    console.log("selected: " + JSON.stringify(childData));
   };
 
   const setTabs = (ogstatus, aistatus, customstatus) => {
@@ -77,30 +73,32 @@ function Generator() {
     <div>
       <div className="leftcolumn">
         <div>
-        <p className="title">MEME GENERATOR</p>
+          <p className="title">MEME GENERATOR</p>
         </div>
         <div className="Generator-body">
-                <div className="button-group">
-          <button
-            className={isOGActive ? "activeTabButton" : "inactiveTabButton"}
-            onClick={() => setTabs(true, false, false)}
-          >
-            <p>OG</p>
-          </button>
-          <button
-            className={isAIActive ? "activeTabButton" : "inactiveTabButton"}
-            onClick={() => setTabs(false, true, false)}
-          >
-            <p>AI</p>
-          </button>
+          <div className="button-group">
+            <button
+              className={isOGActive ? "activeTabButton" : "inactiveTabButton"}
+              onClick={() => setTabs(true, false, false)}
+            >
+              <p>OG</p>
+            </button>
+            <button
+              className={isAIActive ? "activeTabButton" : "inactiveTabButton"}
+              onClick={() => setTabs(false, true, false)}
+            >
+              <p>AI</p>
+            </button>
 
-          <button
-            className={isCustomActive ? "activeTabButton" : "inactiveTabButton"}
-            onClick={() => setTabs(false, false, true)}
-          >
-            <p>CUSTOM</p>
-          </button>
-        </div>
+            <button
+              className={
+                isCustomActive ? "activeTabButton" : "inactiveTabButton"
+              }
+              onClick={() => setTabs(false, false, true)}
+            >
+              <p>CUSTOM</p>
+            </button>
+          </div>
           <TabPicker
             handleNFTCallback={handleNFTCallback}
             owned_NFTs={owned_NFTs}
@@ -111,7 +109,7 @@ function Generator() {
         </div>
       </div>
       <div className="rightcolumn">
-        <Feed currentwallet={user.walletPublicKey}/>
+        <Feed currentwallet={user.walletPublicKey} />
       </div>
     </div>
   );

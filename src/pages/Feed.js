@@ -10,7 +10,7 @@ function Feed({currentwallet}) {
   useEffect(() => {
     const fetchMemes = async () => {
       try {
-        if ((currentwallet !== null)) {
+        if ((currentwallet !== null) || (memes === []) ) {
           let { data, error } = await supabase
             .from("memes")
             .select()
@@ -26,9 +26,8 @@ function Feed({currentwallet}) {
         console.log(error.message);
       }
     };
-    if (memes === []) {
       fetchMemes();
-    }
+
   }, [currentwallet, memes]);
 
   return (
