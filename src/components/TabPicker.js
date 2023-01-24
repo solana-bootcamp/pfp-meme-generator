@@ -16,9 +16,8 @@ export default function TabPicker({
   isCustomActive,
 }) {
  
-  const [selectedTabNFTImage, setSelectedTabNFTIamge] = useState("");
-  const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] =
-    useState("");
+  const [selectedTabNFTImage, setSelectedTabNFTImage] = useState("");
+  const [selectedTabNFTBackgroundImage, setSelectedTabNFTBackgroundImage] = useState("");
   const [ogTopText, setOgTopText] = useState("");
   const [ogBottomText, setOgBottomText] = useState("");
   const [aiPrompt, setAIPrompt] = useState("");
@@ -30,12 +29,12 @@ export default function TabPicker({
   const handleAIChange = (event) => setAIPrompt(event.target.value);
 
   const handleOGCallback = (childData) => {
-    setSelectedTabNFTIamge(childData);
+    setSelectedTabNFTImage(childData);
     console.log("Called OG Callback!");
   };
 
   const handleAICallback = (childData) => {
-    setSelectedTabNFTIamge(childData);
+    setSelectedTabNFTImage(childData);
     console.log("Called AI Callback!");
   };
 

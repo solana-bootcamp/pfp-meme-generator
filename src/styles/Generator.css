@@ -122,10 +122,9 @@
 
 .button-group {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0rem 2rem 1rem 2rem;
-  width: 32rem;
+  width: 35rem;
 }
 
 .activeTabButton {
