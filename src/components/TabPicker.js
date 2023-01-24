@@ -4,8 +4,10 @@ import OGViewResult from "../pages/OGViewResult";
 import AIViewResult from "../pages/AIViewResult";
 import BackgroundTemplates from "../components/BackgroundTemplates";
 import "../styles/Generator.css";
-import { Input, ChakraProvider } from "@chakra-ui/react";
+import { Input, ChakraProvider, Button } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import callChatGPT from "../utils/callChatGPT";
+
 
 export default function TabPicker({
   handleNFTCallback,
@@ -25,12 +27,12 @@ export default function TabPicker({
   const [ogTopText, setOgTopText] = useState("");
   const [ogBottomText, setOgBottomText] = useState("");
   const [aiPrompt, setAIPrompt] = useState("");
+  const [aiText, setAIText] = useState("");
 
 
   const handleTopChange = (event) => setOgTopText(event.target.value);
   const handleBottomChange = (event) => setOgBottomText(event.target.value);
   const handleAIChange = (event) => setAIPrompt(event.target.value);
-
 
   const handleOGCallback = (childData) => {
     setSelectedTabNFTIamge(childData);
@@ -47,7 +49,15 @@ export default function TabPicker({
     console.log("Called OG Background Callback!");
   };
 
-  
+  function passToEditor() {
+
+  }
+
+  async function getAIText(prompt) {
+    const text = await callChatGPT(prompt);
+    setAIText(text);
+  }
+
 
   if (isOGActive) {
     return (
@@ -103,13 +113,32 @@ export default function TabPicker({
                 alignItems: "center",
               }}
             >
-              <OGViewResult
+              <ChakraProvider>
+                <Button
+                  fontFamily="Montserrat"
+                  w="100%"
+                  fontSize="16px"
+                  fontWeight="800"
+                  bg="#FFD307"
+                  color="black"
+                  padding="0rem 4rem 0rem 4rem"
+                  margin="2rem 0rem 0rem 0rem"
+                  onClick={passToEditor}
+                  disabled={true}
+                  _hover={{ bg: "#000000", color: "#FFFFFF" }}
+                  style={{ bg: "#FFD307" }}
+                >
+                  GENERATE
+                </Button>
+              </ChakraProvider>
+
+              {/* <OGViewResult
                 selectedTabNFTImage={selectedTabNFTImage["url"]}
                 selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
                 topText={ogTopText}
                 bottomText={ogBottomText}
                 filled={true}
-              />
+              /> */}
             </div>
           </form>
         </div>
@@ -152,12 +181,31 @@ export default function TabPicker({
                 alignItems: "center",
               }}
             >
-              <AIViewResult 
+              <ChakraProvider>
+                <Button
+                  fontFamily="Montserrat"
+                  w="100%"
+                  fontSize="16px"
+                  fontWeight="800"
+                  bg="#FFD307"
+                  color="black"
+                  padding="0rem 4rem 0rem 4rem"
+                  margin="2rem 0rem 0rem 0rem"
+                  onClick={passToEditor}
+                  disabled={true}
+                  _hover={{ bg: "#000000", color: "#FFFFFF" }}
+                  style={{ bg: "#FFD307" }}
+                >
+                  GENERATE
+                </Button>
+              </ChakraProvider>
+
+              {/* <AIViewResult 
                 selectedTabNFTImage={selectedTabNFTImage["url"]}
                 selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
                 aiPrompt={aiPrompt}
                 filled={true}
-              />
+              /> */}
             </div>
           </form>
         </div>
