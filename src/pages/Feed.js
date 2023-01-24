@@ -1,16 +1,16 @@
-import { Box } from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import "../styles/Feed.css";
 import Meme from "../components/Meme";
 import { supabase } from "../supabaseClient";
 import { useState, useEffect } from "react";
 
-function Feed({currentwallet}) {
+function Feed({ currentwallet }) {
   const [memes, setMemes] = useState([]);
 
   useEffect(() => {
     const fetchMemes = async () => {
       try {
-        if ((currentwallet !== null) || (memes === []) ) {
+        if (currentwallet !== null || memes === []) {
           let { data, error } = await supabase
             .from("memes")
             .select()
@@ -26,26 +26,31 @@ function Feed({currentwallet}) {
         console.log(error.message);
       }
     };
-      fetchMemes();
-
+    fetchMemes();
   }, [currentwallet]);
 
   return (
     <div className="Feed">
-            <p className="pf">DA MEMES</p>
-            <Box className="Feed-body">
-      {memes !== [] ? (
-        memes.map((currentmeme, index) => {
-          return <Meme key={index} memecreator={currentmeme.currentwallt} memeimage={currentmeme.memeuri} />;
-        })
-      ) : (
-        <div>
-          <p className="pff">No memes have been created</p>
-        </div>
-      )}
-    </Box>
-    </div>
+      <p className="pf">DA MEMES</p>
+      <SimpleGrid className="Feed-body" minChildWidth="300px" spacing="20px">
+        {memes !== [] ? (
+          memes.map((currentmeme, index) => {
+            return (
+              <Meme
+                key={index}
+                memecreator={currentmeme.currentwallt}
+                memeimage={currentmeme.memeuri}
+              />
+            );
+          })
+        ) : (
+          <div>
+            <p className="pff">No memes have been created</p>
+          </div>
+        )}
 
+        </SimpleGrid>
+    </div>
   );
 }
 

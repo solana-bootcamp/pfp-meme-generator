@@ -1,23 +1,14 @@
 .Generator-body {
   background-color: #ed1c24;
-  display: grid;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 30px;
   padding: 1.5rem 2rem 2rem 2rem;
   margin: 0rem 0rem 2rem 0rem;
-  width: 35rem;
+  width: 36rem;
 }
-
-/* .Generator-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0rem 2rem 0rem 2rem;
-  margin: 0rem 0rem 8rem 0rem;
-} */
-
 
 .form-widget {
   display: flex;
@@ -36,7 +27,7 @@
   font-weight: 800;
   font-size: 16px;
   letter-spacing: 1px;
-  padding: 1.5rem 0rem 0.5rem 0rem;
+  padding: 2rem 0rem 0.5rem 0rem;
 }
 
 .form-label2 {
@@ -51,17 +42,6 @@
 }
 
 .form-label3 {
-  justify-content: start;
-  display: flex;
-  color: white;
-  font-family: Montserrat;
-  font-weight: 800;
-  font-size: 16px;
-  letter-spacing: 1px;
-  padding: 1rem 0rem 0.5rem 0rem;
-}
-
-.form-label4 {
   justify-content: start;
   display: flex;
   color: white;
@@ -120,12 +100,6 @@
   margin: 1rem 0rem 0rem 0rem;
 }
 
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  padding: 0rem 2rem 1rem 2rem;
-  width: 35rem;
-}
 
 .activeTabButton {
   color: black;
@@ -153,13 +127,6 @@
   cursor: pointer;
 }
 
-.tab-picker-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .tchooser {
   display: flex;
   flex-direction: column;
@@ -172,6 +139,7 @@
 }
 
 .editor-div {
-  width: 31rem;
+  display: flex;
+  justify-content: center;
 }
 
