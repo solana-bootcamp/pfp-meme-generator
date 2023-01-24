@@ -7,12 +7,15 @@ import "../styles/Generator.css";
 import { Input, ChakraProvider, Button } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import callChatGPT from "../utils/callChatGPT";
+import createMeme from "../utils/createMeme";
+
 
 export default function TabPicker({
   owned_NFTs,
   isOGActive,
   isAIActive,
   isCustomActive,
+  pubkey,
 }) {
   const [selectedTabNFTImage, setSelectedTabNFTImage] = useState("");
   const [selectedTabNFT, setSelectedTabNFT] = useState("");
@@ -25,6 +28,11 @@ export default function TabPicker({
   const [aiPrompt, setAIPrompt] = useState("");
   const [aiText, setAIText] = useState("");
   const [editorVisibility, setEditorVisibility] = useState(false);
+
+  const onSave = (data) => {
+    console.log(data);
+    createMeme(pubkey, data);
+  }
 
   const handleTopChange = (event) => {
     setOgTopText(event.target.value);
@@ -109,7 +117,18 @@ export default function TabPicker({
                 />
               </ChakraProvider>
             </div>
-            {editorVisibility === false ? (
+            <label className="form-label3">5. EDIT YOUR MEME</label>
+            
+              {/* <OGViewResult
+                selectedTabNFTImage={selectedTabNFTImage["url"]}
+                selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
+                topText={ogTopText}
+                bottomText={ogBottomText}
+                filled={true}
+              /> */}
+            
+          </form>
+          {editorVisibility === false ? (
               <div
                 style={{
                   display: "flex",
@@ -146,26 +165,15 @@ export default function TabPicker({
                 </ChakraProvider>
               </div>
             ) : (
-              <>
-                <label className="form-label3">5. EDIT YOUR MEME</label>
                 <Editor
                   backgroundImageURL={selectedTabNFTBackgroundImage}
                   pfpImageURL={selectedTabNFTImage}
                   bottomText={ogBottomText}
                   topText={ogTopText}
                   isInvisible={false}
+                  onNFTSave={onSave}
                 />
-              </>
             )}
-
-            {/* <OGViewResult
-                selectedTabNFTImage={selectedTabNFTImage["url"]}
-                selectedTabNFTBackgroundImage={selectedTabNFTBackgroundImage}
-                topText={ogTopText}
-                bottomText={ogBottomText}
-                filled={true}
-              /> */}
-          </form>
         </div>
       </div>
     );

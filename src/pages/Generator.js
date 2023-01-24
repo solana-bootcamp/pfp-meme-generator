@@ -105,6 +105,7 @@ function Generator() {
             isOGActive={isOGActive}
             isAIActive={isAIActive}
             isCustomActive={isCustomActive}
+            pubkey={user.walletPublicKey}
           />
         </div>
       </div>

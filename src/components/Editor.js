@@ -14,6 +14,7 @@ export default function Editor({
   bottomText,
   topText,
   isInvisible,
+  onNFTSave
 }) {
   const [background, setBackground] = useState(backgroundImageURL);
   const [pfp, setPfp] = useState(pfpImageURL);
@@ -22,7 +23,8 @@ export default function Editor({
 
   //editedImageObject is the base64 image
   const saveImage = (editedImageObject, designState) => {
-    console.log("saved", editedImageObject, designState);
+    onNFTSave(editedImageObject.imageBase64);
+    //console.log("saved", editedImageObject, designState);
   };
 
   //THIS WORKS AND IS TESTED FOR SOME IMAGES, but CORS policy is preventing me from doing it on a lot of images
